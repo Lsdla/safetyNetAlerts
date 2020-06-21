@@ -1,17 +1,57 @@
 package com.safetynet.safetynetalerts.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Column;
+import javax.persistence.OneToOne;
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+
+
+@Entity
+@Table(name = "persons")
 public class Person {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, updatable = false)
     private Long id;
+
+    @Column(name = "first_name", nullable = false, updatable = false)
     private String firstName;
+
+    @Column(name = "last_name", nullable = false, updatable = false)
     private String lastName;
+
+    @Column(name = "address")
     private String address;
+
+    @Column(name = "city")
     private String city;
+
+    @Column(name = "zip")
     private String zip;
+
+    @Column(name = "phone")
     private String phone;
+
+    @Column(name = "email")
     private String email;
 
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "medical_record_id")
     private MedicalRecord medicalRecord;
+
+    @ManyToOne(fetch = FetchType.LAZY ,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinColumn(name = "fire_station_id")
+    private FireStation fireStation;
 
     public Person() {
     }
@@ -101,6 +141,14 @@ public class Person {
         this.medicalRecord = medicalRecord;
     }
 
+    public FireStation getFireStation() {
+        return fireStation;
+    }
+
+    public void setFireStation(FireStation fireStation) {
+        this.fireStation = fireStation;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
@@ -113,6 +161,7 @@ public class Person {
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", medicalRecord=" + medicalRecord +
+                ", fireStation=" + fireStation +
                 '}';
     }
 }

@@ -1,13 +1,38 @@
 package com.safetynet.safetynetalerts.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "fire_stations")
 public class FireStation {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, updatable = false)
     private Long id;
+
+    @Column(name = "address")
     private String address;
+
+    @Column(name = "station")
     private String station;
 
+    @OneToMany(mappedBy = "fireStation",
+            fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+                       CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinColumn(name = "person_id")
     private List<Person> persons;
 
     public FireStation() {
@@ -48,6 +73,15 @@ public class FireStation {
 
     public void setPersons(List<Person> persons) {
         this.persons = persons;
+    }
+
+    //convenience method for bi-directional relationship
+    public void addPerson(Person thePerson) {
+        if (persons == null) {
+            persons = new ArrayList<>();
+        }
+        persons.add(thePerson);
+        thePerson.setFireStation(this);
     }
 
     @Override
