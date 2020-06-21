@@ -37,19 +37,19 @@ public class PersonController {
     }
 
     //add mapping for DELETE /person -delete a person from db
-    @DeleteMapping(value = "/delete/{firstName}&{lastName}")
+    @DeleteMapping("/delete/{firstName}&{lastName}")
     public String deletePerson(@PathVariable String firstName, @PathVariable String lastName) {
         Person person = personService.findByFirstNameAndLastName(firstName, lastName);
 
         //throw an exception if no person with the same first name and last name was found in db
         if (person == null) {
-            throw new RuntimeException("No person with these credentials " +
-                    "'" +  firstName + " " + lastName + "'" + " was found!");
+            throw new RuntimeException("No person with these credentials '" +
+                    firstName + " " + lastName + "' was found!");
         }
 
         personService.deleteByFirstNameAndLastName(firstName, lastName);
 
-        return ("'" + firstName + " " + lastName +"'" + " deleted successfully");
+        return ("'" + firstName + " " + lastName +"' deleted successfully");
     }
 
 }
