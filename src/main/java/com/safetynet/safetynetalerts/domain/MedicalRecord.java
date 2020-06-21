@@ -1,15 +1,36 @@
 package com.safetynet.safetynetalerts.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.util.Date;
 import java.util.List;
 
+@Entity
+@Table(name = "medical_records")
 public class MedicalRecord {
 
+    @Id
+    @Column(name = "id", nullable = false, updatable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "first_name")
     private String firstName;
+
+    @Column(name = "last_name")
     private String lastName;
+
+    @Column(name = "birth_date")
     private Date birthDate;
+
+    @Column(name = "allergies")
     private List<String> allergies;
+
+    @Column(name = "medications")
     private List<String> medications;
 
     public MedicalRecord() {
