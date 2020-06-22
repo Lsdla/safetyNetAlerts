@@ -6,7 +6,7 @@ public interface FireStationService {
 
     void save(FireStation fireStation);
 
-    FireStation findByStationNumber(String station);
+    FireStation findByStation(String station);
 
-    void deleteByStationNumber(String station);
+    void deleteByStation(String station);
 }
