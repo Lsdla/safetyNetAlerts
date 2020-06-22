@@ -24,13 +24,13 @@ public class FireStationServiceImpl implements FireStationService {
 
     //find a fire station by its number
     @Override
-    public FireStation findByStationNumber(String station) {
-        return fireStationRepository.findByStationNumber(station);
+    public FireStation findByStation(String station) {
+        return fireStationRepository.findByStation(station);
     }
 
     //delete a fire station by its number
     @Override
-    public void deleteByStationNumber(String station) {
-        fireStationRepository.deleteByStationNumber(station);
+    public void deleteByStation(String station) {
+        fireStationRepository.deleteByStation(station);
     }
 }

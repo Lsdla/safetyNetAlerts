@@ -46,7 +46,7 @@ public class FireStationController {
     @DeleteMapping("/delete/{station}")
     public String deleteFireStation(@PathVariable String station) {
         //check if the fire station exists in db
-        FireStation fireStation = fireStationService.findByStationNumber(station);
+        FireStation fireStation = fireStationService.findByStation(station);
 
         //throw an exception if no fire station that has the inserted station number was found
         if (fireStation == null) {
@@ -54,7 +54,7 @@ public class FireStationController {
         }
 
         //delete the found station
-        fireStationService.deleteByStationNumber(station);
+        fireStationService.deleteByStation(station);
 
         //return a simple message
         return ("Station n° " + station +" deleted successfully");
