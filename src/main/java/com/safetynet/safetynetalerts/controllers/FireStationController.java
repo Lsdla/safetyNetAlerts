@@ -5,6 +5,8 @@ import com.safetynet.safetynetalerts.service.FireStationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/fireStation")
 public class FireStationController {
@@ -17,6 +19,10 @@ public class FireStationController {
         this.fireStationService = fireStationService;
     }
 
+    @GetMapping("/fireStations")
+    public List<FireStation> findFireStations() {
+        return fireStationService.findAll();
+    }
     //add mapping for POST /add -add a new fire station
     @PostMapping("/add")
     public FireStation addFireStation(@RequestBody FireStation fireStation) {

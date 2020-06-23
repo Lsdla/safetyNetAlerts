@@ -5,6 +5,8 @@ import com.safetynet.safetynetalerts.repository.FireStationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FireStationServiceImpl implements FireStationService {
 
@@ -32,5 +34,10 @@ public class FireStationServiceImpl implements FireStationService {
     @Override
     public void deleteByStation(String station) {
         fireStationRepository.deleteByStation(station);
+    }
+
+    @Override
+    public List<FireStation> findAll() {
+        return fireStationRepository.findAll();
     }
 }

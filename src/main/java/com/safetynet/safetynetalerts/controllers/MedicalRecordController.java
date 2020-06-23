@@ -5,6 +5,8 @@ import com.safetynet.safetynetalerts.service.MedicalRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/medicalRecord")
 public class MedicalRecordController {
@@ -15,6 +17,11 @@ public class MedicalRecordController {
     @Autowired
     public MedicalRecordController(MedicalRecordService medicalRecordService) {
         this.medicalRecordService = medicalRecordService;
+    }
+
+    @GetMapping("/records")
+    public List<MedicalRecord> findAllMedicalRecords() {
+        return medicalRecordService.findAll();
     }
 
     //add mapping for POST /medicalRecord/add
