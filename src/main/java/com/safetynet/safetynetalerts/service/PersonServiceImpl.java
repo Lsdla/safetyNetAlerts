@@ -5,6 +5,8 @@ import com.safetynet.safetynetalerts.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PersonServiceImpl implements PersonService {
 
@@ -14,6 +16,11 @@ public class PersonServiceImpl implements PersonService {
     @Autowired
     public PersonServiceImpl(PersonRepository personRepository) {
         this.personRepository = personRepository;
+    }
+
+    @Override
+    public List<Person> findAll() {
+        return personRepository.findAll();
     }
 
     @Override

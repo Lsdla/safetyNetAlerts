@@ -5,6 +5,8 @@ import com.safetynet.safetynetalerts.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/person")
 public class PersonController {
@@ -15,6 +17,11 @@ public class PersonController {
     @Autowired
     public PersonController(PersonService personService) {
         this.personService = personService;
+    }
+
+    @GetMapping("/persons")
+    public List<Person> findPersons() {
+        return personService.findAll();
     }
 
     //add mapping for POST /person - add new person
@@ -37,7 +44,7 @@ public class PersonController {
     }
 
     //add mapping for DELETE /person -delete a person from db
-    @DeleteMapping("/delete/{firstName}&{lastName}")
+    @DeleteMapping("/delete/{firstName}{lastName}")
     public String deletePerson(@PathVariable String firstName, @PathVariable String lastName) {
         Person person = personService.findByFirstNameAndLastName(firstName, lastName);
 
