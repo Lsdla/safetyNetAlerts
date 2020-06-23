@@ -5,6 +5,8 @@ import com.safetynet.safetynetalerts.repository.MedicalRecordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MedicalRecordServiceImpl implements MedicalRecordService {
 
@@ -14,6 +16,11 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
     @Autowired
     public MedicalRecordServiceImpl(MedicalRecordRepository medicalRecordRepository) {
         this.medicalRecordRepository = medicalRecordRepository;
+    }
+
+    @Override
+    public List<MedicalRecord> findAll() {
+        return medicalRecordRepository.findAll();
     }
 
     @Override
