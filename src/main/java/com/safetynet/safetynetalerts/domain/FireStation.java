@@ -1,14 +1,6 @@
 package com.safetynet.safetynetalerts.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.OneToMany;
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +10,7 @@ public class FireStation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, updatable = false)
+    @Column(name = "fire_station_id", nullable = false, updatable = false)
     private Long id;
 
     @Column(name = "address")
@@ -27,10 +19,14 @@ public class FireStation {
     @Column(name = "station")
     private String station;
 
-    @OneToMany(mappedBy = "fireStation",
-            fetch = FetchType.LAZY,
+    @ManyToMany(fetch = FetchType.LAZY ,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-                       CascadeType.DETACH, CascadeType.REFRESH})
+                    CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(
+            name = "fire_stations_persons",
+            joinColumns = @JoinColumn(name = "fire_station_id"),
+            inverseJoinColumns = @JoinColumn(name = "person_id")
+    )
     private List<Person> persons;
 
     public FireStation() {
@@ -73,13 +69,14 @@ public class FireStation {
         this.persons = persons;
     }
 
-    //convenience method for bi-directional relationship
-    public void addPerson(Person thePerson) {
+    //a convenience method for adding persons to fireStation
+
+    public void addPerson (Person person) {
         if (persons == null) {
             persons = new ArrayList<>();
         }
-        persons.add(thePerson);
-        thePerson.setFireStation(this);
+
+        persons.add(person);
     }
 
     @Override

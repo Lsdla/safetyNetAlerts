@@ -9,7 +9,7 @@ import java.util.List;
 public class MedicalRecord {
 
     @Id
-    @Column(name = "id", nullable = false, updatable = false)
+    @Column(name = "medical_records_id", nullable = false, updatable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
