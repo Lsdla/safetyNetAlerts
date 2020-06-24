@@ -1,6 +1,17 @@
 package com.safetynet.safetynetalerts.domain;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+
 import java.util.Date;
 import java.util.List;
 
@@ -22,25 +33,37 @@ public class MedicalRecord {
     @Column(name = "birth_date")
     private Date birthDate;
 
-    @Column(name = "allergies")
-    @ElementCollection
-    private List<String> allergies;
+    @ManyToMany(fetch = FetchType.LAZY ,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(
+            name = "medical_records_allergies",
+            joinColumns = @JoinColumn(name = "medical_records_id"),
+            inverseJoinColumns = @JoinColumn(name = "allergies_id")
+    )
+    private List<Allergy> allergies;
 
-    @Column(name = "medications")
-    @ElementCollection
-    private List<String> medications;
+    @ManyToMany(fetch = FetchType.LAZY ,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(
+            name = "medical_records_medications",
+            joinColumns = @JoinColumn(name = "medical_records_id"),
+            inverseJoinColumns = @JoinColumn(name = "medications_id")
+    )
+    private List<Medication> medications;
 
     public MedicalRecord() {
     }
 
     public MedicalRecord(String firstName, String lastName,
-                         Date birthDate, List<String> allergies,
-                         List<String> medications) {
+                         Date birthDate, List<Allergy> allergies,
+                         List<Medication> medications) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
-        this.allergies = allergies;
         this.medications = medications;
+        this.allergies = allergies;
     }
 
     public Long getId() {
@@ -75,19 +98,19 @@ public class MedicalRecord {
         this.birthDate = birthDate;
     }
 
-    public List<String> getAllergies() {
+    public List<Allergy> getAllergies() {
         return allergies;
     }
 
-    public void setAllergies(List<String> allergies) {
+    public void setAllergies(List<Allergy> allergies) {
         this.allergies = allergies;
     }
 
-    public List<String> getMedications() {
+    public List<Medication> getMedications() {
         return medications;
     }
 
-    public void setMedications(List<String> medications) {
+    public void setMedications(List<Medication> medications) {
         this.medications = medications;
     }
 
