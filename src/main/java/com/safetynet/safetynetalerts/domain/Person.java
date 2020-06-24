@@ -10,7 +10,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
 import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
+import javax.persistence.JoinTable;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -19,7 +22,7 @@ public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, updatable = false)
+    @Column(name = "persons_id", nullable = false, updatable = false)
     private Long id;
 
     @Column(name = "first_name", nullable = false, updatable = false)
@@ -47,11 +50,15 @@ public class Person {
     @JoinColumn(name = "medical_record_id")
     private MedicalRecord medicalRecord;
 
-    @ManyToOne(fetch = FetchType.LAZY ,
+    @ManyToMany(fetch = FetchType.LAZY ,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE,
                     CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn(name = "fire_station_id")
-    private FireStation fireStation;
+    @JoinTable(
+            name = "fire_stations_persons",
+            joinColumns = @JoinColumn(name = "person_id"),
+            inverseJoinColumns = @JoinColumn(name = "fire_station_id")
+    )
+    private List<FireStation> fireStations;
 
     public Person() {
     }
@@ -141,12 +148,21 @@ public class Person {
         this.medicalRecord = medicalRecord;
     }
 
-    public FireStation getFireStation() {
-        return fireStation;
+    public List<FireStation> getFireStations() {
+        return fireStations;
     }
 
-    public void setFireStation(FireStation fireStation) {
-        this.fireStation = fireStation;
+    public void setFireStations(List<FireStation> fireStations) {
+        this.fireStations = fireStations;
+    }
+
+    //a convenience method for adding persons to fireStation
+    public void addFireStation(FireStation fireStation) {
+        if (fireStations == null) {
+            fireStations = new ArrayList<>();
+        }
+
+        fireStations.add(fireStation);
     }
 
     @Override
@@ -161,7 +177,7 @@ public class Person {
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", medicalRecord=" + medicalRecord +
-                ", fireStation=" + fireStation +
+                ", fireStation=" + fireStations +
                 '}';
     }
 }
