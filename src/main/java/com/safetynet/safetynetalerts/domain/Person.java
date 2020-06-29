@@ -17,12 +17,12 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "persons")
+@Table(name = "person")
 public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "persons_id", nullable = false, updatable = false)
+    @Column(name = "person_id", nullable = false, updatable = false)
     private Long id;
 
     @Column(name = "first_name", nullable = false, updatable = false)
@@ -54,7 +54,7 @@ public class Person {
             cascade = {CascadeType.PERSIST, CascadeType.MERGE,
                     CascadeType.DETACH, CascadeType.REFRESH})
     @JoinTable(
-            name = "fire_stations_persons",
+            name = "fire_station_person",
             joinColumns = @JoinColumn(name = "person_id"),
             inverseJoinColumns = @JoinColumn(name = "fire_station_id")
     )

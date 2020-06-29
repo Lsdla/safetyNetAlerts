@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "fire_stations")
+@Table(name = "fire_station")
 public class FireStation {
 
     @Id
@@ -34,7 +34,7 @@ public class FireStation {
             cascade = {CascadeType.PERSIST, CascadeType.MERGE,
                     CascadeType.DETACH, CascadeType.REFRESH})
     @JoinTable(
-            name = "fire_stations_persons",
+            name = "fire_station_person",
             joinColumns = @JoinColumn(name = "fire_station_id"),
             inverseJoinColumns = @JoinColumn(name = "person_id")
     )
