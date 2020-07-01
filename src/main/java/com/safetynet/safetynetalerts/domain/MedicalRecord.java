@@ -6,21 +6,18 @@ import javax.persistence.Id;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
+import javax.persistence.Lob;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "medical_records")
+@Table(name = "medical_record")
 public class MedicalRecord {
 
     @Id
-    @Column(name = "medical_records_id", nullable = false, updatable = false)
+    @Column(name = "medical_record_id", nullable = false, updatable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -33,32 +30,21 @@ public class MedicalRecord {
     @Column(name = "birth_date")
     private Date birthDate;
 
-    @ManyToMany(fetch = FetchType.LAZY ,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinTable(
-            name = "medical_records_allergies",
-            joinColumns = @JoinColumn(name = "medical_records_id"),
-            inverseJoinColumns = @JoinColumn(name = "allergies_id")
-    )
-    private List<Allergy> allergies;
 
-    @ManyToMany(fetch = FetchType.LAZY ,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinTable(
-            name = "medical_records_medications",
-            joinColumns = @JoinColumn(name = "medical_records_id"),
-            inverseJoinColumns = @JoinColumn(name = "medications_id")
-    )
-    private List<Medication> medications;
+    @Lob
+    @Column(name = "allergies")
+    private List<String> allergies;
+
+    @Lob
+    @Column(name = "medications")
+    private List<String> medications;
 
     public MedicalRecord() {
     }
 
     public MedicalRecord(String firstName, String lastName,
-                         Date birthDate, List<Allergy> allergies,
-                         List<Medication> medications) {
+                         Date birthDate, List<String> allergies,
+                         List<String> medications) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
@@ -98,20 +84,36 @@ public class MedicalRecord {
         this.birthDate = birthDate;
     }
 
-    public List<Allergy> getAllergies() {
+    public List<String> getAllergies() {
         return allergies;
     }
 
-    public void setAllergies(List<Allergy> allergies) {
+    public void setAllergies(List<String> allergies) {
         this.allergies = allergies;
     }
 
-    public List<Medication> getMedications() {
+    public List<String> getMedications() {
         return medications;
     }
 
-    public void setMedications(List<Medication> medications) {
+    public void setMedications(List<String> medications) {
         this.medications = medications;
+    }
+
+    //a convenience method for adding allergies
+    public void addAllergy(String allergy) {
+        if (allergies == null) {
+            allergies = new ArrayList<>();
+        }
+        allergies.add(allergy);
+    }
+
+    //a convenience method for adding medications
+    public void addMedication(String medication) {
+        if (medications == null) {
+            medications = new ArrayList<>();
+        }
+        medications.add(medication);
     }
 
     @Override
