@@ -3,7 +3,9 @@ package com.safetynet.safetynetalerts.controllers;
 import com.safetynet.safetynetalerts.domain.FireStation;
 import com.safetynet.safetynetalerts.service.FireStationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -56,7 +58,7 @@ public class FireStationController {
 
         //throw an exception if no fire station that has the inserted station number was found
         if (fireStation == null) {
-            throw new RuntimeException("No fire station that has n° " + station + " was found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No fire station that has n° " + station + " was found");
         }
 
         //delete the found station
