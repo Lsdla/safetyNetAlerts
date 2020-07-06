@@ -3,7 +3,9 @@ package com.safetynet.safetynetalerts.controllers;
 import com.safetynet.safetynetalerts.domain.MedicalRecord;
 import com.safetynet.safetynetalerts.service.MedicalRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -49,7 +51,7 @@ public class MedicalRecordController {
         MedicalRecord medicalRecord = medicalRecordService.findByFirstNameAndLastName(firstName, lastName);
 
         if (medicalRecord == null) {
-            throw new RuntimeException("No medical record that belongs to '" +
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No medical record that belongs to '" +
                     firstName + " " + lastName + "' was found");
         }
 
