@@ -6,7 +6,9 @@ import javax.persistence.Id;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Lob;
+import javax.persistence.ElementCollection;
+import javax.persistence.CollectionTable;
+import javax.persistence.JoinColumn;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,11 +33,13 @@ public class MedicalRecord {
     private Date birthDate;
 
 
-    @Lob
+    @ElementCollection
+    @CollectionTable(name = "medical_record_allergies", joinColumns = @JoinColumn(name = "medical_record_id"))
     @Column(name = "allergies")
     private List<String> allergies;
 
-    @Lob
+    @ElementCollection
+    @CollectionTable(name = "medical_record_medications", joinColumns = @JoinColumn(name = "medical_record_id"))
     @Column(name = "medications")
     private List<String> medications;
 
