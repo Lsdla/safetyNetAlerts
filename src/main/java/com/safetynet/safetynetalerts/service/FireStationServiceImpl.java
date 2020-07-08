@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -28,14 +29,14 @@ public class FireStationServiceImpl implements FireStationService {
 
     //find a fire station by its number
     @Override
-    public FireStation findByStation(String station) {
-        return fireStationRepository.findByStation(station);
+    public Optional<FireStation> findById(Long id) {
+        return fireStationRepository.findById(id);
     }
 
     //delete a fire station by its number
     @Override
-    public void deleteByStation(String station) {
-        fireStationRepository.deleteByStation(station);
+    public void deleteById(Long id) {
+        fireStationRepository.deleteById(id);
     }
 
     @Override

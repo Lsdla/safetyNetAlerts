@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/fireStation")
@@ -51,21 +52,20 @@ public class FireStationController {
     }
 
     //add mapping for DELETE /delete -remove an existing fire station from db
-    @DeleteMapping("/delete/{station}")
-    public String deleteFireStation(@PathVariable String station) {
+    @DeleteMapping("/delete/{id}")
+    public String deleteFireStation(@PathVariable Long id) {
+
         //check if the fire station exists in db
-        FireStation fireStation = fireStationService.findByStation(station);
+        Optional<FireStation> fireStation = fireStationService.findById(id);
 
-        //throw an exception if no fire station that has the inserted station number was found
-        if (fireStation == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No fire station that has n° " + station + " was found");
+        //delete the fire station if it exists
+        if (fireStation.isPresent()) {
+            fireStationService.deleteById(id);
+            return ("Fire station deleted successfully");
+        } else {
+            //return a not found status if no fire station is found
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No fire station that has " + id + " was found");
         }
-
-        //delete the found station
-        fireStationService.deleteByStation(station);
-
-        //return a simple message
-        return ("Station n° " + station +" deleted successfully");
     }
 
 }
