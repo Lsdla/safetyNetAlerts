@@ -3,14 +3,15 @@ package com.safetynet.safetynetalerts.service;
 import com.safetynet.safetynetalerts.domain.FireStation;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface FireStationService {
 
     void save(FireStation fireStation);
 
-    FireStation findByStation(String station);
+    Optional<FireStation> findById(Long id);
 
-    void deleteByStation(String station);
+    void deleteById(Long id);
 
     List<FireStation> findAll();
 }

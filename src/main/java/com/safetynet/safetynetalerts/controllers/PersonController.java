@@ -2,8 +2,18 @@ package com.safetynet.safetynetalerts.controllers;
 
 import com.safetynet.safetynetalerts.domain.Person;
 import com.safetynet.safetynetalerts.service.PersonService;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -25,7 +35,7 @@ public class PersonController {
     }
 
     //add mapping for POST /person - add new person
-    @GetMapping("/add")
+    @PostMapping("/add")
     public Person addPerson(@RequestBody Person thePerson) {
         //in case of passing an id in the json.. we have to set it to 0
         //mainly used to force saving a new item instead of updating
@@ -44,13 +54,13 @@ public class PersonController {
     }
 
     //add mapping for DELETE /person -delete a person from db
-    @DeleteMapping("/delete/{firstName}{lastName}")
+    @DeleteMapping("/delete/{firstName}&{lastName}")
     public String deletePerson(@PathVariable String firstName, @PathVariable String lastName) {
         Person person = personService.findByFirstNameAndLastName(firstName, lastName);
 
         //throw an exception if no person with the same first name and last name was found in db
         if (person == null) {
-            throw new RuntimeException("No person with these credentials '" +
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No person with these credentials '" +
                     firstName + " " + lastName + "' was found!");
         }
 
