@@ -1,5 +1,7 @@
 package com.safetynet.safetynetalerts.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Id;
@@ -48,6 +50,7 @@ public class Person {
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "medical_record_id")
+    @JsonIgnore
     private MedicalRecord medicalRecord;
 
     @ManyToMany(fetch = FetchType.LAZY ,
@@ -58,6 +61,7 @@ public class Person {
             joinColumns = @JoinColumn(name = "person_id"),
             inverseJoinColumns = @JoinColumn(name = "fire_station_id")
     )
+    @JsonIgnore
     private List<FireStation> fireStations;
 
     public Person() {

@@ -1,5 +1,7 @@
 package com.safetynet.safetynetalerts.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Id;
@@ -38,6 +40,7 @@ public class FireStation {
             joinColumns = @JoinColumn(name = "fire_station_id"),
             inverseJoinColumns = @JoinColumn(name = "person_id")
     )
+    @JsonIgnore
     private List<Person> persons;
 
     public FireStation() {
