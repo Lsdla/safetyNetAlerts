@@ -110,7 +110,7 @@ class PersonTest {
         List<FireStation> fireStations = new ArrayList<>();
 
         fireStation.setAddress("112 Steppes Pl");
-        fireStation.setStation("3");
+        fireStation.setStation(3);
         fireStations.add(fireStation);
 
         person.setFireStations(fireStations);
@@ -123,7 +123,7 @@ class PersonTest {
         FireStation fireStation = new FireStation();
 
         fireStation.setAddress("112 Steppes Pl");
-        fireStation.setStation("3");
+        fireStation.setStation(3);
 
         person.addFireStation(fireStation);
 

@@ -43,7 +43,7 @@ class FireStationTest {
 
     @Test
     void getStation() {
-        String station = "1";
+        Integer station = 1;
 
         fireStation.setStation(station);
 
