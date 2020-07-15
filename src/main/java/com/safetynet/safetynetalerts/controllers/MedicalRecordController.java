@@ -37,10 +37,6 @@ public class MedicalRecordController {
     //add mapping for POST /medicalRecord/add
     @PostMapping("/add")
     public MedicalRecord addMedicalRecord(@RequestBody MedicalRecord medicalRecord) {
-        //in case of passing an id in the json.. we have to set it to 0
-        //mainly used to force saving a new item instead of updating
-        //an existing item that has the id entered in the json
-        medicalRecord.setId(0L);
         medicalRecordService.save(medicalRecord);
         return medicalRecord;
     }

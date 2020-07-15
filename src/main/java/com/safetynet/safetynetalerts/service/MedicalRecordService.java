@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface MedicalRecordService {
 
-    void save(MedicalRecord medicalRecord);
+    MedicalRecord save(MedicalRecord medicalRecord);
 
     void deleteByFirstNameAndLastName(String firstName, String lastName);
 
