@@ -109,8 +109,6 @@ class FireStationControllerTest {
     @Test
     void deleteFireStation() throws Exception{
         FireStation fireStation = new FireStation();
-        fireStation.setAddress("an address");
-        fireStation.setStation(3);
 
         when(fireStationService.findById(anyLong())).thenReturn(Optional.of(fireStation));
 
