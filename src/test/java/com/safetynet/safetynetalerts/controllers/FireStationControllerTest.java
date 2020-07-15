@@ -29,23 +29,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(FireStationController.class)
 class FireStationControllerTest {
 
-    FireStationController fireStationController;
-
     @MockBean
     FireStationService fireStationService;
 
     @Autowired
     MockMvc mockMvc;
-
-    @BeforeEach
-    void setUp() {
-        fireStationController = new FireStationController(fireStationService);
-    }
-
-    @AfterEach
-    void tearDown() {
-        fireStationController = null;
-    }
 
     @Test
     void findFireStations() throws Exception {
