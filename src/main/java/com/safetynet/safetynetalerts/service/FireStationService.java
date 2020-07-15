@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface FireStationService {
 
-    void save(FireStation fireStation);
+    FireStation save(FireStation fireStation);
 
     Optional<FireStation> findById(Long id);
 
