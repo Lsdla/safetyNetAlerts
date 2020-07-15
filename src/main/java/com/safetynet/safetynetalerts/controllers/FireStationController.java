@@ -39,11 +39,6 @@ public class FireStationController {
     @PostMapping("/add")
     public FireStation addFireStation(@RequestBody FireStation fireStation) {
 
-        //in case of passing an id in the json.. we have to set it to 0
-        //mainly used to force saving a new item instead of updating
-        //an existing item that has the id entered in the json
-        fireStation.setId(0L);
-
         //save the new created fire station
         fireStationService.save(fireStation);
 

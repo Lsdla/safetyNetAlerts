@@ -23,8 +23,8 @@ public class FireStationServiceImpl implements FireStationService {
 
     //save a new fire station/update an existing fire station
     @Override
-    public void save(FireStation fireStation) {
-        fireStationRepository.save(fireStation);
+    public FireStation save(FireStation fireStation) {
+       return fireStationRepository.save(fireStation);
     }
 
     //find a fire station by its number

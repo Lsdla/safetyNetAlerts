@@ -30,7 +30,7 @@ public class FireStation {
     private String address;
 
     @Column(name = "station")
-    private String station;
+    private Integer station;
 
     @ManyToMany(fetch = FetchType.LAZY ,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE,
@@ -46,7 +46,7 @@ public class FireStation {
     public FireStation() {
     }
 
-    public FireStation(String address, String station) {
+    public FireStation(String address, Integer station) {
         this.address = address;
         this.station = station;
     }
@@ -67,11 +67,11 @@ public class FireStation {
         this.address = address;
     }
 
-    public String getStation() {
+    public Integer getStation() {
         return station;
     }
 
-    public void setStation(String station) {
+    public void setStation(Integer station) {
         this.station = station;
     }
 
