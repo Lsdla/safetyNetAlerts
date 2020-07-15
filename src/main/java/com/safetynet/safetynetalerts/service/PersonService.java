@@ -5,7 +5,7 @@ import com.safetynet.safetynetalerts.domain.Person;
 import java.util.List;
 
 public interface PersonService {
-    void save(Person thePerson);
+    Person save(Person thePerson);
 
     Person findByFirstNameAndLastName(String firstName, String lastName);
 

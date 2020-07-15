@@ -37,11 +37,6 @@ public class PersonController {
     //add mapping for POST /person - add new person
     @PostMapping("/add")
     public Person addPerson(@RequestBody Person thePerson) {
-        //in case of passing an id in the json.. we have to set it to 0
-        //mainly used to force saving a new item instead of updating
-        //an existing item that has the id entered in the json
-        thePerson.setId(0L);
-
         personService.save(thePerson);
         return thePerson;
     }
