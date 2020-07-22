@@ -7,6 +7,7 @@ import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.validation.constraints.NotNull;
 import javax.persistence.Column;
 import javax.persistence.OneToOne;
 import javax.persistence.CascadeType;
@@ -24,27 +25,35 @@ public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "person_id", nullable = false, updatable = false)
+    @NotNull
+    @Column(name = "person_id", updatable = false)
     private Long id;
 
-    @Column(name = "first_name", nullable = false, updatable = false)
+    @NotNull(message = "First name required")
+    @Column(name = "first_name", updatable = false)
     private String firstName;
 
-    @Column(name = "last_name", nullable = false, updatable = false)
+    @NotNull(message = "Last name required")
+    @Column(name = "last_name", updatable = false)
     private String lastName;
 
+    @NotNull(message = "address required")
     @Column(name = "address")
     private String address;
 
+    @NotNull(message = "City required")
     @Column(name = "city")
     private String city;
 
+    @NotNull(message = "Zip required")
     @Column(name = "zip")
     private String zip;
 
+    @NotNull(message = "Phone number required")
     @Column(name = "phone")
     private String phone;
 
+    @NotNull(message = "Email address required")
     @Column(name = "email")
     private String email;
 
