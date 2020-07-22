@@ -1,6 +1,7 @@
 package com.safetynet.safetynetalerts.convertor;
 
 import com.safetynet.safetynetalerts.DTOs.PersonDTO;
+import com.safetynet.safetynetalerts.DTOs.CommunityEmailDTO;
 import com.safetynet.safetynetalerts.domain.Person;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,15 @@ public class PersonConverterImpl implements PersonConverter {
     @Override
     public List<PersonDTO> personToDAOs(List<Person> personList) {
         return personList.stream().map(this::personToDAOConverter).collect(Collectors.toList());
+    }
+
+    @Override
+    public CommunityEmailDTO personEmail(Person person) {
+        return mapper.map(person, CommunityEmailDTO.class);
+    }
+
+    @Override
+    public List<CommunityEmailDTO> personEmailConverter(List<Person> personList) {
+        return personList.stream().map(this::personEmail).collect(Collectors.toList());
     }
 }

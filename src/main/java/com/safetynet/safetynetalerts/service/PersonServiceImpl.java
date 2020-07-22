@@ -26,6 +26,11 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
+    public List<Person> findEmailsByCity(String city) {
+        return personRepository.findEmailsByCity(city);
+    }
+
+    @Override
     public Person save(Person thePerson) {
         return personRepository.save(thePerson);
     }

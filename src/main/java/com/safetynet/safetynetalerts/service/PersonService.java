@@ -12,4 +12,6 @@ public interface PersonService {
     void deleteByFirstNameAndLastName(String firstName, String lastName);
 
     List<Person> findAll();
+
+    List<Person> findEmailsByCity(String city);
 }
