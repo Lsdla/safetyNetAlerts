@@ -3,7 +3,7 @@ package com.safetynet.safetynetalerts.DTOs;
 import java.util.List;
 
 public class PersonDTO {
-    private Long id;
+
     private String firstName;
     private String lastName;
     private String address;
@@ -11,7 +11,7 @@ public class PersonDTO {
     private String zip;
     private String phone;
     private String email;
-    private List<MedicalRecordDTO> medicalRecords;
+    private MedicalRecordDTO medicalRecord;
     private List<FireStationDTO> fireStations;
 
     public PersonDTO() {
@@ -19,7 +19,7 @@ public class PersonDTO {
 
     public PersonDTO(String firstName, String lastName, String address,
                      String city, String zip, String phone, String email,
-                     List<MedicalRecordDTO> medicalRecords, List<FireStationDTO> fireStations) {
+                     MedicalRecordDTO medicalRecords, List<FireStationDTO> fireStations) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
@@ -27,16 +27,8 @@ public class PersonDTO {
         this.zip = zip;
         this.phone = phone;
         this.email = email;
-        this.medicalRecords = medicalRecords;
+        this.medicalRecord = medicalRecords;
         this.fireStations = fireStations;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getFirstName() {
@@ -95,12 +87,12 @@ public class PersonDTO {
         this.email = email;
     }
 
-    public List<MedicalRecordDTO> getMedicalRecords() {
-        return medicalRecords;
+    public MedicalRecordDTO getMedicalRecord() {
+        return medicalRecord;
     }
 
-    public void setMedicalRecords(List<MedicalRecordDTO> medicalRecords) {
-        this.medicalRecords = medicalRecords;
+    public void setMedicalRecord(MedicalRecordDTO medicalRecords) {
+        this.medicalRecord = medicalRecords;
     }
 
     public List<FireStationDTO> getFireStations() {
