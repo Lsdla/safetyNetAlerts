@@ -26,6 +26,11 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
+    public List<Person> findPersonsByFirstNameAndLastName(String firstName, String lastName) {
+        return personRepository.findPersonsByFirstNameAndLastName(firstName, lastName);
+    }
+
+    @Override
     public List<Person> findEmailsByCity(String city) {
         return personRepository.findEmailsByCity(city);
     }

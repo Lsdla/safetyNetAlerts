@@ -1,6 +1,7 @@
 package com.safetynet.safetynetalerts.controllers;
 
 import com.safetynet.safetynetalerts.DTOs.PersonDTO;
+import com.safetynet.safetynetalerts.DTOs.PersonInfoDTO;
 import com.safetynet.safetynetalerts.convertor.PersonConverter;
 import com.safetynet.safetynetalerts.domain.Person;
 import com.safetynet.safetynetalerts.service.PersonService;
@@ -33,7 +34,7 @@ public class PersonController {
     @ResponseBody
     public List<PersonDTO> findPersons() {
         List<Person> personList = personService.findAll();
-        return personConverter.personToDAOs(personList);
+        return personConverter.personToDAOsConverter(personList);
     }
 
     //add mapping for POST /person - add new person
@@ -64,6 +65,12 @@ public class PersonController {
         personService.deleteByFirstNameAndLastName(firstName, lastName);
 
         return ("'" + firstName + " " + lastName +"' deleted successfully");
+    }
+
+    @GetMapping("/personInfo/{firstName}&{lastName}")
+    public List<PersonInfoDTO> getPersonInfo(@PathVariable String firstName, @PathVariable String lastName) {
+        List<Person> personList = personService.findPersonsByFirstNameAndLastName(firstName, lastName);
+        return personConverter.personToPersonInfoDOAConverter(personList);
     }
 
 }

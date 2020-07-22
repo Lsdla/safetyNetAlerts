@@ -13,5 +13,7 @@ public interface PersonService {
 
     List<Person> findAll();
 
+    List<Person> findPersonsByFirstNameAndLastName(String firstName, String lastName);
+
     List<Person> findEmailsByCity(String city);
 }
