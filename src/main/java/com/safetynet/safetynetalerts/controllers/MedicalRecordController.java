@@ -1,5 +1,7 @@
 package com.safetynet.safetynetalerts.controllers;
 
+import com.safetynet.safetynetalerts.DTOs.MedicalRecordDTO;
+import com.safetynet.safetynetalerts.convertor.MedicalRecordConverter;
 import com.safetynet.safetynetalerts.domain.MedicalRecord;
 import com.safetynet.safetynetalerts.service.MedicalRecordService;
 
@@ -24,14 +26,18 @@ public class MedicalRecordController {
     //inject medicalRecordService
     private MedicalRecordService medicalRecordService;
 
+    private MedicalRecordConverter medicalRecordConverter;
+
     @Autowired
-    public MedicalRecordController(MedicalRecordService medicalRecordService) {
+    public MedicalRecordController(MedicalRecordService medicalRecordService, MedicalRecordConverter medicalRecordConverter) {
         this.medicalRecordService = medicalRecordService;
+        this.medicalRecordConverter = medicalRecordConverter;
     }
 
     @GetMapping("/records")
-    public List<MedicalRecord> findAllMedicalRecords() {
-        return medicalRecordService.findAll();
+    public List<MedicalRecordDTO> findAllMedicalRecords() {
+        List<MedicalRecord> medicalRecords = medicalRecordService.findAll();
+        return medicalRecordConverter.medicalRecordToDAOsConverter(medicalRecords);
     }
 
     //add mapping for POST /medicalRecord/add
