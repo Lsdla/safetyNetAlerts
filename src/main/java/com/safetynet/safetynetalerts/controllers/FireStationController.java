@@ -1,5 +1,7 @@
 package com.safetynet.safetynetalerts.controllers;
 
+import com.safetynet.safetynetalerts.DTOs.FireStationDTO;
+import com.safetynet.safetynetalerts.convertor.FireStationConverter;
 import com.safetynet.safetynetalerts.domain.FireStation;
 import com.safetynet.safetynetalerts.service.FireStationService;
 
@@ -26,14 +28,19 @@ public class FireStationController {
     //inject fireStationService
     private FireStationService fireStationService;
 
+    private FireStationConverter fireStationConverter;
+
     @Autowired
-    public FireStationController(FireStationService fireStationService) {
+    public FireStationController(FireStationService fireStationService,
+                                 FireStationConverter fireStationConverter) {
         this.fireStationService = fireStationService;
+        this.fireStationConverter = fireStationConverter;
     }
 
     @GetMapping("/fireStations")
-    public List<FireStation> findFireStations() {
-        return fireStationService.findAll();
+    public List<FireStationDTO> findFireStations() {
+        List<FireStation> fireStations = fireStationService.findAll();
+        return fireStationConverter.fireStationToDAOsConverter(fireStations);
     }
     //add mapping for POST /add -add a new fire station
     @PostMapping("/add")
