@@ -1,12 +1,14 @@
 package com.safetynet.safetynetalerts.convertor;
 
 import com.safetynet.safetynetalerts.DTOs.FireStationDTO;
+import com.safetynet.safetynetalerts.DTOs.StationDTO;
 import com.safetynet.safetynetalerts.domain.FireStation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -27,5 +29,10 @@ public class FireStationConverterImpl implements FireStationConverter {
     @Override
     public List<FireStationDTO> fireStationToDAOsConverter(List<FireStation> fireStations) {
         return fireStations.stream().map(this::fireStationToDAOConverter).collect(Collectors.toList());
+    }
+
+    @Override
+    public StationDTO stationToDTOConverter(Optional<FireStation> fireStation) {
+        return mapper.map(fireStation, StationDTO.class);
     }
 }

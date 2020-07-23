@@ -3,6 +3,7 @@ package com.safetynet.safetynetalerts.convertor;
 import com.safetynet.safetynetalerts.DTOs.PersonDTO;
 import com.safetynet.safetynetalerts.DTOs.CommunityEmailDTO;
 import com.safetynet.safetynetalerts.DTOs.PersonInfoDTO;
+import com.safetynet.safetynetalerts.DTOs.PersonPhoneDTO;
 import com.safetynet.safetynetalerts.domain.Person;
 
 import java.util.List;
@@ -17,4 +18,7 @@ public interface PersonConverter {
 
     PersonInfoDTO personToPersonInfoDOAConverter(Person person);
     List<PersonInfoDTO> personToPersonInfoDOAConverter(List<Person> personList);
+
+    PersonPhoneDTO personToPhoneInfoDTO(Person person);
+    List<PersonPhoneDTO> personToPhoneInfosDTO(List<Person> personList);
 }
