@@ -2,6 +2,7 @@ package com.safetynet.safetynetalerts.convertor;
 
 import com.safetynet.safetynetalerts.DTOs.FireStationDTO;
 import com.safetynet.safetynetalerts.DTOs.StationDTO;
+import com.safetynet.safetynetalerts.DTOs.UrlStationDTO;
 import com.safetynet.safetynetalerts.domain.FireStation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,10 @@ public class FireStationConverterImpl implements FireStationConverter {
     @Override
     public StationDTO stationToDTOConverter(Optional<FireStation> fireStation) {
         return mapper.map(fireStation, StationDTO.class);
+    }
+
+    @Override
+    public UrlStationDTO urlFireStationToDAOConverter(Optional<FireStation> fireStation) {
+        return mapper.map(fireStation, UrlStationDTO.class);
     }
 }
