@@ -21,4 +21,7 @@ public interface PersonConverter {
 
     PersonFireDTO personToFireDTOConverter(Person person);
     List<PersonFireDTO> personToFireDTOsConverter(List<Person> personList);
+
+    FloodPersonDTO floodPersonDTOConverter(Person person);
+    List<FloodPersonDTO> floodPersonDTOsConverter(List<Person> personList);
 }

@@ -68,4 +68,14 @@ public class PersonConverterImpl implements PersonConverter {
     public List<PersonFireDTO> personToFireDTOsConverter(List<Person> personList) {
         return personList.stream().map(this::personToFireDTOConverter).collect(Collectors.toList());
     }
+
+    @Override
+    public FloodPersonDTO floodPersonDTOConverter(Person person) {
+        return mapper.map(person, FloodPersonDTO.class);
+    }
+
+    @Override
+    public List<FloodPersonDTO> floodPersonDTOsConverter(List<Person> personList) {
+        return personList.stream().map(this::floodPersonDTOConverter).collect(Collectors.toList());
+    }
 }
