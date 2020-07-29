@@ -1,5 +1,6 @@
 package com.safetynet.safetynetalerts.service;
 
+import com.safetynet.safetynetalerts.DTOs.ChildDTO;
 import com.safetynet.safetynetalerts.domain.Person;
 
 import java.util.List;
@@ -18,4 +19,6 @@ public interface PersonService {
     List<Person> findEmailsByCity(String city);
 
     List<Person> findByAddress(String address);
+
+    List<Person> findChildrenByAddress(String address);
 }

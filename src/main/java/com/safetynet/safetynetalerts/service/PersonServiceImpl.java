@@ -1,5 +1,6 @@
 package com.safetynet.safetynetalerts.service;
 
+import com.safetynet.safetynetalerts.convertor.PersonConverter;
 import com.safetynet.safetynetalerts.domain.Person;
 import com.safetynet.safetynetalerts.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,15 @@ public class PersonServiceImpl implements PersonService {
     //inject the PersonRepository
     private PersonRepository personRepository;
 
+    private PersonConverter personConverter;
+
     @Autowired
-    public PersonServiceImpl(PersonRepository personRepository) {
+    public PersonServiceImpl(PersonRepository personRepository, PersonConverter personConverter) {
         this.personRepository = personRepository;
+        this.personConverter = personConverter;
+    }
+
+    public PersonServiceImpl() {
     }
 
     @Override
@@ -37,6 +44,11 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<Person> findByAddress(String address) {
+        return personRepository.findByAddress(address);
+    }
+
+    @Override
+    public List<Person> findChildrenByAddress(String address) {
         return personRepository.findByAddress(address);
     }
 

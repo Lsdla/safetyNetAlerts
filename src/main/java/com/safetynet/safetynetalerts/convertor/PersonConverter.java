@@ -24,4 +24,7 @@ public interface PersonConverter {
 
     FloodPersonDTO floodPersonDTOConverter(Person person);
     List<FloodPersonDTO> floodPersonDTOsConverter(List<Person> personList);
+
+    ChildDTO childDTOConverter(Person person);
+    List<ChildDTO> childDTOsConverter(List<Person> personList);
 }
