@@ -1,17 +1,11 @@
 package com.safetynet.safetynetalerts.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.ElementCollection;
-import javax.persistence.CollectionTable;
-import javax.persistence.JoinColumn;
+import org.hibernate.annotations.Formula;
 
+import javax.persistence.*;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -30,7 +24,10 @@ public class MedicalRecord {
     private String lastName;
 
     @Column(name = "birth_date")
-    private Date birthDate;
+    private LocalDate birthDate;
+
+    @Formula(value = "(CAST((DATEDIFF(NOW(), birth_date) / 365.25) AS DECIMAL(10,1)))")
+    private Double age;
 
 
     @ElementCollection
@@ -47,7 +44,7 @@ public class MedicalRecord {
     }
 
     public MedicalRecord(String firstName, String lastName,
-                         Date birthDate, List<String> allergies,
+                         LocalDate birthDate, List<String> allergies,
                          List<String> medications) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -80,11 +77,11 @@ public class MedicalRecord {
         this.lastName = lastName;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -120,6 +117,14 @@ public class MedicalRecord {
         medications.add(medication);
     }
 
+    public Double getAge() {
+        return age;
+    }
+
+    public void setAge(Double age) {
+        this.age = age;
+    }
+
     @Override
     public String toString() {
         return "MedicalRecord{" +
@@ -127,6 +132,7 @@ public class MedicalRecord {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", birthDate=" + birthDate +
+                ", age=" + age +
                 ", allergies=" + allergies +
                 ", medications=" + medications +
                 '}';

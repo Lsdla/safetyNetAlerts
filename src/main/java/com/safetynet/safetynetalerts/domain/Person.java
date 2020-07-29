@@ -2,18 +2,8 @@ package com.safetynet.safetynetalerts.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Column;
-import javax.persistence.OneToOne;
-import javax.persistence.CascadeType;
-import javax.persistence.JoinColumn;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
-import javax.persistence.JoinTable;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,33 +14,40 @@ public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "person_id", nullable = false, updatable = false)
+    @NotNull
+    @Column(name = "person_id", updatable = false)
     private Long id;
 
-    @Column(name = "first_name", nullable = false, updatable = false)
+    @NotNull(message = "First name required")
+    @Column(name = "first_name", updatable = false)
     private String firstName;
 
-    @Column(name = "last_name", nullable = false, updatable = false)
+    @NotNull(message = "Last name required")
+    @Column(name = "last_name", updatable = false)
     private String lastName;
 
+    @NotNull(message = "address required")
     @Column(name = "address")
     private String address;
 
+    @NotNull(message = "City required")
     @Column(name = "city")
     private String city;
 
+    @NotNull(message = "Zip required")
     @Column(name = "zip")
     private String zip;
 
+    @NotNull(message = "Phone number required")
     @Column(name = "phone")
     private String phone;
 
+    @NotNull(message = "Email address required")
     @Column(name = "email")
     private String email;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "medical_record_id")
-    @JsonIgnore
     private MedicalRecord medicalRecord;
 
     @ManyToMany(fetch = FetchType.LAZY ,
@@ -61,8 +58,12 @@ public class Person {
             joinColumns = @JoinColumn(name = "person_id"),
             inverseJoinColumns = @JoinColumn(name = "fire_station_id")
     )
-    @JsonIgnore
     private List<FireStation> fireStations;
+
+
+    @Transient
+    @JsonIgnore
+    private Double age;
 
     public Person() {
     }
@@ -168,6 +169,14 @@ public class Person {
 
         fireStations.add(fireStation);
     }
+
+    public Double getAge() {
+      return medicalRecord.getAge();
+   }
+
+   public void setAge(Double age) {
+       this.age = age;
+   }
 
     @Override
     public String toString() {

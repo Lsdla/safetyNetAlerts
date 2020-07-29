@@ -43,4 +43,9 @@ public class FireStationServiceImpl implements FireStationService {
     public List<FireStation> findAll() {
         return fireStationRepository.findAll();
     }
+
+    @Override
+    public List<FireStation> findFireStationsById(List<Long> id) {
+        return fireStationRepository.findFireStationsById(id);
+    }
 }

@@ -14,4 +14,6 @@ public interface FireStationService {
     void deleteById(Long id);
 
     List<FireStation> findAll();
+
+    List<FireStation> findFireStationsById(List<Long> id);
 }

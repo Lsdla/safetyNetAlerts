@@ -40,7 +40,7 @@ public class FireStation {
             joinColumns = @JoinColumn(name = "fire_station_id"),
             inverseJoinColumns = @JoinColumn(name = "person_id")
     )
-    @JsonIgnore
+
     private List<Person> persons;
 
     public FireStation() {
