@@ -1,5 +1,6 @@
 package com.safetynet.safetynetalerts.service;
 
+import com.safetynet.safetynetalerts.DTOs.MedicalRecordDTO;
 import com.safetynet.safetynetalerts.domain.MedicalRecord;
 
 import java.util.List;
@@ -12,5 +13,5 @@ public interface MedicalRecordService {
 
     MedicalRecord findByFirstNameAndLastName(String firstName, String lastName);
 
-    List<MedicalRecord> findAll();
+    List<MedicalRecordDTO> findAll();
 }

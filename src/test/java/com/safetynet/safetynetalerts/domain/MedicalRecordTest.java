@@ -4,8 +4,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -25,7 +25,7 @@ class MedicalRecordTest {
     }
 
     @Test
-    void getId() {
+    void getId_shouldReturnTheCorrectId() {
         Long id = 1L;
 
         medicalRecord.setId(id);
@@ -34,7 +34,7 @@ class MedicalRecordTest {
     }
 
     @Test
-    void getFirstName() {
+    void getFirstName_shouldReturnFirstName() {
         String firstName = "John";
 
         medicalRecord.setFirstName(firstName);
@@ -43,7 +43,7 @@ class MedicalRecordTest {
     }
 
     @Test
-    void getLastName() {
+    void getLastName_shouldReturnLastName() {
         String lastName = "Boyd";
 
         medicalRecord.setLastName(lastName);
@@ -52,9 +52,8 @@ class MedicalRecordTest {
     }
 
     @Test
-    void getBirthDate() {
-        Date birthDate = new Date();
-        birthDate.getTime();
+    void getBirthDate_shouldReturnBirthDate() {
+        LocalDate birthDate = LocalDate.of(2012, 12, 21);
 
         medicalRecord.setBirthDate(birthDate);
 
@@ -62,7 +61,7 @@ class MedicalRecordTest {
     }
 
     @Test
-    void getAllergies() {
+    void getAllergies_shouldReturnAllergiesList() {
         List<String> allergies = new ArrayList<>();
 
         String allergy = "nillacilan";
@@ -77,7 +76,7 @@ class MedicalRecordTest {
     }
 
     @Test
-    void getMedications() {
+    void getMedications_shouldReturnMedicationsList() {
         List<String> medications = new ArrayList<>();
 
         String medication = "aznol:350mg";
@@ -92,18 +91,24 @@ class MedicalRecordTest {
     }
 
     @Test
-    void addAllergy() {
+    void getAge_shouldReturnAge() {
+        Double age = 10.0;
+        medicalRecord.setAge(age);
+
+        assertEquals(age, medicalRecord.getAge());
+    }
+
+    @Test
+    void addAllergy_shouldInsertNewAllergy() {
         String allergy = "nillacilan";
 
         medicalRecord.addAllergy(allergy);
 
         assertEquals(1, medicalRecord.getAllergies().size());
-
     }
 
     @Test
-    void addMedication() {
-        List<String> medications = null;
+    void addMedication_shouldInsertNewMedication() {
         String medication = "aznol:350mg";
 
         medicalRecord.addMedication(medication);
@@ -112,7 +117,7 @@ class MedicalRecordTest {
     }
 
     @Test
-    void testToString() {
+    void toString_shouldReturnDescription() {
         String expected = medicalRecord.toString();
         assertEquals(expected, medicalRecord.toString());
     }
