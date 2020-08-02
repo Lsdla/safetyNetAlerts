@@ -10,14 +10,7 @@ import com.safetynet.safetynetalerts.service.FireStationService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -30,19 +23,14 @@ public class FireStationController {
     //inject fireStationService
     private FireStationService fireStationService;
 
-    private FireStationConverter fireStationConverter;
-
     @Autowired
-    public FireStationController(FireStationService fireStationService,
-                                 FireStationConverter fireStationConverter) {
+    public FireStationController(FireStationService fireStationService) {
         this.fireStationService = fireStationService;
-        this.fireStationConverter = fireStationConverter;
     }
 
     @GetMapping("/fireStations")
     public List<FireStationDTO> findFireStations() {
-        List<FireStation> fireStations = fireStationService.findAll();
-        return fireStationConverter.fireStationToDAOsConverter(fireStations);
+         return fireStationService.findAll();
     }
     //add mapping for POST /add -add a new fire station
     @PostMapping("/add")
@@ -81,10 +69,9 @@ public class FireStationController {
         }
     }
 
-    @GetMapping("/stationNumber={id}")
-    public UrlStationDTO getPersonsCoveredByFireStation(@PathVariable Long id) {
-        Optional<FireStation> fireStation = fireStationService.findById(id);
-        return fireStationConverter.urlFireStationToDAOConverter(fireStation);
+    @GetMapping("/stationNumber")
+    public UrlStationDTO getPersonsCoveredByFireStation(@RequestParam Long id) {
+        return fireStationService.urlStationDTO(id);
     }
 
 }

@@ -16,7 +16,7 @@ public interface FireStationConverter {
 
     StationDTO stationToDTOConverter(Optional<FireStation> fireStation);
 
-    UrlStationDTO urlFireStationToDAOConverter(Optional<FireStation> fireStation);
+    UrlStationDTO urlFireStationToDAOConverter(FireStation fireStation);
 
     FloodFireStationDTO floodFireStationDAOConverter(FireStation fireStation);
     List<FloodFireStationDTO> floodFireStationDAOsConverter(List<FireStation> fireStations);

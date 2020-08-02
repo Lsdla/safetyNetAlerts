@@ -39,7 +39,7 @@ public class FireStationConverterImpl implements FireStationConverter {
     }
 
     @Override
-    public UrlStationDTO urlFireStationToDAOConverter(Optional<FireStation> fireStation) {
+    public UrlStationDTO urlFireStationToDAOConverter(FireStation fireStation) {
         return mapper.map(fireStation, UrlStationDTO.class);
     }
 
