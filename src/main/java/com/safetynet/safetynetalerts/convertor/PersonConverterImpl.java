@@ -88,4 +88,14 @@ public class PersonConverterImpl implements PersonConverter {
     public List<ChildDTO> childDTOsConverter(List<Person> personList) {
         return personList.stream().map(this::childDTOConverter).collect(Collectors.toList());
     }
+
+    @Override
+    public UrlPersonDTO urlPersonConverter(Person person) {
+        return mapper.map(person, UrlPersonDTO.class);
+    }
+
+    @Override
+    public List<UrlPersonDTO> urlPersonsConverter(List<Person> personList) {
+        return personList.stream().map(this::urlPersonConverter).collect(Collectors.toList());
+    }
 }

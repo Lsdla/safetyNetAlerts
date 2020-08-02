@@ -27,4 +27,7 @@ public interface PersonConverter {
 
     ChildDTO childDTOConverter(Person person);
     List<ChildDTO> childDTOsConverter(List<Person> personList);
+
+    UrlPersonDTO urlPersonConverter(Person person);
+    List<UrlPersonDTO> urlPersonsConverter(List<Person> personList);
 }

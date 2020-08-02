@@ -2,10 +2,8 @@ package com.safetynet.safetynetalerts.controllers;
 
 import com.safetynet.safetynetalerts.DTOs.PersonDTO;
 import com.safetynet.safetynetalerts.DTOs.PersonInfoDTO;
-import com.safetynet.safetynetalerts.convertor.PersonConverter;
 import com.safetynet.safetynetalerts.domain.Person;
 import com.safetynet.safetynetalerts.service.PersonService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -20,21 +18,16 @@ public class PersonController {
     //inject PersonService
     private PersonService personService;
 
-    private PersonConverter personConverter;
-
-
 
     @Autowired
-    public PersonController(PersonService personService, PersonConverter personConverter) {
+    public PersonController(PersonService personService) {
         this.personService = personService;
-        this.personConverter = personConverter;
     }
 
     @GetMapping("/persons")
     @ResponseBody
     public List<PersonDTO> findPersons() {
-        List<Person> personList = personService.findAll();
-        return personConverter.personToDAOsConverter(personList);
+        return personService.findAll();
     }
 
     //add mapping for POST /person - add new person
@@ -69,8 +62,7 @@ public class PersonController {
 
     @GetMapping("/personInfo/{firstName}&{lastName}")
     public List<PersonInfoDTO> getPersonInfo(@PathVariable String firstName, @PathVariable String lastName) {
-        List<Person> personList = personService.findPersonsByFirstNameAndLastName(firstName, lastName);
-        return personConverter.personToPersonInfoDOAConverter(personList);
+        return personService.findPersonsByFirstNameAndLastName(firstName, lastName);
     }
 
 }

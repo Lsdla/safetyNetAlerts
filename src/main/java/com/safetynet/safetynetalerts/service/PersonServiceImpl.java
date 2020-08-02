@@ -1,5 +1,7 @@
 package com.safetynet.safetynetalerts.service;
 
+import com.safetynet.safetynetalerts.DTOs.PersonDTO;
+import com.safetynet.safetynetalerts.DTOs.PersonInfoDTO;
 import com.safetynet.safetynetalerts.convertor.PersonConverter;
 import com.safetynet.safetynetalerts.domain.Person;
 import com.safetynet.safetynetalerts.repository.PersonRepository;
@@ -28,13 +30,15 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public List<Person> findAll() {
-        return personRepository.findAll();
+    public List<PersonDTO> findAll() {
+        List<Person> personList = personRepository.findAll();
+        return personConverter.personToDAOsConverter(personList);
     }
 
     @Override
-    public List<Person> findPersonsByFirstNameAndLastName(String firstName, String lastName) {
-        return personRepository.findPersonsByFirstNameAndLastName(firstName, lastName);
+    public List<PersonInfoDTO> findPersonsByFirstNameAndLastName(String firstName, String lastName) {
+        List<Person> personList = personRepository.findPersonsByFirstNameAndLastName(firstName, lastName);
+        return personConverter.personToPersonInfoDOAConverter(personList);
     }
 
     @Override
@@ -66,6 +70,4 @@ public class PersonServiceImpl implements PersonService {
     public void deleteByFirstNameAndLastName(String firstName, String lastName) {
         personRepository.deleteByFirstNameAndLastName(firstName, lastName);
     }
-
-
 }
