@@ -1,5 +1,6 @@
 package com.safetynet.safetynetalerts.service;
 
+import com.safetynet.safetynetalerts.DTOs.communityEmailDto.CommunityEmailDTO;
 import com.safetynet.safetynetalerts.DTOs.PersonDTO;
 import com.safetynet.safetynetalerts.DTOs.PersonInfoDTO;
 import com.safetynet.safetynetalerts.domain.Person;
@@ -17,7 +18,7 @@ public interface PersonService {
 
     List<PersonInfoDTO> findPersonsByFirstNameAndLastName(String firstName, String lastName);
 
-    List<Person> findEmailsByCity(String city);
+    List<CommunityEmailDTO> findEmailsByCity(String city);
 
     List<Person> findByAddress(String address);
 

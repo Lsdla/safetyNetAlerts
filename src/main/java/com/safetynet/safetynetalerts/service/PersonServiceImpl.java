@@ -2,6 +2,7 @@ package com.safetynet.safetynetalerts.service;
 
 import com.safetynet.safetynetalerts.DTOs.PersonDTO;
 import com.safetynet.safetynetalerts.DTOs.PersonInfoDTO;
+import com.safetynet.safetynetalerts.DTOs.communityEmailDto.CommunityEmailDTO;
 import com.safetynet.safetynetalerts.convertor.PersonConverter;
 import com.safetynet.safetynetalerts.domain.Person;
 import com.safetynet.safetynetalerts.repository.PersonRepository;
@@ -42,8 +43,9 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public List<Person> findEmailsByCity(String city) {
-        return personRepository.findEmailsByCity(city);
+    public List<CommunityEmailDTO> findEmailsByCity(String city) {
+        List<Person> personList = personRepository.findEmailsByCity(city);
+        return personConverter.personEmailConverter(personList);
     }
 
     @Override
