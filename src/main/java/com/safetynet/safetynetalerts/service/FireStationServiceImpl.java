@@ -3,11 +3,14 @@ package com.safetynet.safetynetalerts.service;
 import com.safetynet.safetynetalerts.DTOs.FireStationDTO;
 import com.safetynet.safetynetalerts.DTOs.FloodFireStationDTO;
 import com.safetynet.safetynetalerts.DTOs.UrlStationDTO;
+import com.safetynet.safetynetalerts.DTOs.phoneAlertDTO.PhoneAlertFireStationDTO;
 import com.safetynet.safetynetalerts.convertor.FireStationConverter;
 import com.safetynet.safetynetalerts.domain.FireStation;
 import com.safetynet.safetynetalerts.repository.FireStationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -61,5 +64,14 @@ public class FireStationServiceImpl implements FireStationService {
     public UrlStationDTO urlStationDTO(Long id) {
         FireStation fireStation = fireStationRepository.getOne(id);
         return fireStationConverter.urlFireStationToDAOConverter(fireStation);
+    }
+
+    @Override
+    public PhoneAlertFireStationDTO findFireStationById(Long id) {
+        FireStation fireStation = fireStationRepository.findFireStationById(id);
+        if (fireStation == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "the provided fire station id does not exist in our database");
+        }
+        return fireStationConverter.stationToDTOConverter(fireStation);
     }
 }

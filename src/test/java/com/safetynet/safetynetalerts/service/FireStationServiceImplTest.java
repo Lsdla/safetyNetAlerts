@@ -8,11 +8,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 class FireStationServiceImplTest {
@@ -91,5 +94,20 @@ class FireStationServiceImplTest {
         fireStationServiceImpl.urlStationDTO(anyLong());
 
         verify(fireStationRepository, times(1)).getOne(anyLong());
+    }
+
+    @Test
+    void findFireStationById_shouldCallTheAppropriateMethodIFireStationRepository() {
+        FireStation fireStation = new FireStation();
+
+        when(fireStationRepository.findFireStationById(anyLong())).thenReturn(fireStation);
+
+        fireStationServiceImpl.findFireStationById(anyLong());
+        verify(fireStationRepository, times(1)).findFireStationById(anyLong());
+    }
+
+    @Test
+    void findFireStationById_shouldThrowExceptionWhenFireStationIsNull() {
+        assertThrows(ResponseStatusException.class, () -> fireStationServiceImpl.findFireStationById(null));
     }
 }
