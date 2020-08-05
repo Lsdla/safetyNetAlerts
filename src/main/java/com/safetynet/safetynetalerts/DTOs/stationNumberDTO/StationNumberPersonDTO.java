@@ -1,4 +1,4 @@
-package com.safetynet.safetynetalerts.DTOs;
+package com.safetynet.safetynetalerts.DTOs.stationNumberDTO;
 
 public class UrlPersonDTO {
 
