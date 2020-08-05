@@ -62,8 +62,8 @@ class PersonServiceImplTest {
 
     @Test
     void deleteByFirstNameAndLastName_shouldCallTheAppropriateMethodInPersonRepository() {
-        personServiceImpl.findPersonsByFirstNameAndLastName(anyString(), anyString());
-        verify(personRepository, times(1)).findPersonsByFirstNameAndLastName(anyString(), anyString());
+        personServiceImpl.deleteByFirstNameAndLastName(anyString(), anyString());
+        verify(personRepository, times(1)).deleteByFirstNameAndLastName(anyString(), anyString());
     }
 
     @Test

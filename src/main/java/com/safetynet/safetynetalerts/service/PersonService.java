@@ -1,5 +1,6 @@
 package com.safetynet.safetynetalerts.service;
 
+import com.safetynet.safetynetalerts.dtos.childDTO.ChildDTO;
 import com.safetynet.safetynetalerts.dtos.communityEmailDto.CommunityEmailDTO;
 import com.safetynet.safetynetalerts.dtos.PersonDTO;
 import com.safetynet.safetynetalerts.dtos.fireDTO.PersonFireDTO;
@@ -23,7 +24,7 @@ public interface PersonService {
 
     List<Person> findByAddress(String address);
 
-    List<Person> findChildrenByAddress(String address);
+    List<List<ChildDTO>> findChildrenByAddress(String address);
 
     List<PersonFireDTO> retrievePeopleByAddress(String address);
 }

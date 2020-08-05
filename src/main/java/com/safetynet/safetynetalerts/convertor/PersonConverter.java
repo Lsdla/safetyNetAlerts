@@ -34,6 +34,7 @@ public interface PersonConverter {
 
     ChildDTO childDTOConverter(Person person);
     List<ChildDTO> childDTOsConverter(List<Person> personList);
+    List<List<ChildDTO>> childrenDTO(List<List<Person>> persons);
 
     StationNumberPersonDTO urlPersonConverter(Person person);
     List<StationNumberPersonDTO> urlPersonsConverter(List<Person> personList);
