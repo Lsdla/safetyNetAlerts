@@ -57,7 +57,7 @@ class ChildAlertControllerTest {
         List<List<ChildDTO>> childrenAndHouseHold = new ArrayList<>();
         when(personService.findChildrenByAddress(anyString())).thenReturn(childrenAndHouseHold);
 
-        mockMvc.perform(get("/wrongUrl?address=any address"))
+        mockMvc.perform(get("/wrongURL?address=any address"))
                 .andExpect(status().is4xxClientError());
     }
 }
