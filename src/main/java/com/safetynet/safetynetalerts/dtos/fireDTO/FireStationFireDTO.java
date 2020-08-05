@@ -1,4 +1,4 @@
-package com.safetynet.safetynetalerts.DTOs.fireDTO;
+package com.safetynet.safetynetalerts.dtos.fireDTO;
 
 public class FireStationFireDTO {
 

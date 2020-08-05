@@ -1,6 +1,6 @@
 package com.safetynet.safetynetalerts.convertor;
 
-import com.safetynet.safetynetalerts.DTOs.MedicalRecordDTO;
+import com.safetynet.safetynetalerts.dtos.MedicalRecordDTO;
 import com.safetynet.safetynetalerts.domain.MedicalRecord;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

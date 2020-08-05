@@ -1,9 +1,9 @@
 package com.safetynet.safetynetalerts.service;
 
-import com.safetynet.safetynetalerts.DTOs.FireStationDTO;
-import com.safetynet.safetynetalerts.DTOs.floodDto.FloodFireStationDTO;
-import com.safetynet.safetynetalerts.DTOs.stationNumberDTO.UrlStationDTO;
-import com.safetynet.safetynetalerts.DTOs.phoneAlertDTO.PhoneAlertFireStationDTO;
+import com.safetynet.safetynetalerts.dtos.FireStationDTO;
+import com.safetynet.safetynetalerts.dtos.floodDto.FloodFireStationDTO;
+import com.safetynet.safetynetalerts.dtos.stationNumberDTO.StationNumberFireStation;
+import com.safetynet.safetynetalerts.dtos.phoneAlertDTO.PhoneAlertFireStationDTO;
 import com.safetynet.safetynetalerts.convertor.FireStationConverter;
 import com.safetynet.safetynetalerts.domain.FireStation;
 import com.safetynet.safetynetalerts.repository.FireStationRepository;
@@ -61,7 +61,7 @@ public class FireStationServiceImpl implements FireStationService {
     }
 
     @Override
-    public UrlStationDTO urlStationDTO(Long id) {
+    public StationNumberFireStation urlStationDTO(Long id) {
         FireStation fireStation = fireStationRepository.getOne(id);
         return fireStationConverter.urlFireStationToDAOConverter(fireStation);
     }

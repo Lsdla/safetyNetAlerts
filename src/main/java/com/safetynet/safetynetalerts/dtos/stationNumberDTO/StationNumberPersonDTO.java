@@ -1,6 +1,6 @@
-package com.safetynet.safetynetalerts.DTOs.stationNumberDTO;
+package com.safetynet.safetynetalerts.dtos.stationNumberDTO;
 
-public class UrlPersonDTO {
+public class StationNumberPersonDTO {
 
     private String firstName;
     private String lastName;
@@ -8,11 +8,11 @@ public class UrlPersonDTO {
     private String phone;
     private Double age;
 
-    public UrlPersonDTO() {
+    public StationNumberPersonDTO() {
     }
 
-    public UrlPersonDTO(String firstName, String lastName,
-                        String address, String phone, Double age) {
+    public StationNumberPersonDTO(String firstName, String lastName,
+                                  String address, String phone, Double age) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;

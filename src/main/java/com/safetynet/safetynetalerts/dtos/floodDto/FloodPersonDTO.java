@@ -1,6 +1,6 @@
-package com.safetynet.safetynetalerts.DTOs.floodDto;
+package com.safetynet.safetynetalerts.dtos.floodDto;
 
-import com.safetynet.safetynetalerts.DTOs.MedicalRecordDTO;
+import com.safetynet.safetynetalerts.dtos.MedicalRecordDTO;
 
 public class FloodPersonDTO {
 

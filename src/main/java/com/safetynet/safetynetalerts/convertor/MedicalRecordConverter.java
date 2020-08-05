@@ -1,6 +1,6 @@
 package com.safetynet.safetynetalerts.convertor;
 
-import com.safetynet.safetynetalerts.DTOs.MedicalRecordDTO;
+import com.safetynet.safetynetalerts.dtos.MedicalRecordDTO;
 import com.safetynet.safetynetalerts.domain.MedicalRecord;
 
 import java.util.List;

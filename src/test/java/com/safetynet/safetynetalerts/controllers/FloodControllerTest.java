@@ -1,7 +1,7 @@
 package com.safetynet.safetynetalerts.controllers;
 
-import com.safetynet.safetynetalerts.DTOs.floodDto.FloodFireStationDTO;
-import com.safetynet.safetynetalerts.DTOs.floodDto.FloodPersonDTO;
+import com.safetynet.safetynetalerts.dtos.floodDto.FloodFireStationDTO;
+import com.safetynet.safetynetalerts.dtos.floodDto.FloodPersonDTO;
 import com.safetynet.safetynetalerts.service.FireStationService;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

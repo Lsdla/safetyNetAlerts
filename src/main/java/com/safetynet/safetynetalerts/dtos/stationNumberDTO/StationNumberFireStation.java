@@ -1,18 +1,18 @@
-package com.safetynet.safetynetalerts.DTOs.stationNumberDTO;
+package com.safetynet.safetynetalerts.dtos.stationNumberDTO;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UrlStationDTO {
+public class StationNumberFireStation {
 
     private List<StationNumberPersonDTO> persons;
     private int numberOfChildren = 0;
     private int numberOfAdults = 0;
 
-    public UrlStationDTO() {
+    public StationNumberFireStation() {
     }
 
-    public UrlStationDTO(List<StationNumberPersonDTO> persons, int numberOfChildren, int numberOfAdults) {
+    public StationNumberFireStation(List<StationNumberPersonDTO> persons, int numberOfChildren, int numberOfAdults) {
         this.persons = persons;
         this.numberOfChildren = numberOfChildren;
         this.numberOfAdults = numberOfAdults;

@@ -1,6 +1,13 @@
 package com.safetynet.safetynetalerts.convertor;
 
-import com.safetynet.safetynetalerts.DTOs.*;
+import com.safetynet.safetynetalerts.dtos.*;
+import com.safetynet.safetynetalerts.dtos.childDTO.ChildDTO;
+import com.safetynet.safetynetalerts.dtos.communityEmailDto.CommunityEmailDTO;
+import com.safetynet.safetynetalerts.dtos.fireDTO.PersonFireDTO;
+import com.safetynet.safetynetalerts.dtos.floodDto.FloodPersonDTO;
+import com.safetynet.safetynetalerts.dtos.personInfoDto.PersonInfoDTO;
+import com.safetynet.safetynetalerts.dtos.phoneAlertDTO.PhoneAlertPersonDTO;
+import com.safetynet.safetynetalerts.dtos.stationNumberDTO.StationNumberPersonDTO;
 import com.safetynet.safetynetalerts.domain.Person;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,12 +57,12 @@ public class PersonConverterImpl implements PersonConverter {
     }
 
     @Override
-    public PersonPhoneDTO personToPhoneInfoDTO(Person person) {
-        return mapper.map(person, PersonPhoneDTO.class);
+    public PhoneAlertPersonDTO personToPhoneInfoDTO(Person person) {
+        return mapper.map(person, PhoneAlertPersonDTO.class);
     }
 
     @Override
-    public List<PersonPhoneDTO> personToPhoneInfosDTO(List<Person> personList) {
+    public List<PhoneAlertPersonDTO> personToPhoneInfosDTO(List<Person> personList) {
         return personList.stream().map(this::personToPhoneInfoDTO).collect(Collectors.toList());
     }
 
@@ -90,12 +97,12 @@ public class PersonConverterImpl implements PersonConverter {
     }
 
     @Override
-    public UrlPersonDTO urlPersonConverter(Person person) {
-        return mapper.map(person, UrlPersonDTO.class);
+    public StationNumberPersonDTO urlPersonConverter(Person person) {
+        return mapper.map(person, StationNumberPersonDTO.class);
     }
 
     @Override
-    public List<UrlPersonDTO> urlPersonsConverter(List<Person> personList) {
+    public List<StationNumberPersonDTO> urlPersonsConverter(List<Person> personList) {
         return personList.stream().map(this::urlPersonConverter).collect(Collectors.toList());
     }
 }

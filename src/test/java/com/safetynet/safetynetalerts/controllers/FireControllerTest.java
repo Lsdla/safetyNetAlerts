@@ -1,7 +1,7 @@
 package com.safetynet.safetynetalerts.controllers;
 
-import com.safetynet.safetynetalerts.DTOs.MedicalRecordDTO;
-import com.safetynet.safetynetalerts.DTOs.fireDTO.PersonFireDTO;
+import com.safetynet.safetynetalerts.dtos.MedicalRecordDTO;
+import com.safetynet.safetynetalerts.dtos.fireDTO.PersonFireDTO;
 import com.safetynet.safetynetalerts.service.PersonService;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -11,7 +11,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;

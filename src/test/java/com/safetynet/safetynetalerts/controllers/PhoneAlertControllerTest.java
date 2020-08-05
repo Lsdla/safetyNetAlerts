@@ -1,7 +1,7 @@
 package com.safetynet.safetynetalerts.controllers;
 
-import com.safetynet.safetynetalerts.DTOs.phoneAlertDTO.PhoneAlertFireStationDTO;
-import com.safetynet.safetynetalerts.DTOs.phoneAlertDTO.PhoneAlertPersonDTO;
+import com.safetynet.safetynetalerts.dtos.phoneAlertDTO.PhoneAlertFireStationDTO;
+import com.safetynet.safetynetalerts.dtos.phoneAlertDTO.PhoneAlertPersonDTO;
 import com.safetynet.safetynetalerts.service.FireStationService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

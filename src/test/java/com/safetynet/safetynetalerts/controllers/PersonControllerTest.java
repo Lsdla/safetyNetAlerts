@@ -1,9 +1,9 @@
 package com.safetynet.safetynetalerts.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.safetynet.safetynetalerts.DTOs.FireStationDTO;
-import com.safetynet.safetynetalerts.DTOs.MedicalRecordDTO;
-import com.safetynet.safetynetalerts.DTOs.PersonDTO;
+import com.safetynet.safetynetalerts.dtos.FireStationDTO;
+import com.safetynet.safetynetalerts.dtos.MedicalRecordDTO;
+import com.safetynet.safetynetalerts.dtos.PersonDTO;
 import com.safetynet.safetynetalerts.domain.Person;
 import com.safetynet.safetynetalerts.service.PersonService;
 import org.junit.jupiter.api.DisplayName;

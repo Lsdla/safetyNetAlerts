@@ -1,9 +1,7 @@
 package com.safetynet.safetynetalerts.controllers;
 
-import com.safetynet.safetynetalerts.DTOs.FireStationDTO;
-import com.safetynet.safetynetalerts.DTOs.StationDTO;
-import com.safetynet.safetynetalerts.DTOs.UrlStationDTO;
-import com.safetynet.safetynetalerts.convertor.FireStationConverter;
+import com.safetynet.safetynetalerts.dtos.FireStationDTO;
+import com.safetynet.safetynetalerts.dtos.stationNumberDTO.StationNumberFireStation;
 import com.safetynet.safetynetalerts.domain.FireStation;
 import com.safetynet.safetynetalerts.service.FireStationService;
 
@@ -70,7 +68,7 @@ public class FireStationController {
     }
 
     @GetMapping("/stationNumber")
-    public UrlStationDTO getPersonsCoveredByFireStation(@RequestParam Long id) {
+    public StationNumberFireStation getPersonsCoveredByFireStation(@RequestParam Long id) {
         return fireStationService.urlStationDTO(id);
     }
 

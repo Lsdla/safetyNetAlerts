@@ -1,6 +1,6 @@
 package com.safetynet.safetynetalerts.service;
 
-import com.safetynet.safetynetalerts.DTOs.MedicalRecordDTO;
+import com.safetynet.safetynetalerts.dtos.MedicalRecordDTO;
 import com.safetynet.safetynetalerts.convertor.MedicalRecordConverter;
 import com.safetynet.safetynetalerts.domain.MedicalRecord;
 import com.safetynet.safetynetalerts.repository.MedicalRecordRepository;

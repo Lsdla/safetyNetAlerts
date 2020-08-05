@@ -1,7 +1,7 @@
 package com.safetynet.safetynetalerts.controllers;
 
-import com.safetynet.safetynetalerts.DTOs.PersonDTO;
-import com.safetynet.safetynetalerts.DTOs.PersonInfoDTO;
+import com.safetynet.safetynetalerts.dtos.PersonDTO;
+import com.safetynet.safetynetalerts.dtos.personInfoDto.PersonInfoDTO;
 import com.safetynet.safetynetalerts.domain.Person;
 import com.safetynet.safetynetalerts.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;

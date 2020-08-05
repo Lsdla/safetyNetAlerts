@@ -1,4 +1,4 @@
-package com.safetynet.safetynetalerts.DTOs.floodDto;
+package com.safetynet.safetynetalerts.dtos.floodDto;
 
 import java.util.List;
 

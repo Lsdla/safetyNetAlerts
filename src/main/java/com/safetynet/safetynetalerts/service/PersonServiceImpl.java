@@ -1,8 +1,9 @@
 package com.safetynet.safetynetalerts.service;
 
-import com.safetynet.safetynetalerts.DTOs.PersonDTO;
-import com.safetynet.safetynetalerts.DTOs.PersonInfoDTO;
-import com.safetynet.safetynetalerts.DTOs.communityEmailDto.CommunityEmailDTO;
+import com.safetynet.safetynetalerts.dtos.PersonDTO;
+import com.safetynet.safetynetalerts.dtos.fireDTO.PersonFireDTO;
+import com.safetynet.safetynetalerts.dtos.personInfoDto.PersonInfoDTO;
+import com.safetynet.safetynetalerts.dtos.communityEmailDto.CommunityEmailDTO;
 import com.safetynet.safetynetalerts.convertor.PersonConverter;
 import com.safetynet.safetynetalerts.domain.Person;
 import com.safetynet.safetynetalerts.repository.PersonRepository;
@@ -56,6 +57,7 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public List<Person> findChildrenByAddress(String address) {
         return personRepository.findByAddress(address);
+
     }
 
     @Override
@@ -71,5 +73,11 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public void deleteByFirstNameAndLastName(String firstName, String lastName) {
         personRepository.deleteByFirstNameAndLastName(firstName, lastName);
+    }
+
+    @Override
+    public List<PersonFireDTO> retrievePeopleByAddress(String address) {
+        List<Person> personList = personRepository.findByAddress(address);
+        return personConverter.personToFireDTOsConverter(personList);
     }
 }

@@ -1,9 +1,9 @@
 package com.safetynet.safetynetalerts.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.safetynet.safetynetalerts.DTOs.FireStationDTO;
-import com.safetynet.safetynetalerts.DTOs.UrlPersonDTO;
-import com.safetynet.safetynetalerts.DTOs.UrlStationDTO;
+import com.safetynet.safetynetalerts.dtos.FireStationDTO;
+import com.safetynet.safetynetalerts.dtos.stationNumberDTO.StationNumberPersonDTO;
+import com.safetynet.safetynetalerts.dtos.stationNumberDTO.StationNumberFireStation;
 import com.safetynet.safetynetalerts.convertor.FireStationConverter;
 import com.safetynet.safetynetalerts.domain.FireStation;
 import com.safetynet.safetynetalerts.service.FireStationService;
@@ -121,9 +121,9 @@ class FireStationControllerTest {
     @DisplayName("GET OK: People covered by a fire station")
     @Test
     void givenFireStationId_whenGetMethodIsSent_thenPeopleCoveredBeStationShouldBeReturned() throws Exception {
-        UrlStationDTO station = new UrlStationDTO();
-        List<UrlPersonDTO> persons = new ArrayList<>();
-        UrlPersonDTO person = new UrlPersonDTO();
+        StationNumberFireStation station = new StationNumberFireStation();
+        List<StationNumberPersonDTO> persons = new ArrayList<>();
+        StationNumberPersonDTO person = new StationNumberPersonDTO();
         person.setFirstName("John");
         person.setLastName("Boyd");
         person.setAddress("any address");

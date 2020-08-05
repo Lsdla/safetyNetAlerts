@@ -1,6 +1,6 @@
 package com.safetynet.safetynetalerts.controllers;
 
-import com.safetynet.safetynetalerts.DTOs.ChildDTO;
+import com.safetynet.safetynetalerts.dtos.childDTO.ChildDTO;
 import com.safetynet.safetynetalerts.convertor.PersonConverter;
 import com.safetynet.safetynetalerts.domain.Person;
 import com.safetynet.safetynetalerts.service.PersonService;
@@ -35,6 +35,7 @@ public class ChildAlertController {
                 children.add(person);
             }
         }
+
         return personConverter.childDTOsConverter(children);
     }
 }

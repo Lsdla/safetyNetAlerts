@@ -1,4 +1,4 @@
-package com.safetynet.safetynetalerts.DTOs.phoneAlertDTO;
+package com.safetynet.safetynetalerts.dtos.phoneAlertDTO;
 
 import java.util.List;
 

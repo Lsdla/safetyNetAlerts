@@ -1,4 +1,6 @@
-package com.safetynet.safetynetalerts.DTOs;
+package com.safetynet.safetynetalerts.dtos.personInfoDto;
+
+import com.safetynet.safetynetalerts.dtos.MedicalRecordDTO;
 
 public class PersonInfoDTO {
 

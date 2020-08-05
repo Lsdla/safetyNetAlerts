@@ -1,6 +1,6 @@
 package com.safetynet.safetynetalerts.controllers;
 
-import com.safetynet.safetynetalerts.DTOs.communityEmailDto.CommunityEmailDTO;
+import com.safetynet.safetynetalerts.dtos.communityEmailDto.CommunityEmailDTO;
 import com.safetynet.safetynetalerts.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

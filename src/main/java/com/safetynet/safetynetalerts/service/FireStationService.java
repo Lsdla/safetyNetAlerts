@@ -1,9 +1,9 @@
 package com.safetynet.safetynetalerts.service;
 
-import com.safetynet.safetynetalerts.DTOs.FireStationDTO;
-import com.safetynet.safetynetalerts.DTOs.floodDto.FloodFireStationDTO;
-import com.safetynet.safetynetalerts.DTOs.stationNumberDTO.UrlStationDTO;
-import com.safetynet.safetynetalerts.DTOs.phoneAlertDTO.PhoneAlertFireStationDTO;
+import com.safetynet.safetynetalerts.dtos.FireStationDTO;
+import com.safetynet.safetynetalerts.dtos.floodDto.FloodFireStationDTO;
+import com.safetynet.safetynetalerts.dtos.stationNumberDTO.StationNumberFireStation;
+import com.safetynet.safetynetalerts.dtos.phoneAlertDTO.PhoneAlertFireStationDTO;
 import com.safetynet.safetynetalerts.domain.FireStation;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public interface FireStationService {
 
     List<FloodFireStationDTO> findFireStationsById(List<Long> id);
 
-    UrlStationDTO urlStationDTO(Long id);
+    StationNumberFireStation urlStationDTO(Long id);
 
     PhoneAlertFireStationDTO findFireStationById(Long id);
 }

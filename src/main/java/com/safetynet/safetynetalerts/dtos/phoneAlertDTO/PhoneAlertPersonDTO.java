@@ -1,4 +1,4 @@
-package com.safetynet.safetynetalerts.DTOs.phoneAlertDTO;
+package com.safetynet.safetynetalerts.dtos.phoneAlertDTO;
 
 public class PhoneAlertPersonDTO {
 

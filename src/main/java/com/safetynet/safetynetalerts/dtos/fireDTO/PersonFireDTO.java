@@ -1,6 +1,6 @@
-package com.safetynet.safetynetalerts.DTOs.fireDTO;
+package com.safetynet.safetynetalerts.dtos.fireDTO;
 
-import com.safetynet.safetynetalerts.DTOs.MedicalRecordDTO;
+import com.safetynet.safetynetalerts.dtos.MedicalRecordDTO;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.safetynet.safetynetalerts.DTOs.communityEmailDto;
+package com.safetynet.safetynetalerts.dtos.communityEmailDto;
 
 public class CommunityEmailDTO {
 

@@ -1,6 +1,6 @@
 package com.safetynet.safetynetalerts.controllers;
 
-import com.safetynet.safetynetalerts.DTOs.fireDTO.PersonFireDTO;
+import com.safetynet.safetynetalerts.dtos.fireDTO.PersonFireDTO;
 import com.safetynet.safetynetalerts.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

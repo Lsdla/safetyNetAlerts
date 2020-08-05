@@ -1,16 +1,15 @@
 package com.safetynet.safetynetalerts.convertor;
 
-import com.safetynet.safetynetalerts.DTOs.FireStationDTO;
-import com.safetynet.safetynetalerts.DTOs.FloodFireStationDTO;
-import com.safetynet.safetynetalerts.DTOs.StationDTO;
-import com.safetynet.safetynetalerts.DTOs.UrlStationDTO;
+import com.safetynet.safetynetalerts.dtos.FireStationDTO;
+import com.safetynet.safetynetalerts.dtos.floodDto.FloodFireStationDTO;
+import com.safetynet.safetynetalerts.dtos.stationNumberDTO.StationNumberFireStation;
+import com.safetynet.safetynetalerts.dtos.phoneAlertDTO.PhoneAlertFireStationDTO;
 import com.safetynet.safetynetalerts.domain.FireStation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -34,13 +33,13 @@ public class FireStationConverterImpl implements FireStationConverter {
     }
 
     @Override
-    public StationDTO stationToDTOConverter(Optional<FireStation> fireStation) {
-        return mapper.map(fireStation, StationDTO.class);
+    public PhoneAlertFireStationDTO stationToDTOConverter(FireStation fireStation) {
+        return mapper.map(fireStation, PhoneAlertFireStationDTO.class);
     }
 
     @Override
-    public UrlStationDTO urlFireStationToDAOConverter(FireStation fireStation) {
-        return mapper.map(fireStation, UrlStationDTO.class);
+    public StationNumberFireStation urlFireStationToDAOConverter(FireStation fireStation) {
+        return mapper.map(fireStation, StationNumberFireStation.class);
     }
 
     @Override

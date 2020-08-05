@@ -1,6 +1,5 @@
 package com.safetynet.safetynetalerts.service;
 
-import com.safetynet.safetynetalerts.DTOs.MedicalRecordDTO;
 import com.safetynet.safetynetalerts.convertor.MedicalRecordConverter;
 import com.safetynet.safetynetalerts.domain.MedicalRecord;
 import com.safetynet.safetynetalerts.repository.MedicalRecordRepository;
@@ -11,19 +10,13 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpStatus;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.web.server.ResponseStatusException;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 class MedicalRecordServiceImplTest {
 
@@ -73,7 +66,7 @@ class MedicalRecordServiceImplTest {
     }
 
     @Test
-    void findByFirstNameAndLastName() {
+    void findByFirstNameAndLastName_shouldReturnCorrectValue() {
         medicalRecordServiceImpl.findByFirstNameAndLastName(anyString(), anyString());
         verify(medicalRecordRepository, times(1)).findByFirstNameAndLastName(anyString(), anyString());
 
