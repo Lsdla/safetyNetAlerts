@@ -3,16 +3,16 @@ package com.safetynet.safetynetalerts.DTOs.stationNumberDTO;
 import java.util.ArrayList;
 import java.util.List;
 
-public class stationNumberFireStationDTO {
+public class UrlStationDTO {
 
     private List<StationNumberPersonDTO> persons;
     private int numberOfChildren = 0;
     private int numberOfAdults = 0;
 
-    public stationNumberFireStationDTO() {
+    public UrlStationDTO() {
     }
 
-    public stationNumberFireStationDTO(List<StationNumberPersonDTO> persons, int numberOfChildren, int numberOfAdults) {
+    public UrlStationDTO(List<StationNumberPersonDTO> persons, int numberOfChildren, int numberOfAdults) {
         this.persons = persons;
         this.numberOfChildren = numberOfChildren;
         this.numberOfAdults = numberOfAdults;

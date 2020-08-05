@@ -1,21 +1,18 @@
-package com.safetynet.safetynetalerts.DTOs;
+package com.safetynet.safetynetalerts.DTOs.fireDTO;
+
+import com.safetynet.safetynetalerts.DTOs.MedicalRecordDTO;
+
+import java.util.List;
 
 public class PersonFireDTO {
 
     private String firstName;
     private String lastName;
     private String phone;
-    private MedicalRecordDTO medicalRecords;
+    private MedicalRecordDTO medicalRecord;
+    private List<FireStationFireDTO> fireStations;
 
     public PersonFireDTO() {
-    }
-
-    public PersonFireDTO(String firstName, String lastName, String phone,
-                         MedicalRecordDTO medicalRecords) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phone = phone;
-        this.medicalRecords = medicalRecords;
     }
 
     public String getFirstName() {
@@ -42,11 +39,19 @@ public class PersonFireDTO {
         this.phone = phone;
     }
 
-    public MedicalRecordDTO getMedicalRecords() {
-        return medicalRecords;
+    public MedicalRecordDTO getMedicalRecord() {
+        return medicalRecord;
     }
 
-    public void setMedicalRecords(MedicalRecordDTO medicalRecords) {
-        this.medicalRecords = medicalRecords;
+    public void setMedicalRecord(MedicalRecordDTO medicalRecord) {
+        this.medicalRecord = medicalRecord;
+    }
+
+    public List<FireStationFireDTO> getFireStations() {
+        return fireStations;
+    }
+
+    public void setFireStations(List<FireStationFireDTO> fireStations) {
+        this.fireStations = fireStations;
     }
 }

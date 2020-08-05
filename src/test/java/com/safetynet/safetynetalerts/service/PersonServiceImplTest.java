@@ -1,6 +1,5 @@
 package com.safetynet.safetynetalerts.service;
 
-import com.safetynet.safetynetalerts.DTOs.PersonInfoDTO;
 import com.safetynet.safetynetalerts.convertor.PersonConverter;
 import com.safetynet.safetynetalerts.domain.Person;
 import com.safetynet.safetynetalerts.repository.PersonRepository;
@@ -9,12 +8,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class PersonServiceImplTest {
@@ -90,6 +87,12 @@ class PersonServiceImplTest {
     @Test
     void findChildrenByAddress_shouldCallTheAppropriateMethodInPersonRepository() {
         personServiceImpl.findChildrenByAddress(anyString());
+        verify(personRepository, times(1)).findByAddress(anyString());
+    }
+
+    @Test
+    void retrievePeopleByAddress_shouldCallTheAppropriateMethodInPersonRepository() {
+        personServiceImpl.retrievePeopleByAddress(anyString());
         verify(personRepository, times(1)).findByAddress(anyString());
     }
 }
