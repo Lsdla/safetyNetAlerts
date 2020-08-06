@@ -37,23 +37,23 @@ public class PersonConverterImpl implements PersonConverter {
     }
 
     @Override
-    public CommunityEmailDTO personEmail(Person person) {
+    public CommunityEmailDTO personToEmailDTOConverter(Person person) {
         return mapper.map(person, CommunityEmailDTO.class);
     }
 
     @Override
-    public List<CommunityEmailDTO> personEmailConverter(List<Person> personList) {
-        return personList.stream().map(this::personEmail).collect(Collectors.toList());
+    public List<CommunityEmailDTO> personsToEmailDTOsConverter(List<Person> personList) {
+        return personList.stream().map(this::personToEmailDTOConverter).collect(Collectors.toList());
     }
 
     @Override
-    public PersonInfoDTO personToPersonInfoDOAConverter(Person person) {
+    public PersonInfoDTO personToPersonInfoDTOConverter(Person person) {
         return mapper.map(person, PersonInfoDTO.class);
     }
 
     @Override
-    public List<PersonInfoDTO> personToPersonInfoDOAConverter(List<Person> personList) {
-        return personList.stream().map(this::personToPersonInfoDOAConverter).collect(Collectors.toList());
+    public List<PersonInfoDTO> personsToPersonInfoDTOsConverter(List<Person> personList) {
+        return personList.stream().map(this::personToPersonInfoDTOConverter).collect(Collectors.toList());
     }
 
     @Override
@@ -67,47 +67,47 @@ public class PersonConverterImpl implements PersonConverter {
     }
 
     @Override
-    public PersonFireDTO personToFireDTOConverter(Person person) {
+    public PersonFireDTO personToPersonFireDTOConverter(Person person) {
         return mapper.map(person, PersonFireDTO.class);
     }
 
     @Override
-    public List<PersonFireDTO> personToFireDTOsConverter(List<Person> personList) {
-        return personList.stream().map(this::personToFireDTOConverter).collect(Collectors.toList());
+    public List<PersonFireDTO> personsToPersonFireDTOsConverter(List<Person> personList) {
+        return personList.stream().map(this::personToPersonFireDTOConverter).collect(Collectors.toList());
     }
 
     @Override
-    public FloodPersonDTO floodPersonDTOConverter(Person person) {
+    public FloodPersonDTO personToFloodPersonDTOConverter(Person person) {
         return mapper.map(person, FloodPersonDTO.class);
     }
 
     @Override
-    public List<FloodPersonDTO> floodPersonDTOsConverter(List<Person> personList) {
-        return personList.stream().map(this::floodPersonDTOConverter).collect(Collectors.toList());
+    public List<FloodPersonDTO> personsToFloodPersonDTOsConverter(List<Person> personList) {
+        return personList.stream().map(this::personToFloodPersonDTOConverter).collect(Collectors.toList());
     }
 
     @Override
-    public ChildDTO childDTOConverter(Person person) {
+    public ChildDTO personToChildDTOConverter(Person person) {
         return mapper.map(person, ChildDTO.class);
     }
 
     @Override
-    public List<ChildDTO> childDTOsConverter(List<Person> personList) {
-        return personList.stream().map(this::childDTOConverter).collect(Collectors.toList());
+    public List<ChildDTO> personsToChildDTOsConverter(List<Person> personList) {
+        return personList.stream().map(this::personToChildDTOConverter).collect(Collectors.toList());
     }
 
     @Override
-    public List<List<ChildDTO>> childrenDTO(List<List<Person>> persons) {
-        return persons.stream().map(this::childDTOsConverter).collect(Collectors.toList());
+    public List<List<ChildDTO>> childrenListToListConverter(List<List<Person>> persons) {
+        return persons.stream().map(this::personsToChildDTOsConverter).collect(Collectors.toList());
     }
 
     @Override
-    public StationNumberPersonDTO urlPersonConverter(Person person) {
+    public StationNumberPersonDTO personToStationNumberPersonDTOConverter(Person person) {
         return mapper.map(person, StationNumberPersonDTO.class);
     }
 
     @Override
-    public List<StationNumberPersonDTO> urlPersonsConverter(List<Person> personList) {
-        return personList.stream().map(this::urlPersonConverter).collect(Collectors.toList());
+    public List<StationNumberPersonDTO> personsToStationNumberPersonDTOsConverter(List<Person> personList) {
+        return personList.stream().map(this::personToStationNumberPersonDTOConverter).collect(Collectors.toList());
     }
 }

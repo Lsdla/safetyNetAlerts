@@ -3,7 +3,7 @@ package com.safetynet.safetynetalerts.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.safetynetalerts.dtos.FireStationDTO;
 import com.safetynet.safetynetalerts.dtos.stationNumberDTO.StationNumberPersonDTO;
-import com.safetynet.safetynetalerts.dtos.stationNumberDTO.StationNumberFireStation;
+import com.safetynet.safetynetalerts.dtos.stationNumberDTO.StationNumberFireStationDTO;
 import com.safetynet.safetynetalerts.convertor.FireStationConverter;
 import com.safetynet.safetynetalerts.domain.FireStation;
 import com.safetynet.safetynetalerts.service.FireStationService;
@@ -121,7 +121,7 @@ class FireStationControllerTest {
     @DisplayName("GET OK: People covered by a fire station")
     @Test
     void givenFireStationId_whenGetMethodIsSent_thenPeopleCoveredBeStationShouldBeReturned() throws Exception {
-        StationNumberFireStation station = new StationNumberFireStation();
+        StationNumberFireStationDTO station = new StationNumberFireStationDTO();
         List<StationNumberPersonDTO> persons = new ArrayList<>();
         StationNumberPersonDTO person = new StationNumberPersonDTO();
         person.setFirstName("John");

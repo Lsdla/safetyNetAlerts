@@ -2,7 +2,7 @@ package com.safetynet.safetynetalerts.service;
 
 import com.safetynet.safetynetalerts.dtos.FireStationDTO;
 import com.safetynet.safetynetalerts.dtos.floodDto.FloodFireStationDTO;
-import com.safetynet.safetynetalerts.dtos.stationNumberDTO.StationNumberFireStation;
+import com.safetynet.safetynetalerts.dtos.stationNumberDTO.StationNumberFireStationDTO;
 import com.safetynet.safetynetalerts.dtos.phoneAlertDTO.PhoneAlertFireStationDTO;
 import com.safetynet.safetynetalerts.convertor.FireStationConverter;
 import com.safetynet.safetynetalerts.domain.FireStation;
@@ -61,9 +61,9 @@ public class FireStationServiceImpl implements FireStationService {
     }
 
     @Override
-    public StationNumberFireStation urlStationDTO(Long id) {
+    public StationNumberFireStationDTO urlStationDTO(Long id) {
         FireStation fireStation = fireStationRepository.getOne(id);
-        return fireStationConverter.urlFireStationToDAOConverter(fireStation);
+        return fireStationConverter.stationNumberFireStationDTO(fireStation);
     }
 
     @Override
@@ -72,6 +72,6 @@ public class FireStationServiceImpl implements FireStationService {
         if (fireStation == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "the provided fire station id does not exist in our database");
         }
-        return fireStationConverter.stationToDTOConverter(fireStation);
+        return fireStationConverter.phoneAlertStationToDTOConverter(fireStation);
     }
 }

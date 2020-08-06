@@ -2,7 +2,7 @@ package com.safetynet.safetynetalerts.service;
 
 import com.safetynet.safetynetalerts.dtos.FireStationDTO;
 import com.safetynet.safetynetalerts.dtos.floodDto.FloodFireStationDTO;
-import com.safetynet.safetynetalerts.dtos.stationNumberDTO.StationNumberFireStation;
+import com.safetynet.safetynetalerts.dtos.stationNumberDTO.StationNumberFireStationDTO;
 import com.safetynet.safetynetalerts.dtos.phoneAlertDTO.PhoneAlertFireStationDTO;
 import com.safetynet.safetynetalerts.domain.FireStation;
 
@@ -21,7 +21,7 @@ public interface FireStationService {
 
     List<FloodFireStationDTO> findFireStationsById(List<Long> id);
 
-    StationNumberFireStation urlStationDTO(Long id);
+    StationNumberFireStationDTO urlStationDTO(Long id);
 
     PhoneAlertFireStationDTO findFireStationById(Long id);
 }

@@ -1,7 +1,7 @@
 package com.safetynet.safetynetalerts.controllers;
 
 import com.safetynet.safetynetalerts.dtos.FireStationDTO;
-import com.safetynet.safetynetalerts.dtos.stationNumberDTO.StationNumberFireStation;
+import com.safetynet.safetynetalerts.dtos.stationNumberDTO.StationNumberFireStationDTO;
 import com.safetynet.safetynetalerts.domain.FireStation;
 import com.safetynet.safetynetalerts.service.FireStationService;
 
@@ -68,7 +68,7 @@ public class FireStationController {
     }
 
     @GetMapping("/stationNumber")
-    public StationNumberFireStation getPersonsCoveredByFireStation(@RequestParam Long id) {
+    public StationNumberFireStationDTO getPersonsCoveredByFireStation(@RequestParam Long id) {
         return fireStationService.urlStationDTO(id);
     }
 

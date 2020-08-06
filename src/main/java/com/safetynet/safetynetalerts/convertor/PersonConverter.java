@@ -17,25 +17,25 @@ public interface PersonConverter {
     PersonDTO personToDAOConverter(Person person);
     List<PersonDTO> personToDAOsConverter(List<Person> personList);
 
-    CommunityEmailDTO personEmail(Person person);
-    List<CommunityEmailDTO> personEmailConverter(List<Person> personList);
+    CommunityEmailDTO personToEmailDTOConverter(Person person);
+    List<CommunityEmailDTO> personsToEmailDTOsConverter(List<Person> personList);
 
-    PersonInfoDTO personToPersonInfoDOAConverter(Person person);
-    List<PersonInfoDTO> personToPersonInfoDOAConverter(List<Person> personList);
+    PersonInfoDTO personToPersonInfoDTOConverter(Person person);
+    List<PersonInfoDTO> personsToPersonInfoDTOsConverter(List<Person> personList);
 
     PhoneAlertPersonDTO personToPhoneInfoDTO(Person person);
     List<PhoneAlertPersonDTO> personToPhoneInfosDTO(List<Person> personList);
 
-    PersonFireDTO personToFireDTOConverter(Person person);
-    List<PersonFireDTO> personToFireDTOsConverter(List<Person> personList);
+    PersonFireDTO personToPersonFireDTOConverter(Person person);
+    List<PersonFireDTO> personsToPersonFireDTOsConverter(List<Person> personList);
 
-    FloodPersonDTO floodPersonDTOConverter(Person person);
-    List<FloodPersonDTO> floodPersonDTOsConverter(List<Person> personList);
+    FloodPersonDTO personToFloodPersonDTOConverter(Person person);
+    List<FloodPersonDTO> personsToFloodPersonDTOsConverter(List<Person> personList);
 
-    ChildDTO childDTOConverter(Person person);
-    List<ChildDTO> childDTOsConverter(List<Person> personList);
-    List<List<ChildDTO>> childrenDTO(List<List<Person>> persons);
+    ChildDTO personToChildDTOConverter(Person person);
+    List<ChildDTO> personsToChildDTOsConverter(List<Person> personList);
+    List<List<ChildDTO>> childrenListToListConverter(List<List<Person>> persons);
 
-    StationNumberPersonDTO urlPersonConverter(Person person);
-    List<StationNumberPersonDTO> urlPersonsConverter(List<Person> personList);
+    StationNumberPersonDTO personToStationNumberPersonDTOConverter(Person person);
+    List<StationNumberPersonDTO> personsToStationNumberPersonDTOsConverter(List<Person> personList);
 }

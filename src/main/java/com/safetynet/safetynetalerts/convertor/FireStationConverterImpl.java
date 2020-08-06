@@ -2,7 +2,7 @@ package com.safetynet.safetynetalerts.convertor;
 
 import com.safetynet.safetynetalerts.dtos.FireStationDTO;
 import com.safetynet.safetynetalerts.dtos.floodDto.FloodFireStationDTO;
-import com.safetynet.safetynetalerts.dtos.stationNumberDTO.StationNumberFireStation;
+import com.safetynet.safetynetalerts.dtos.stationNumberDTO.StationNumberFireStationDTO;
 import com.safetynet.safetynetalerts.dtos.phoneAlertDTO.PhoneAlertFireStationDTO;
 import com.safetynet.safetynetalerts.domain.FireStation;
 import org.modelmapper.ModelMapper;
@@ -33,13 +33,13 @@ public class FireStationConverterImpl implements FireStationConverter {
     }
 
     @Override
-    public PhoneAlertFireStationDTO stationToDTOConverter(FireStation fireStation) {
+    public PhoneAlertFireStationDTO phoneAlertStationToDTOConverter(FireStation fireStation) {
         return mapper.map(fireStation, PhoneAlertFireStationDTO.class);
     }
 
     @Override
-    public StationNumberFireStation urlFireStationToDAOConverter(FireStation fireStation) {
-        return mapper.map(fireStation, StationNumberFireStation.class);
+    public StationNumberFireStationDTO stationNumberFireStationDTO(FireStation fireStation) {
+        return mapper.map(fireStation, StationNumberFireStationDTO.class);
     }
 
     @Override

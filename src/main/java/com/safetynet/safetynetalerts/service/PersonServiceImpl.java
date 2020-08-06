@@ -43,13 +43,13 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public List<PersonInfoDTO> findPersonsByFirstNameAndLastName(String firstName, String lastName) {
         List<Person> personList = personRepository.findPersonsByFirstNameAndLastName(firstName, lastName);
-        return personConverter.personToPersonInfoDOAConverter(personList);
+        return personConverter.personsToPersonInfoDTOsConverter(personList);
     }
 
     @Override
     public List<CommunityEmailDTO> findEmailsByCity(String city) {
         List<Person> personList = personRepository.findEmailsByCity(city);
-        return personConverter.personEmailConverter(personList);
+        return personConverter.personsToEmailDTOsConverter(personList);
     }
 
     @Override
@@ -82,7 +82,7 @@ public class PersonServiceImpl implements PersonService {
         //check if children list contain persons
         if (children.size() > 0) {
             //return the converted childrenAndHouseHoldMembers if there is children in the list
-            return personConverter.childrenDTO(childrenAndHouseHoldMembers);
+            return personConverter.childrenListToListConverter(childrenAndHouseHoldMembers);
         } else {
             //return empty list if no children were found
             return Collections.emptyList();
@@ -107,6 +107,6 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public List<PersonFireDTO> retrievePeopleByAddress(String address) {
         List<Person> personList = personRepository.findByAddress(address);
-        return personConverter.personToFireDTOsConverter(personList);
+        return personConverter.personsToPersonFireDTOsConverter(personList);
     }
 }
