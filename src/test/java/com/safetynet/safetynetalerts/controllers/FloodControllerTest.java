@@ -3,6 +3,8 @@ package com.safetynet.safetynetalerts.controllers;
 import com.safetynet.safetynetalerts.dtos.floodDto.FloodFireStationDTO;
 import com.safetynet.safetynetalerts.dtos.floodDto.FloodPersonDTO;
 import com.safetynet.safetynetalerts.service.FireStationService;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@Tag("controllers")
 @RunWith(SpringRunner.class)
 @WebMvcTest(FloodController.class)
 class FloodControllerTest {
@@ -31,9 +34,9 @@ class FloodControllerTest {
     @MockBean
     private FireStationService fireStationService;
 
-
+    @DisplayName("GET OK: People covered by a fire station are returned")
     @Test
-    void givenAListOfFireStationId_whenGetMethodIsSent_thenPeopleCoveredShouldBeReturned() throws Exception {
+    void givenAListOfFireStationId_whenGetMethodIsSentByFloodController_thenPeopleCoveredShouldBeReturned() throws Exception {
         List<FloodFireStationDTO> fireStations = new ArrayList<>();
         //first fire station and its persons
         FloodFireStationDTO fireStation = new FloodFireStationDTO();
@@ -65,7 +68,7 @@ class FloodControllerTest {
         fireStations.add(fireStation);
         fireStations.add(fireStation1);
 
-
+        //list of fire stations ids
         List<Long> ids = new ArrayList<>();
         ids.add(1L);
         ids.add(2L);
@@ -88,6 +91,7 @@ class FloodControllerTest {
                 .andExpect(jsonPath("$[1].persons.[0]medicalRecord").value(person1.getMedicalRecord()));
     }
 
+    @DisplayName("GET ERROR: error returned if no id passed as a parameter")
     @Test
     void givenAnEmptyListOfFireStationIds_whenGetMethodIsSent_thenExceptionShouldBeThrown() {
         FloodController floodController = new FloodController(fireStationService);

@@ -3,6 +3,7 @@ package com.safetynet.safetynetalerts.controllers;
 import com.safetynet.safetynetalerts.dtos.communityEmailDto.CommunityEmailDTO;
 import com.safetynet.safetynetalerts.service.PersonService;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@Tag("controllers")
 @RunWith(SpringRunner.class)
 @WebMvcTest(CommunityEmailController.class)
 class CommunityEmailControllerTest {

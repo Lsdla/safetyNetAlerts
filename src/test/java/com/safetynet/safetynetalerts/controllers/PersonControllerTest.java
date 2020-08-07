@@ -7,6 +7,7 @@ import com.safetynet.safetynetalerts.dtos.PersonDTO;
 import com.safetynet.safetynetalerts.domain.Person;
 import com.safetynet.safetynetalerts.service.PersonService;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+@Tag("controllers")
 @RunWith(SpringRunner.class)
 @WebMvcTest(PersonController.class)
 class PersonControllerTest {

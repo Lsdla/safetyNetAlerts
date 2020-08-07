@@ -2,6 +2,8 @@ package com.safetynet.safetynetalerts.controllers;
 
 import com.safetynet.safetynetalerts.dtos.childDTO.ChildDTO;
 import com.safetynet.safetynetalerts.service.PersonService;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@Tag("controllers")
 @RunWith(SpringRunner.class)
 @WebMvcTest(ChildAlertController.class)
 class ChildAlertControllerTest {
@@ -31,6 +34,7 @@ class ChildAlertControllerTest {
     @MockBean
     private PersonService personService;
 
+    @DisplayName("GET OK: retrieve children and household members")
     @Test
     void givenAnAddress_whenGetMethodIsSent_thenChildrenAndHouseHoldMembersShouldBeReturned() throws Exception {
         List<List<ChildDTO>> childrenAndHouseHold = new ArrayList<>();
@@ -52,6 +56,7 @@ class ChildAlertControllerTest {
                 .andExpect(jsonPath("$[0][0].age").value(child.getAge()));
     }
 
+    @DisplayName("GET ERROR: wrong url returns a 4xx error")
     @Test
     void givenAWrongURL_whenGetMethodIsSent_thenError4xxShouldBeReturned() throws Exception {
         List<List<ChildDTO>> childrenAndHouseHold = new ArrayList<>();
