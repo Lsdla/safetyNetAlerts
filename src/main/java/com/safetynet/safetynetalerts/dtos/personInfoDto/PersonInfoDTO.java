@@ -1,4 +1,6 @@
-package com.safetynet.safetynetalerts.DTOs;
+package com.safetynet.safetynetalerts.dtos.personInfoDto;
+
+import com.safetynet.safetynetalerts.dtos.MedicalRecordDTO;
 
 public class PersonInfoDTO {
 
@@ -6,18 +8,9 @@ public class PersonInfoDTO {
     private String lastName;
     private String address;
     private String email;
-    private MedicalRecordDTO medicalRecordDTO;
+    private MedicalRecordDTO medicalRecord;
 
     public PersonInfoDTO() {
-    }
-
-    public PersonInfoDTO(String firstName, String lastName,
-                         String address, String email, MedicalRecordDTO medicalRecordDTO) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.email = email;
-        this.medicalRecordDTO = medicalRecordDTO;
     }
 
     public String getFirstName() {
@@ -52,11 +45,11 @@ public class PersonInfoDTO {
         this.email = email;
     }
 
-    public MedicalRecordDTO getMedicalRecordDTO() {
-        return medicalRecordDTO;
+    public MedicalRecordDTO getMedicalRecord() {
+        return medicalRecord;
     }
 
-    public void setMedicalRecordDTO(MedicalRecordDTO medicalRecordDTO) {
-        this.medicalRecordDTO = medicalRecordDTO;
+    public void setMedicalRecord(MedicalRecordDTO medicalRecordDTO) {
+        this.medicalRecord = medicalRecordDTO;
     }
 }

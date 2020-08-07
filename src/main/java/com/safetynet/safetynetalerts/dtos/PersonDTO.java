@@ -1,4 +1,4 @@
-package com.safetynet.safetynetalerts.DTOs;
+package com.safetynet.safetynetalerts.dtos;
 
 import java.util.List;
 
@@ -15,20 +15,6 @@ public class PersonDTO {
     private List<FireStationDTO> fireStations;
 
     public PersonDTO() {
-    }
-
-    public PersonDTO(String firstName, String lastName, String address,
-                     String city, String zip, String phone, String email,
-                     MedicalRecordDTO medicalRecords, List<FireStationDTO> fireStations) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.city = city;
-        this.zip = zip;
-        this.phone = phone;
-        this.email = email;
-        this.medicalRecord = medicalRecords;
-        this.fireStations = fireStations;
     }
 
     public String getFirstName() {

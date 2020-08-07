@@ -1,4 +1,4 @@
-package com.safetynet.safetynetalerts.DTOs;
+package com.safetynet.safetynetalerts.dtos;
 
 public class FireStationDTO {
 
@@ -6,11 +6,6 @@ public class FireStationDTO {
     private Integer station;
 
     public FireStationDTO() {
-    }
-
-    public FireStationDTO(String address, Integer station) {
-        this.address = address;
-        this.station = station;
     }
 
     public String getAddress() {

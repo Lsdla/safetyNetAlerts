@@ -1,30 +1,32 @@
 package com.safetynet.safetynetalerts.service;
 
+import com.safetynet.safetynetalerts.convertor.PersonConverter;
 import com.safetynet.safetynetalerts.domain.Person;
 import com.safetynet.safetynetalerts.repository.PersonRepository;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+@Tag("Service")
 class PersonServiceImplTest {
 
-    PersonServiceImpl personServiceImpl;
+    private PersonServiceImpl personServiceImpl;
 
     @Mock
-    PersonRepository personRepository;
+    private PersonRepository personRepository;
+
+    @Mock
+    private PersonConverter personConverter;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
-        personServiceImpl = new PersonServiceImpl(personRepository);
+        personServiceImpl = new PersonServiceImpl(personRepository, personConverter);
     }
 
     @AfterEach
@@ -32,38 +34,73 @@ class PersonServiceImplTest {
         personServiceImpl = null;
     }
 
+    @DisplayName("findAll calls personRepository.findAll")
     @Test
-    void findAll() {
-        Person person = new Person();
+    void findAll_shouldCallTheAppropriateMethodInPersonRepository() {
         List<Person> personList = new ArrayList<>();
-        personList.add(person);
+
         when(personRepository.findAll()).thenReturn(personList);
 
         personServiceImpl.findAll();
 
         verify(personRepository, times(1)).findAll();
-
-        assertEquals(personList.size(), 1);
     }
 
+    @DisplayName("save calls personRepository.save")
     @Test
-    void save() {
+    void save_shouldCallTheAppropriateMethodInPersonRepository() {
         Person person = new Person();
         when(personRepository.save(person)).thenReturn(person);
         personServiceImpl.save(person);
         verify(personRepository, times(1)).save(person);
-
     }
 
+    @DisplayName("findByFirstNameAndLastName calls personRepository.findByFirstNameAndLastName")
     @Test
-    void findByFirstNameAndLastName() {
+    void findByFirstNameAndLastName_shouldCallTheAppropriateMethodInPersonRepository() {
         personServiceImpl.findByFirstNameAndLastName(anyString(), anyString());
         verify(personRepository, times(1)).findByFirstNameAndLastName(anyString(), anyString());
     }
 
+    @DisplayName("deleteByFirstNameAndLastName calls personRepository.deleteByFirstNameAndLastName")
     @Test
-    void deleteByFirstNameAndLastName() {
+    void deleteByFirstNameAndLastName_shouldCallTheAppropriateMethodInPersonRepository() {
         personServiceImpl.deleteByFirstNameAndLastName(anyString(), anyString());
         verify(personRepository, times(1)).deleteByFirstNameAndLastName(anyString(), anyString());
+    }
+
+    @DisplayName("findPersonsByFirstNameAndLastName calls personRepository.findAll")
+    @Test
+    void findPersonsByFirstNameAndLastName_shouldCallTheAppropriateMethodInPersonRepository() {
+        personServiceImpl.findPersonsByFirstNameAndLastName(anyString(), anyString());
+        verify(personRepository, times(1)).findPersonsByFirstNameAndLastName(anyString(), anyString());
+    }
+
+    @DisplayName("findEmailsByCity calls personRepository.findEmailsByCity")
+    @Test
+    void findEmailsByCity_shouldCallTheAppropriateMethodInPersonRepository() {
+        personServiceImpl.findEmailsByCity(anyString());
+        verify(personRepository, times(1)).findEmailsByCity(anyString());
+    }
+
+    @DisplayName("findByAddress calls personRepository.findByAddress")
+    @Test
+    void findByAddress_shouldCallTheAppropriateMethodInPersonRepository() {
+        personServiceImpl.findByAddress(anyString());
+        verify(personRepository, times(1)).findByAddress(anyString());
+    }
+
+    @DisplayName("findChildrenByAddress calls personRepository.findByAddress")
+    @Test
+    void findChildrenByAddress_shouldCallTheAppropriateMethodInPersonRepository() {
+        personServiceImpl.findChildrenByAddress(anyString());
+        verify(personRepository, times(1)).findByAddress(anyString());
+    }
+
+    @DisplayName("retrievePeopleByAddress calls personRepository.retrievePeopleByAddress")
+    @Test
+    void retrievePeopleByAddress_shouldCallTheAppropriateMethodInPersonRepository() {
+        personServiceImpl.retrievePeopleByAddress(anyString());
+        verify(personRepository, times(1)).findByAddress(anyString());
     }
 }

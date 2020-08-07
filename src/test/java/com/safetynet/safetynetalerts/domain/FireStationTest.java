@@ -1,14 +1,13 @@
 package com.safetynet.safetynetalerts.domain;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Tag("domain")
 class FireStationTest {
 
     FireStation fireStation;
@@ -23,6 +22,7 @@ class FireStationTest {
         fireStation = null;
     }
 
+    @DisplayName("Get the fire station's id")
     @Test
     void getId() {
         Long id = 1L;
@@ -32,6 +32,7 @@ class FireStationTest {
         assertEquals(id, fireStation.getId());
     }
 
+    @DisplayName("Get the fire station's address")
     @Test
     void getAddress() {
         String address = "station address";
@@ -41,6 +42,7 @@ class FireStationTest {
         assertEquals(address, fireStation.getAddress());
     }
 
+    @DisplayName("get station number")
     @Test
     void getStation() {
         Integer station = 1;
@@ -50,6 +52,7 @@ class FireStationTest {
         assertEquals(station, fireStation.getStation());
     }
 
+    @DisplayName("Get persons covered by a fire station")
     @Test
     void getPersons() {
 
@@ -70,6 +73,7 @@ class FireStationTest {
         assertEquals(1, fireStation.getPersons().size());
     }
 
+    @DisplayName("Add a person to a fire station")
     @Test
     void addPerson() {
         Person person = new Person();
@@ -86,6 +90,7 @@ class FireStationTest {
         assertEquals(1, fireStation.getPersons().size());
     }
 
+    @DisplayName("To string")
     @Test
     void testToString() {
         String expected = fireStation.toString();

@@ -1,14 +1,10 @@
-package com.safetynet.safetynetalerts.DTOs;
+package com.safetynet.safetynetalerts.dtos.communityEmailDto;
 
 public class CommunityEmailDTO {
 
     private String email;
 
     public CommunityEmailDTO() {
-    }
-
-    public CommunityEmailDTO(String email) {
-        this.email = email;
     }
 
     public String getEmail() {

@@ -1,14 +1,13 @@
 package com.safetynet.safetynetalerts.domain;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Tag("domain")
 class PersonTest {
 
     private Person person;
@@ -32,6 +31,7 @@ class PersonTest {
         assertEquals(id, person.getId());
     }
 
+    @DisplayName("Get a person's first name")
     @Test
     void getFirstName() {
         String firstName = "John";
@@ -41,6 +41,7 @@ class PersonTest {
         assertEquals(firstName, person.getFirstName());
     }
 
+    @DisplayName("Get a person's last name")
     @Test
     void getLastName() {
         String lastName = "Boyd";
@@ -50,6 +51,7 @@ class PersonTest {
         assertEquals(lastName, person.getLastName());
     }
 
+    @DisplayName("Get a person's address")
     @Test
     void getAddress() {
         String address = "1509 Culver St";
@@ -59,6 +61,7 @@ class PersonTest {
         assertEquals(address, person.getAddress());
     }
 
+    @DisplayName("Get the city where a person lives")
     @Test
     void getCity() {
         String city = "Culver";
@@ -68,6 +71,7 @@ class PersonTest {
         assertEquals(city, person.getCity());
     }
 
+    @DisplayName("Get a person's zip code")
     @Test
     void getZip() {
         String zip = "97451";
@@ -77,6 +81,7 @@ class PersonTest {
         assertEquals(zip, person.getZip());
     }
 
+    @DisplayName("Get a person's phone number")
     @Test
     void getPhone() {
         String phone = "841-874-6512";
@@ -86,6 +91,7 @@ class PersonTest {
         assertEquals(phone, person.getPhone());
     }
 
+    @DisplayName("Get a person's email")
     @Test
     void getEmail() {
         String email = "jaboyd@email.com";
@@ -95,6 +101,7 @@ class PersonTest {
         assertEquals(email, person.getEmail());
     }
 
+    @DisplayName("Get a person's medical record")
     @Test
     void getMedicalRecord() {
         MedicalRecord medicalRecord = new MedicalRecord();
@@ -104,6 +111,7 @@ class PersonTest {
         assertEquals(medicalRecord, person.getMedicalRecord());
     }
 
+    @DisplayName("Get the fire stations that cover a person")
     @Test
     void getFireStations() {
         FireStation fireStation = new FireStation();
@@ -118,6 +126,7 @@ class PersonTest {
         assertEquals(1, person.getFireStations().size());
     }
 
+    @DisplayName("Add a fire station to the person's fire station list")
     @Test
     void addFireStation() {
         FireStation fireStation = new FireStation();
@@ -130,6 +139,7 @@ class PersonTest {
         assertEquals(1, person.getFireStations().size());
     }
 
+    @DisplayName("To string method")
     @Test
     void testToString() {
         String expected = person.toString();

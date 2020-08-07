@@ -1,8 +1,6 @@
 package com.safetynet.safetynetalerts.controllers;
 
-import com.safetynet.safetynetalerts.DTOs.CommunityEmailDTO;
-import com.safetynet.safetynetalerts.convertor.PersonConverter;
-import com.safetynet.safetynetalerts.domain.Person;
+import com.safetynet.safetynetalerts.dtos.communityEmailDto.CommunityEmailDTO;
 import com.safetynet.safetynetalerts.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,18 +13,14 @@ public class CommunityEmailController {
 
     private PersonService personService;
 
-    private PersonConverter personConverter;
-
     @Autowired
-    public CommunityEmailController(PersonService personService, PersonConverter personConverter) {
+    public CommunityEmailController(PersonService personService) {
         this.personService = personService;
-        this.personConverter = personConverter;
     }
 
-    @GetMapping("/{city}")
+    @GetMapping()
     @ResponseBody
-    public List<CommunityEmailDTO> getEmails(@PathVariable String city) {
-        List<Person> personList = personService.findEmailsByCity(city);
-        return personConverter.personEmailConverter(personList);
+    public List<CommunityEmailDTO> getEmails(@RequestParam String city) {
+            return personService.findEmailsByCity(city);
     }
 }

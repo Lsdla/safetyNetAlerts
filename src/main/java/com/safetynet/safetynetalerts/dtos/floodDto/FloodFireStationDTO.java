@@ -1,18 +1,14 @@
-package com.safetynet.safetynetalerts.DTOs;
+package com.safetynet.safetynetalerts.dtos.floodDto;
 
 import java.util.List;
 
 public class FloodFireStationDTO {
 
+    private Long id;
     private String address;
     private List<FloodPersonDTO> persons;
 
     public FloodFireStationDTO() {
-    }
-
-    public FloodFireStationDTO(String address, List<FloodPersonDTO> persons) {
-        this.address = address;
-        this.persons = persons;
     }
 
     public String getAddress() {
@@ -29,5 +25,13 @@ public class FloodFireStationDTO {
 
     public void setPersons(List<FloodPersonDTO> persons) {
         this.persons = persons;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

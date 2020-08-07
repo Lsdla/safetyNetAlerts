@@ -1,4 +1,4 @@
-package com.safetynet.safetynetalerts.DTOs;
+package com.safetynet.safetynetalerts.dtos;
 
 import java.util.List;
 
@@ -9,12 +9,6 @@ public class MedicalRecordDTO {
     private List<String> medications;
 
     public MedicalRecordDTO() {
-    }
-
-    public MedicalRecordDTO(Double age, List<String> allergies, List<String> medications) {
-        this.age = age;
-        this.allergies = allergies;
-        this.medications = medications;
     }
 
     public Double getAge() {

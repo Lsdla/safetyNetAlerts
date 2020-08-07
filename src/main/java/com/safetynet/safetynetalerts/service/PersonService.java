@@ -1,6 +1,10 @@
 package com.safetynet.safetynetalerts.service;
 
-import com.safetynet.safetynetalerts.DTOs.ChildDTO;
+import com.safetynet.safetynetalerts.dtos.childDTO.ChildDTO;
+import com.safetynet.safetynetalerts.dtos.communityEmailDto.CommunityEmailDTO;
+import com.safetynet.safetynetalerts.dtos.PersonDTO;
+import com.safetynet.safetynetalerts.dtos.fireDTO.PersonFireDTO;
+import com.safetynet.safetynetalerts.dtos.personInfoDto.PersonInfoDTO;
 import com.safetynet.safetynetalerts.domain.Person;
 
 import java.util.List;
@@ -12,13 +16,15 @@ public interface PersonService {
 
     void deleteByFirstNameAndLastName(String firstName, String lastName);
 
-    List<Person> findAll();
+    List<PersonDTO> findAll();
 
-    List<Person> findPersonsByFirstNameAndLastName(String firstName, String lastName);
+    List<PersonInfoDTO> findPersonsByFirstNameAndLastName(String firstName, String lastName);
 
-    List<Person> findEmailsByCity(String city);
+    List<CommunityEmailDTO> findEmailsByCity(String city);
 
     List<Person> findByAddress(String address);
 
-    List<Person> findChildrenByAddress(String address);
+    List<List<ChildDTO>> findChildrenByAddress(String address);
+
+    List<PersonFireDTO> retrievePeopleByAddress(String address);
 }

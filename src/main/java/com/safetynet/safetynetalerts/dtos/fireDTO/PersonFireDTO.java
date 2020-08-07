@@ -1,20 +1,18 @@
-package com.safetynet.safetynetalerts.DTOs;
+package com.safetynet.safetynetalerts.dtos.fireDTO;
 
-public class FloodPersonDTO {
+import com.safetynet.safetynetalerts.dtos.MedicalRecordDTO;
+
+import java.util.List;
+
+public class PersonFireDTO {
 
     private String firstName;
     private String lastName;
     private String phone;
     private MedicalRecordDTO medicalRecord;
+    private List<FireStationFireDTO> fireStations;
 
-    public FloodPersonDTO() {
-    }
-
-    public FloodPersonDTO(String firstName, String lastName, String phone, MedicalRecordDTO medicalRecord) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phone = phone;
-        this.medicalRecord = medicalRecord;
+    public PersonFireDTO() {
     }
 
     public String getFirstName() {
@@ -47,5 +45,13 @@ public class FloodPersonDTO {
 
     public void setMedicalRecord(MedicalRecordDTO medicalRecord) {
         this.medicalRecord = medicalRecord;
+    }
+
+    public List<FireStationFireDTO> getFireStations() {
+        return fireStations;
+    }
+
+    public void setFireStations(List<FireStationFireDTO> fireStations) {
+        this.fireStations = fireStations;
     }
 }
