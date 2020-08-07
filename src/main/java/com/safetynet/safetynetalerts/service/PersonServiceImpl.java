@@ -8,8 +8,12 @@ import com.safetynet.safetynetalerts.dtos.communityEmailDto.CommunityEmailDTO;
 import com.safetynet.safetynetalerts.convertor.PersonConverter;
 import com.safetynet.safetynetalerts.domain.Person;
 import com.safetynet.safetynetalerts.repository.PersonRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -24,6 +28,8 @@ public class PersonServiceImpl implements PersonService {
     private PersonRepository personRepository;
 
     private PersonConverter personConverter;
+
+    private final Logger LOGGER = LogManager.getLogger(PersonServiceImpl.class);
 
     @Autowired
     public PersonServiceImpl(PersonRepository personRepository, PersonConverter personConverter) {
@@ -43,6 +49,11 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public List<PersonInfoDTO> findPersonsByFirstNameAndLastName(String firstName, String lastName) {
         List<Person> personList = personRepository.findPersonsByFirstNameAndLastName(firstName, lastName);
+        if (personList.size() == 0) {
+            LOGGER.error("No matching " + firstName + " " + lastName + " were found in database");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No persons were found");
+        }
+        LOGGER.info("Person(s) that have these first names and last names: '" + firstName + " " + lastName + "' were retrieved from database");
         return personConverter.personsToPersonInfoDTOsConverter(personList);
     }
 
@@ -61,15 +72,21 @@ public class PersonServiceImpl implements PersonService {
     public List<List<ChildDTO>> findChildrenByAddress(String address) {
         //retrieve all people who live in a given address
         List<Person> peopleByAddress = findByAddress(address);
+
         //a list to which children and their household members will be saved
         List<List<Person>> childrenAndHouseHoldMembers = new ArrayList<>();
+
         //a list to which adult household members will be saved
         List<Person> adults = new ArrayList<>();
+
         //a list to which children will be saved
         List<Person> children = new ArrayList<>();
+
         //combine both lists, children and adults, by saving them to childrenAndHouseHoldMembers list
         childrenAndHouseHoldMembers.add(children);
         childrenAndHouseHoldMembers.add(adults);
+
+        LOGGER.debug("Searching for children in this address: " + address);
         //check if peopleByAddress have any persons whose age is 18 or less
         for (Person p : peopleByAddress) {
             if (p.getAge() <= 18) {
@@ -81,9 +98,11 @@ public class PersonServiceImpl implements PersonService {
 
         //check if children list contain persons
         if (children.size() > 0) {
+            LOGGER.info("Children who live at the " + address + " were retrieved from database");
             //return the converted childrenAndHouseHoldMembers if there is children in the list
             return personConverter.childrenListToListConverter(childrenAndHouseHoldMembers);
         } else {
+            LOGGER.info("There are no children who live at the " + address);
             //return empty list if no children were found
             return Collections.emptyList();
         }

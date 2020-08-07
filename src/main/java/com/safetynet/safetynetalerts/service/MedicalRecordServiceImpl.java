@@ -4,6 +4,8 @@ import com.safetynet.safetynetalerts.dtos.MedicalRecordDTO;
 import com.safetynet.safetynetalerts.convertor.MedicalRecordConverter;
 import com.safetynet.safetynetalerts.domain.MedicalRecord;
 import com.safetynet.safetynetalerts.repository.MedicalRecordRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,8 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
     //inject MedicalRecordRepository
     private MedicalRecordRepository medicalRecordRepository;
     private MedicalRecordConverter medicalRecordConverter;
+
+    private final Logger LOGGER = LogManager.getLogger(MedicalRecordServiceImpl.class);
 
     @Autowired
     public MedicalRecordServiceImpl(MedicalRecordRepository medicalRecordRepository, MedicalRecordConverter medicalRecordConverter) {
@@ -42,9 +46,11 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
         MedicalRecord medicalRecord = medicalRecordRepository.findByFirstNameAndLastName(firstName, lastName);
 
         if (medicalRecord == null) {
+            LOGGER.error("Error occurred while trying to delete the medical record that belongs to '" + firstName + " "+ lastName + "'. No matching medical record found");
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No medical record that belongs to '" +
                     firstName + " " + lastName + "' was found");
         } else {
+            LOGGER.info(firstName + " " + lastName + "'s medical record deleted");
             medicalRecordRepository.deleteByFirstNameAndLastName(firstName, lastName);
         }
     }

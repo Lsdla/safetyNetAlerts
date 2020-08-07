@@ -1,17 +1,14 @@
 package com.safetynet.safetynetalerts.dtos.fireDTO;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
+@Getter(AccessLevel.PUBLIC)
+@Setter(AccessLevel.PUBLIC)
 public class FireStationFireDTO {
 
     private Integer station;
-
-    public FireStationFireDTO() {
-    }
-
-    public Integer getStation() {
-        return station;
-    }
-
-    public void setStation(Integer station) {
-        this.station = station;
-    }
 }

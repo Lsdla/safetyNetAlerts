@@ -1,9 +1,16 @@
 package com.safetynet.safetynetalerts.dtos.fireDTO;
 
 import com.safetynet.safetynetalerts.dtos.MedicalRecordDTO;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
+@Getter(AccessLevel.PUBLIC)
+@Setter(AccessLevel.PUBLIC)
 public class PersonFireDTO {
 
     private String firstName;
@@ -11,47 +18,4 @@ public class PersonFireDTO {
     private String phone;
     private MedicalRecordDTO medicalRecord;
     private List<FireStationFireDTO> fireStations;
-
-    public PersonFireDTO() {
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public MedicalRecordDTO getMedicalRecord() {
-        return medicalRecord;
-    }
-
-    public void setMedicalRecord(MedicalRecordDTO medicalRecord) {
-        this.medicalRecord = medicalRecord;
-    }
-
-    public List<FireStationFireDTO> getFireStations() {
-        return fireStations;
-    }
-
-    public void setFireStations(List<FireStationFireDTO> fireStations) {
-        this.fireStations = fireStations;
-    }
 }
