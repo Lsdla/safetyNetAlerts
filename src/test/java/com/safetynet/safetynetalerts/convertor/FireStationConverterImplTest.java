@@ -3,6 +3,7 @@ package com.safetynet.safetynetalerts.convertor;
 import com.safetynet.safetynetalerts.domain.FireStation;
 import com.safetynet.safetynetalerts.domain.Person;
 import com.safetynet.safetynetalerts.dtos.FireStationDTO;
+import com.safetynet.safetynetalerts.dtos.fireDTO.FireStationFireDTO;
 import com.safetynet.safetynetalerts.dtos.floodDto.FloodFireStationDTO;
 import com.safetynet.safetynetalerts.dtos.phoneAlertDTO.PhoneAlertFireStationDTO;
 import com.safetynet.safetynetalerts.dtos.stationNumberDTO.StationNumberFireStationDTO;
@@ -105,5 +106,23 @@ class FireStationConverterImplTest {
         fireStationConverter.floodFireStationDAOsConverter(fireStations);
         List<FloodFireStationDTO> fireStationDTOS = fireStations.stream().map(f -> fireStationConverter.floodFireStationDAOConverter(f)).collect(Collectors.toList());
         assertEquals(fireStationDTOS.size(), fireStations.size());
+    }
+
+    @Test
+    void givenFireStation_whenFireStationToFireStationFireDTOConverterIsCalled_theFireStationShouldBeConverted() {
+        FireStationFireDTO fireStationFireDTO = new FireStationFireDTO();
+        fireStationConverter.fireStationToFireStationFireDTOConverter(fireStation);
+        modelMapper.map(fireStation, fireStationFireDTO);
+        assertEquals(fireStationFireDTO.getStation(), fireStation.getStation());
+    }
+
+    @Test
+    void givenAListOfFireStations_whenFireStationsToFireStationFireDTOConvertersIsCalled_thenListShouldBeConverted() {
+        List<FireStation> fireStations = new ArrayList<>();
+        fireStations.add(fireStation);
+        fireStationConverter.fireStationsToFireStationFireDTOConverters(fireStations);
+        List<FireStationFireDTO> fireStationFireDTOS = fireStations.stream().map(f -> fireStationConverter.fireStationToFireStationFireDTOConverter(f)).collect(Collectors.toList());
+        assertEquals(fireStationFireDTOS.size(), fireStations.size());
+
     }
 }

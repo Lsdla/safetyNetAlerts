@@ -1,6 +1,7 @@
 package com.safetynet.safetynetalerts.convertor;
 
 import com.safetynet.safetynetalerts.dtos.FireStationDTO;
+import com.safetynet.safetynetalerts.dtos.fireDTO.FireStationFireDTO;
 import com.safetynet.safetynetalerts.dtos.floodDto.FloodFireStationDTO;
 import com.safetynet.safetynetalerts.dtos.stationNumberDTO.StationNumberFireStationDTO;
 import com.safetynet.safetynetalerts.dtos.phoneAlertDTO.PhoneAlertFireStationDTO;
@@ -19,5 +20,8 @@ public interface FireStationConverter {
 
     FloodFireStationDTO floodFireStationDAOConverter(FireStation fireStation);
     List<FloodFireStationDTO> floodFireStationDAOsConverter(List<FireStation> fireStations);
+
+    FireStationFireDTO fireStationToFireStationFireDTOConverter(FireStation fireStation);
+    List<FireStationFireDTO> fireStationsToFireStationFireDTOConverters(List<FireStation> fireStations);
 }
 

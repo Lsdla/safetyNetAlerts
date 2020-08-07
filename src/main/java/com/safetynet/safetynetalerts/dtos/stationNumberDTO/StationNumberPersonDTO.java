@@ -11,17 +11,6 @@ public class StationNumberPersonDTO {
     public StationNumberPersonDTO() {
     }
 
-    public StationNumberPersonDTO(String firstName, String lastName,
-                                  String address, String phone, Double age) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.phone = phone;
-        this.age = age;
-
-
-    }
-
     public String getFirstName() {
         return firstName;
     }

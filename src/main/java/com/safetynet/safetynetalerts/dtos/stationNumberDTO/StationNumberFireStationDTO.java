@@ -12,12 +12,6 @@ public class StationNumberFireStationDTO {
     public StationNumberFireStationDTO() {
     }
 
-    public StationNumberFireStationDTO(List<StationNumberPersonDTO> persons, int numberOfChildren, int numberOfAdults) {
-        this.persons = persons;
-        this.numberOfChildren = numberOfChildren;
-        this.numberOfAdults = numberOfAdults;
-    }
-
     public List<StationNumberPersonDTO> getPersons() {
         return persons;
     }

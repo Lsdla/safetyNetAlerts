@@ -11,12 +11,6 @@ public class MedicalRecordDTO {
     public MedicalRecordDTO() {
     }
 
-    public MedicalRecordDTO(Double age, List<String> allergies, List<String> medications) {
-        this.age = age;
-        this.allergies = allergies;
-        this.medications = medications;
-    }
-
     public Double getAge() {
         return age;
     }

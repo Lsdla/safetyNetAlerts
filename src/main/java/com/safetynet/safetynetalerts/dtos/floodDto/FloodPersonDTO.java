@@ -12,13 +12,6 @@ public class FloodPersonDTO {
     public FloodPersonDTO() {
     }
 
-    public FloodPersonDTO(String firstName, String lastName, String phone, MedicalRecordDTO medicalRecord) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phone = phone;
-        this.medicalRecord = medicalRecord;
-    }
-
     public String getFirstName() {
         return firstName;
     }

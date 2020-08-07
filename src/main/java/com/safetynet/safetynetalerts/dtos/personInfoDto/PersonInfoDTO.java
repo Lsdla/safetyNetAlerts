@@ -13,15 +13,6 @@ public class PersonInfoDTO {
     public PersonInfoDTO() {
     }
 
-    public PersonInfoDTO(String firstName, String lastName,
-                         String address, String email, MedicalRecordDTO medicalRecord) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.email = email;
-        this.medicalRecord = medicalRecord;
-    }
-
     public String getFirstName() {
         return firstName;
     }

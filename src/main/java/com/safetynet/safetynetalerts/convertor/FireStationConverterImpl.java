@@ -1,6 +1,7 @@
 package com.safetynet.safetynetalerts.convertor;
 
 import com.safetynet.safetynetalerts.dtos.FireStationDTO;
+import com.safetynet.safetynetalerts.dtos.fireDTO.FireStationFireDTO;
 import com.safetynet.safetynetalerts.dtos.floodDto.FloodFireStationDTO;
 import com.safetynet.safetynetalerts.dtos.stationNumberDTO.StationNumberFireStationDTO;
 import com.safetynet.safetynetalerts.dtos.phoneAlertDTO.PhoneAlertFireStationDTO;
@@ -50,5 +51,15 @@ public class FireStationConverterImpl implements FireStationConverter {
     @Override
     public List<FloodFireStationDTO> floodFireStationDAOsConverter(List<FireStation> fireStations) {
         return fireStations.stream().map(this::floodFireStationDAOConverter).collect(Collectors.toList());
+    }
+
+    @Override
+    public FireStationFireDTO fireStationToFireStationFireDTOConverter(FireStation fireStation) {
+        return mapper.map(fireStation, FireStationFireDTO.class);
+    }
+
+    @Override
+    public List<FireStationFireDTO> fireStationsToFireStationFireDTOConverters(List<FireStation> fireStations) {
+        return fireStations.stream().map(this::fireStationToFireStationFireDTOConverter).collect(Collectors.toList());
     }
 }

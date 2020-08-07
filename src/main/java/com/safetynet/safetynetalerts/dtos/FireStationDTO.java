@@ -8,11 +8,6 @@ public class FireStationDTO {
     public FireStationDTO() {
     }
 
-    public FireStationDTO(String address, Integer station) {
-        this.address = address;
-        this.station = station;
-    }
-
     public String getAddress() {
         return address;
     }
