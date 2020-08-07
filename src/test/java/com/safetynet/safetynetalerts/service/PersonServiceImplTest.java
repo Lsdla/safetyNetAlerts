@@ -6,10 +6,12 @@ import com.safetynet.safetynetalerts.repository.PersonRepository;
 import org.junit.jupiter.api.*;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 @Tag("Service")
@@ -72,8 +74,18 @@ class PersonServiceImplTest {
     @DisplayName("findPersonsByFirstNameAndLastName calls personRepository.findAll")
     @Test
     void findPersonsByFirstNameAndLastName_shouldCallTheAppropriateMethodInPersonRepository() {
-        personServiceImpl.findPersonsByFirstNameAndLastName(anyString(), anyString());
-        verify(personRepository, times(1)).findPersonsByFirstNameAndLastName(anyString(), anyString());
+        List<Person> persons = new ArrayList<>();
+        Person person = new Person();
+        persons.add(person);
+        when(personRepository.findPersonsByFirstNameAndLastName(anyString(), anyString())).thenReturn(persons);
+        personServiceImpl.findPersonsByFirstNameAndLastName("John", "Boyd");
+        verify(personRepository, times(1)).findPersonsByFirstNameAndLastName("John", "Boyd");
+    }
+
+    @DisplayName("findPersonsByFirstNameAndLastName throws exception")
+    @Test
+    void findPersonsByFirstNameAndLastName_shouldThrowA4xxException_whenNoPersonReturnedFromDataBase() {
+        assertThrows(ResponseStatusException.class, () -> personServiceImpl.findPersonsByFirstNameAndLastName(anyString(), anyString()));
     }
 
     @DisplayName("findEmailsByCity calls personRepository.findEmailsByCity")

@@ -7,6 +7,8 @@ import com.safetynet.safetynetalerts.dtos.phoneAlertDTO.PhoneAlertFireStationDTO
 import com.safetynet.safetynetalerts.convertor.FireStationConverter;
 import com.safetynet.safetynetalerts.domain.FireStation;
 import com.safetynet.safetynetalerts.repository.FireStationRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,8 @@ public class FireStationServiceImpl implements FireStationService {
     //inject FireStationRepository
     private FireStationRepository fireStationRepository;
     private FireStationConverter fireStationConverter;
+
+    private final Logger LOGGER = LogManager.getLogger(FireStationServiceImpl.class);
 
     @Autowired
     public FireStationServiceImpl(FireStationRepository fireStationRepository, FireStationConverter fireStationConverter) {
@@ -70,8 +74,10 @@ public class FireStationServiceImpl implements FireStationService {
     public PhoneAlertFireStationDTO findFireStationById(Long id) {
         FireStation fireStation = fireStationRepository.findFireStationById(id);
         if (fireStation == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "the provided fire station id does not exist in our database");
+            LOGGER.error("Error occurred while trying find the provided id " + id + " : no matching id in database");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "the provided fire station id does not match any id in our database");
         }
+        LOGGER.info("Phone numbers of the persons covered by fire station " + id +" retrieved from database");
         return fireStationConverter.phoneAlertStationToDTOConverter(fireStation);
     }
 }
