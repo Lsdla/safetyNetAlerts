@@ -7,9 +7,7 @@ import com.safetynet.safetynetalerts.dtos.fireDTO.FireStationFireDTO;
 import com.safetynet.safetynetalerts.dtos.floodDto.FloodFireStationDTO;
 import com.safetynet.safetynetalerts.dtos.phoneAlertDTO.PhoneAlertFireStationDTO;
 import com.safetynet.safetynetalerts.dtos.stationNumberDTO.StationNumberFireStationDTO;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.mockito.Mock;
 import org.modelmapper.ModelMapper;
 
@@ -19,6 +17,7 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Tag("converters")
 class FireStationConverterImplTest {
 
     private FireStationConverterImpl fireStationConverter;
@@ -48,6 +47,7 @@ class FireStationConverterImplTest {
         fireStationConverter = null;
     }
 
+    @DisplayName("Convert FireStation to FireStationDTO")
     @Test
     void givenAFireStationEntity_whenFireStationToDAOConverterIsCalled_thenFireStationShouldBeConvertedToDTO() {
         FireStationDTO fireStationDTO = new FireStationDTO();
@@ -58,6 +58,7 @@ class FireStationConverterImplTest {
 
     }
 
+    @DisplayName("Convert a list of FireStations to a list of FireStationDTOs")
     @Test
     void givenAListOfFireStations_whenFireStationToDAOsConverterIsCalled_thenAListOfDTOsShouldBeReturned() {
         List<FireStation> fireStations = new ArrayList<>();
@@ -68,6 +69,7 @@ class FireStationConverterImplTest {
         assertEquals(fireStationDTOS.size(), fireStations.size());
     }
 
+    @DisplayName("Convert FireStation to PhoneAlertFireStationDTO")
     @Test
     void givenFireStation_whenPhoneAlertStationToDTOConverterIsCalled_theFireStationShouldBeConverted() {
         PhoneAlertFireStationDTO phoneAlertFireStationDTO = new PhoneAlertFireStationDTO();
@@ -78,6 +80,7 @@ class FireStationConverterImplTest {
         assertEquals(phoneAlertFireStationDTO.getPersons().size(), fireStation.getPersons().size());
     }
 
+    @DisplayName("Convert FireStation to StationNumberFireStationDTO")
     @Test
     void givenFireStationEntity_whenStationNumberFireStationDTOIsCalled_theFireStationShouldBeConverted() {
         StationNumberFireStationDTO stationNumberFireStationDTO = new StationNumberFireStationDTO();
@@ -88,6 +91,7 @@ class FireStationConverterImplTest {
         assertEquals(stationNumberFireStationDTO.getPersons().size(), fireStation.getPersons().size());
     }
 
+    @DisplayName("Convert FireStation to FloodFireStationDTO")
     @Test
     void givenFireStationEntity_whenFloodFireStationDAOConverterIsCalled_theFireStationShouldBeConverted() {
         FloodFireStationDTO floodFireStationDTO = new FloodFireStationDTO();
@@ -99,6 +103,7 @@ class FireStationConverterImplTest {
         assertEquals(floodFireStationDTO.getPersons().size(), fireStation.getPersons().size());
     }
 
+    @DisplayName("Convert a list of FireStations to a list of FloodFireStationDTOs")
     @Test
     void givenAListOfFireStation_whenFloodFireStationDAOsConverterIsCalled_theListShouldBeConverted() {
         List<FireStation> fireStations = new ArrayList<>();
@@ -108,6 +113,7 @@ class FireStationConverterImplTest {
         assertEquals(fireStationDTOS.size(), fireStations.size());
     }
 
+    @DisplayName("Convert FireStation to FireStationFireDTO")
     @Test
     void givenFireStation_whenFireStationToFireStationFireDTOConverterIsCalled_theFireStationShouldBeConverted() {
         FireStationFireDTO fireStationFireDTO = new FireStationFireDTO();
@@ -116,6 +122,7 @@ class FireStationConverterImplTest {
         assertEquals(fireStationFireDTO.getStation(), fireStation.getStation());
     }
 
+    @DisplayName("Convert a list of FireStations to a list of FireStationFireDTOs")
     @Test
     void givenAListOfFireStations_whenFireStationsToFireStationFireDTOConvertersIsCalled_thenListShouldBeConverted() {
         List<FireStation> fireStations = new ArrayList<>();

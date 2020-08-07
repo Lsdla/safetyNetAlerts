@@ -11,10 +11,7 @@ import com.safetynet.safetynetalerts.dtos.floodDto.FloodPersonDTO;
 import com.safetynet.safetynetalerts.dtos.personInfoDto.PersonInfoDTO;
 import com.safetynet.safetynetalerts.dtos.phoneAlertDTO.PhoneAlertPersonDTO;
 import com.safetynet.safetynetalerts.dtos.stationNumberDTO.StationNumberPersonDTO;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.mockito.Mock;
 import org.modelmapper.ModelMapper;
 
@@ -24,6 +21,7 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Tag("converters")
 class PersonConverterImplTest {
 
     private PersonConverterImpl personConverter;

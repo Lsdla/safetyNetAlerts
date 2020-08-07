@@ -2,9 +2,7 @@ package com.safetynet.safetynetalerts.convertor;
 
 import com.safetynet.safetynetalerts.domain.MedicalRecord;
 import com.safetynet.safetynetalerts.dtos.MedicalRecordDTO;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.mockito.Mock;
 import org.modelmapper.ModelMapper;
 
@@ -14,6 +12,7 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Tag("converters")
 class MedicalRecordConverterImplTest {
 
     private MedicalRecordConverterImpl medicalRecordConverter;
@@ -33,6 +32,7 @@ class MedicalRecordConverterImplTest {
         medicalRecordConverter = null;
     }
 
+    @DisplayName("Convert MedicalRecord to MedicalRecordDTO")
     @Test
     void givenMedicalRecord_whenMedicalRecordToDAOConverterIsCalled_thenMedicalRecordDTOShouldBeReturned() {
         MedicalRecord medicalRecord = new MedicalRecord();
@@ -46,6 +46,7 @@ class MedicalRecordConverterImplTest {
         assertEquals(medicalRecord.getMedications(), medicalRecordDTO.getMedications());
     }
 
+    @DisplayName("Convert a list of MedicalRecord to a list of MedicalRecordDTOs")
     @Test
     void givenMedicalRecordList_whenMedicalRecordToDAOsConverterIsCalled_thenAListOfMedicalRecordDTOsShouldBeReturned() {
         List<MedicalRecord> medicalRecords = new ArrayList<>();
