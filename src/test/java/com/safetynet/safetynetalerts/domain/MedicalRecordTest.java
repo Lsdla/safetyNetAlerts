@@ -1,8 +1,6 @@
 package com.safetynet.safetynetalerts.domain;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -10,6 +8,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Tag("domain")
 class MedicalRecordTest {
 
     private MedicalRecord medicalRecord;
@@ -24,6 +23,7 @@ class MedicalRecordTest {
         medicalRecord = null;
     }
 
+    @DisplayName("Get medical record id")
     @Test
     void getId_shouldReturnTheCorrectId() {
         Long id = 1L;
@@ -33,6 +33,7 @@ class MedicalRecordTest {
         assertEquals(id,medicalRecord.getId());
     }
 
+    @DisplayName("Get the first name from the medical record")
     @Test
     void getFirstName_shouldReturnFirstName() {
         String firstName = "John";
@@ -42,6 +43,7 @@ class MedicalRecordTest {
         assertEquals(firstName, medicalRecord.getFirstName());
     }
 
+    @DisplayName("Get last name from medical record")
     @Test
     void getLastName_shouldReturnLastName() {
         String lastName = "Boyd";
@@ -51,6 +53,7 @@ class MedicalRecordTest {
         assertEquals(lastName, medicalRecord.getLastName());
     }
 
+    @DisplayName("Get birthdate from medical record")
     @Test
     void getBirthDate_shouldReturnBirthDate() {
         LocalDate birthDate = LocalDate.of(2012, 12, 21);
@@ -60,6 +63,7 @@ class MedicalRecordTest {
         assertEquals(birthDate, medicalRecord.getBirthDate());
     }
 
+    @DisplayName("Get allergies from medical record")
     @Test
     void getAllergies_shouldReturnAllergiesList() {
         List<String> allergies = new ArrayList<>();
@@ -75,6 +79,7 @@ class MedicalRecordTest {
         assertEquals(2, medicalRecord.getAllergies().size());
     }
 
+    @DisplayName("Get medications from medical record")
     @Test
     void getMedications_shouldReturnMedicationsList() {
         List<String> medications = new ArrayList<>();
@@ -90,6 +95,7 @@ class MedicalRecordTest {
         assertEquals(2, medicalRecord.getMedications().size());
     }
 
+    @DisplayName("Get age name from medical record")
     @Test
     void getAge_shouldReturnAge() {
         Double age = 10.0;
@@ -98,6 +104,7 @@ class MedicalRecordTest {
         assertEquals(age, medicalRecord.getAge());
     }
 
+    @DisplayName("Add a new allergy")
     @Test
     void addAllergy_shouldInsertNewAllergy() {
         String allergy = "nillacilan";
@@ -107,6 +114,7 @@ class MedicalRecordTest {
         assertEquals(1, medicalRecord.getAllergies().size());
     }
 
+    @DisplayName("Add a new medication")
     @Test
     void addMedication_shouldInsertNewMedication() {
         String medication = "aznol:350mg";
@@ -116,6 +124,7 @@ class MedicalRecordTest {
         assertEquals(1, medicalRecord.getMedications().size());
     }
 
+    @DisplayName("To string method")
     @Test
     void toString_shouldReturnDescription() {
         String expected = medicalRecord.toString();

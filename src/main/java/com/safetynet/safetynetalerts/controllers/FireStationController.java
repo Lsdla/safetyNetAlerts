@@ -69,7 +69,7 @@ public class FireStationController {
 
     @GetMapping("/stationNumber")
     public StationNumberFireStationDTO getPersonsCoveredByFireStation(@RequestParam Long id) {
-        return fireStationService.urlStationDTO(id);
+        return fireStationService.getOneFireStationById(id);
     }
 
 }

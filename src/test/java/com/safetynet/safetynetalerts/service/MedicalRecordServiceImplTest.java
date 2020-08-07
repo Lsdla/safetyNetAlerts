@@ -3,25 +3,20 @@ package com.safetynet.safetynetalerts.service;
 import com.safetynet.safetynetalerts.convertor.MedicalRecordConverter;
 import com.safetynet.safetynetalerts.domain.MedicalRecord;
 import com.safetynet.safetynetalerts.repository.MedicalRecordRepository;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
+@Tag("Service")
 class MedicalRecordServiceImplTest {
-
-    @Autowired
-    MockMvc mockMvc;
 
     private MedicalRecordServiceImpl medicalRecordServiceImpl;
 
@@ -43,9 +38,9 @@ class MedicalRecordServiceImplTest {
         medicalRecordServiceImpl = null;
     }
 
-    @DisplayName("Getting all the medical records and converting it to dto")
+    @DisplayName("findAll calls medicalRecordRepository.findAll")
     @Test
-    void findAll_shouldReturnAListOfMedicalRecordsDTO() {
+    void findAll_shouldCallAppropriateMethodInMedicalRecordRepository() {
         List<MedicalRecord> medicalRecords = new ArrayList<>();
         when(medicalRecordRepository.findAll()).thenReturn(medicalRecords);
 
@@ -57,6 +52,7 @@ class MedicalRecordServiceImplTest {
         assertEquals(0, medicalRecordRepository.findAll().size());
     }
 
+    @DisplayName("save calls medicalRecordRepository.save")
     @Test
     void save_shouldCallMedicalRecordRepository() {
         MedicalRecord medicalRecord= new MedicalRecord();
@@ -65,6 +61,7 @@ class MedicalRecordServiceImplTest {
         verify(medicalRecordRepository, times(1)).save(medicalRecord);
     }
 
+    @DisplayName("findByFirstNameAndLastName calls medicalRecordRepository.findByFirstNameAndLastName")
     @Test
     void findByFirstNameAndLastName_shouldReturnCorrectValue() {
         medicalRecordServiceImpl.findByFirstNameAndLastName(anyString(), anyString());
@@ -72,8 +69,9 @@ class MedicalRecordServiceImplTest {
 
     }
 
+    @DisplayName("deleteByFirstNameAndLastName calls repository.deleteByFirstNameAndLastName")
     @Test
-    void deleteByFirstNameAndLastName() {
+    void deleteByFirstNameAndLastName_shouldCallAppropriateMethodInMedicalRecordRepository() {
         MedicalRecord medicalRecord = new MedicalRecord();
 
         when(medicalRecordRepository.findByFirstNameAndLastName(anyString(), anyString())).thenReturn(medicalRecord);
@@ -81,5 +79,11 @@ class MedicalRecordServiceImplTest {
         medicalRecordServiceImpl.deleteByFirstNameAndLastName(anyString(), anyString());
 
         verify(medicalRecordRepository, times(1)).deleteByFirstNameAndLastName(anyString(), anyString());
+    }
+
+    @DisplayName("deleteByFirstNameAndLastName should throw an exception")
+    @Test
+    void deleteByFirstNameAndLastName_shouldThrowExceptionWhenFirstNameAndLastNameAreNull() {
+        assertThrows(ResponseStatusException.class, () -> medicalRecordServiceImpl.deleteByFirstNameAndLastName(null, null));
     }
 }

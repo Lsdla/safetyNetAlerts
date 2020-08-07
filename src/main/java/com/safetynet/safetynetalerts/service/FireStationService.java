@@ -21,7 +21,7 @@ public interface FireStationService {
 
     List<FloodFireStationDTO> findFireStationsById(List<Long> id);
 
-    StationNumberFireStationDTO urlStationDTO(Long id);
+    StationNumberFireStationDTO getOneFireStationById(Long id);
 
     PhoneAlertFireStationDTO findFireStationById(Long id);
 }

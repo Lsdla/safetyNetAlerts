@@ -135,7 +135,7 @@ class FireStationControllerTest {
         station.setPersons(persons);
         station.setNumberOfAdults(1);
         station.setNumberOfChildren(0);
-        when(fireStationService.urlStationDTO(anyLong())).thenReturn(station);
+        when(fireStationService.getOneFireStationById(anyLong())).thenReturn(station);
         mockMvc.perform(get("/fireStation/stationNumber?id=1")
                 .content(new ObjectMapper().writeValueAsString(station))
                 .contentType(MediaType.APPLICATION_JSON)

@@ -61,7 +61,7 @@ public class FireStationServiceImpl implements FireStationService {
     }
 
     @Override
-    public StationNumberFireStationDTO urlStationDTO(Long id) {
+    public StationNumberFireStationDTO getOneFireStationById(Long id) {
         FireStation fireStation = fireStationRepository.getOne(id);
         return fireStationConverter.stationNumberFireStationDTO(fireStation);
     }
