@@ -1,23 +1,24 @@
 package com.safetynet.safetynetalerts.dtos.stationNumberDTO;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
+@Getter(AccessLevel.PUBLIC)
+@Setter(AccessLevel.PUBLIC)
 public class StationNumberFireStationDTO {
 
     private List<StationNumberPersonDTO> persons;
-    private int numberOfChildren = 0;
-    private int numberOfAdults = 0;
-
-    public StationNumberFireStationDTO() {
-    }
+    private int numberOfChildren;
+    private int numberOfAdults;
 
     public List<StationNumberPersonDTO> getPersons() {
         return persons;
-    }
-
-    public void setPersons(List<StationNumberPersonDTO> persons) {
-        this.persons = persons;
     }
 
     public int getNumberOfChildren() {
@@ -25,17 +26,9 @@ public class StationNumberFireStationDTO {
         return numberOfChildren;
     }
 
-    public void setNumberOfChildren(int numberOfChildren) {
-        this.numberOfChildren = numberOfChildren;
-    }
-
     public int getNumberOfAdults() {
         personCount();
         return numberOfAdults;
-    }
-
-    public void setNumberOfAdults(int numberOfAdults) {
-        this.numberOfAdults = numberOfAdults;
     }
 
     public void personCount() {

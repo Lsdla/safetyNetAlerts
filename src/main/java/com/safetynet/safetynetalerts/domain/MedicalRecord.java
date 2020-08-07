@@ -1,5 +1,6 @@
 package com.safetynet.safetynetalerts.domain;
 
+import lombok.*;
 import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
@@ -10,6 +11,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "medical_record")
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
+@AllArgsConstructor(access = AccessLevel.PUBLIC)
+@Getter(AccessLevel.PUBLIC)
+@Setter(AccessLevel.PUBLIC)
+@ToString
 public class MedicalRecord {
 
     @Id
@@ -40,67 +46,6 @@ public class MedicalRecord {
     @Column(name = "medications")
     private List<String> medications;
 
-    public MedicalRecord() {
-    }
-
-    public MedicalRecord(String firstName, String lastName,
-                         LocalDate birthDate, List<String> allergies,
-                         List<String> medications) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthDate = birthDate;
-        this.medications = medications;
-        this.allergies = allergies;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public List<String> getAllergies() {
-        return allergies;
-    }
-
-    public void setAllergies(List<String> allergies) {
-        this.allergies = allergies;
-    }
-
-    public List<String> getMedications() {
-        return medications;
-    }
-
-    public void setMedications(List<String> medications) {
-        this.medications = medications;
-    }
-
     //a convenience method for adding allergies
     public void addAllergy(String allergy) {
         if (allergies == null) {
@@ -115,26 +60,5 @@ public class MedicalRecord {
             medications = new ArrayList<>();
         }
         medications.add(medication);
-    }
-
-    public Double getAge() {
-        return age;
-    }
-
-    public void setAge(Double age) {
-        this.age = age;
-    }
-
-    @Override
-    public String toString() {
-        return "MedicalRecord{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", birthDate=" + birthDate +
-                ", age=" + age +
-                ", allergies=" + allergies +
-                ", medications=" + medications +
-                '}';
     }
 }

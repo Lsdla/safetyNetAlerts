@@ -1,24 +1,18 @@
 package com.safetynet.safetynetalerts.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
-
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "fire_station")
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
+@AllArgsConstructor(access = AccessLevel.PUBLIC)
+@Getter(AccessLevel.PUBLIC)
+@Setter(AccessLevel.PUBLIC)
+@ToString
 public class FireStation {
 
     @Id
@@ -43,46 +37,6 @@ public class FireStation {
 
     private List<Person> persons;
 
-    public FireStation() {
-    }
-
-    public FireStation(String address, Integer station) {
-        this.address = address;
-        this.station = station;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public Integer getStation() {
-        return station;
-    }
-
-    public void setStation(Integer station) {
-        this.station = station;
-    }
-
-    public List<Person> getPersons() {
-        return persons;
-    }
-
-    public void setPersons(List<Person> persons) {
-        this.persons = persons;
-    }
-
     //a convenience method for adding persons to fireStation
 
     public void addPerson (Person person) {
@@ -91,15 +45,5 @@ public class FireStation {
         }
 
         persons.add(person);
-    }
-
-    @Override
-    public String toString() {
-        return "FireStation{" +
-                "id=" + id +
-                ", address='" + address + '\'' +
-                ", station='" + station + '\'' +
-                ", persons=" + persons +
-                '}';
     }
 }
