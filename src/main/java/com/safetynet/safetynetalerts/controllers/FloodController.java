@@ -5,31 +5,62 @@ import com.safetynet.safetynetalerts.service.FireStationService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
+/**
+ * @author Yahia CHERIFI
+ * This controller is responsible for
+ * retrieving all people couvered by one or many fire stations
+ */
 @RestController
 @RequestMapping("/flood")
 public class FloodController {
 
+    /**
+     * fireStationService.
+     * @see FireStationService
+     */
     private FireStationService fireStationService;
 
-    private final Logger LOGGER = LogManager.getLogger(FloodController.class);
+    /**
+     * FloodController logger.
+     */
+    private static final Logger LOGGER =
+            LogManager.getLogger(FloodController.class);
 
+    /**
+     * Constructor injection.
+     * @param fireStationServiceInstance
+     */
     @Autowired
-    public FloodController(FireStationService fireStationService) {
-        this.fireStationService = fireStationService;
+    public FloodController(
+            final FireStationService fireStationServiceInstance) {
+        this.fireStationService = fireStationServiceInstance;
     }
 
+    /**
+     * Get request.
+     * retrieves all people covered by the fire station/stations
+     * people are grouped by address
+     * @param id a list of fire stations ids
+     * @return a list of FloodFireStationDTO
+     */
     @GetMapping("/stations")
-    public List<FloodFireStationDTO> getFireStationsAndCoveredPeople(@RequestParam List<Long> id) {
-        LOGGER.debug("Get request sent from FloodController to retrieve fire stations and the covered people");
+    public List<FloodFireStationDTO> getFireStationsAndCoveredPeople(
+            @RequestParam final List<Long> id) {
+        LOGGER.debug("Get request sent from FloodController"
+                + " to retrieve fire stations and the covered people");
         if (id.isEmpty()) {
             LOGGER.error("Failed to find fire stations: no id provided");
-            throw new IllegalArgumentException("You must provide at least one id to retrieve the desired data");
+            throw new IllegalArgumentException("You must provide at"
+                    + " least one id to retrieve the desired data");
         }
-        LOGGER.info("Person covered by " + id.toString() + " were retrieved from database");
+        LOGGER.info("Person covered by "
+                + id.toString() + " were retrieved from database");
         return fireStationService.findFireStationsById(id);
     }
 }

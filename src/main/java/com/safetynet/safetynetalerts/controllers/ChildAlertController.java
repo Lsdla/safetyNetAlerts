@@ -12,23 +12,51 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * @author Yahia CHERIFI
+ * This controller is responsible for
+ * retrieving children who live in a given address
+ */
 
 @RestController
 @RequestMapping("/childAlert")
 public class ChildAlertController {
 
+    /**
+     * Person service.
+     * @see PersonService
+     */
     private PersonService personService;
 
-    private final Logger LOGGER = LogManager.getLogger(ChildAlertController.class);
+    /**
+     * ChildAlertController logger.
+     */
+    private static final Logger LOGGER =
+            LogManager.getLogger(ChildAlertController.class);
 
+    /**
+     * Constructor injection.
+     * injecting personService to the ChildAlertController
+     * @param personServiceInstance
+     */
     @Autowired
-    public ChildAlertController(PersonService personService) {
-        this.personService = personService;
+    public ChildAlertController(final PersonService personServiceInstance) {
+        this.personService = personServiceInstance;
     }
 
+    /**
+     * Get request.
+     * this method retrieves children who live at a given address
+     * their household members will be retrieved also
+     * @param address the provided address
+     * @return a list that contains a list of childDtos
+     * and a list of their household members
+     */
     @GetMapping
-    public List<List<ChildDTO>> getChildrenByAddress(@RequestParam String address){
-        LOGGER.debug("Get request sent from the ChildAlertController");
+    public List<List<ChildDTO>> getChildrenByAddress(
+            @RequestParam final String address) {
+        LOGGER.debug("Get request sent from"
+                + " the ChildAlertController");
         return personService.findChildrenByAddress(address);
     }
 }

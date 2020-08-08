@@ -4,6 +4,7 @@ import com.safetynet.safetynetalerts.dtos.MedicalRecordDTO;
 import com.safetynet.safetynetalerts.convertor.MedicalRecordConverter;
 import com.safetynet.safetynetalerts.domain.MedicalRecord;
 import com.safetynet.safetynetalerts.repository.MedicalRecordRepository;
+import lombok.NoArgsConstructor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,49 +15,104 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.transaction.Transactional;
 import java.util.List;
 
+/**
+ * @author Yahia CHERIFI
+ * This class impleents FireStationService interface
+ * @see MedicalRecordService
+ */
 @Service
 @Transactional
+@NoArgsConstructor
 public class MedicalRecordServiceImpl implements MedicalRecordService {
 
-    //inject MedicalRecordRepository
+    /**
+     * MedicalRecordRepository to be injected.
+     */
     private MedicalRecordRepository medicalRecordRepository;
+
+    /**
+     * MedicalRecordConverter to be injected.
+     */
     private MedicalRecordConverter medicalRecordConverter;
 
-    private final Logger LOGGER = LogManager.getLogger(MedicalRecordServiceImpl.class);
+    /**
+     * MedicalRecordServiceImpl logger.
+     */
+    private static final Logger LOGGER = LogManager
+            .getLogger(MedicalRecordServiceImpl.class);
 
+    /**
+     * Constructor injection.
+     * @param medicalRecordRepositoryInstance medicalRecordRepositoryInstance
+     * @param medicalRecordConverterInstance medicalRecordRepositoryInstance
+     */
     @Autowired
-    public MedicalRecordServiceImpl(MedicalRecordRepository medicalRecordRepository, MedicalRecordConverter medicalRecordConverter) {
-        this.medicalRecordRepository = medicalRecordRepository;
-        this.medicalRecordConverter = medicalRecordConverter;
+    public MedicalRecordServiceImpl(
+            final MedicalRecordRepository medicalRecordRepositoryInstance,
+            final MedicalRecordConverter medicalRecordConverterInstance) {
+        this.medicalRecordRepository = medicalRecordRepositoryInstance;
+        this.medicalRecordConverter = medicalRecordConverterInstance;
     }
 
+    /**
+     * Calls the repository layer.
+     * @return a list of MedicalRecordDTO
+     */
     @Override
     public List<MedicalRecordDTO> findAll() {
         List<MedicalRecord> medicalRecords = medicalRecordRepository.findAll();
-        return medicalRecordConverter.medicalRecordToDAOsConverter(medicalRecords);
+        return medicalRecordConverter
+                .medicalRecordToDAOsConverter(medicalRecords);
     }
 
+    /**
+     * Calls the repository layer.
+     * @param medicalRecord the medical record to save
+     * @return the saved medical record
+     */
     @Override
-    public MedicalRecord save(MedicalRecord medicalRecord) {
+    public MedicalRecord save(final MedicalRecord medicalRecord) {
         return medicalRecordRepository.save(medicalRecord);
     }
 
+    /**
+     * Calls the repository layer.
+     * @param firstName the medical record owner's first name
+     * @param lastName the medical record owner's last name
+     */
     @Override
-    public void deleteByFirstNameAndLastName(String firstName, String lastName) {
-        MedicalRecord medicalRecord = medicalRecordRepository.findByFirstNameAndLastName(firstName, lastName);
+    public void deleteByFirstNameAndLastName(
+            final String firstName, final String lastName) {
+        MedicalRecord medicalRecord = medicalRecordRepository
+                .findByFirstNameAndLastName(firstName, lastName);
 
         if (medicalRecord == null) {
-            LOGGER.error("Error occurred while trying to delete the medical record that belongs to '" + firstName + " "+ lastName + "'. No matching medical record found");
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No medical record that belongs to '" +
-                    firstName + " " + lastName + "' was found");
+            LOGGER.error(
+                    "Error occurred while trying to delete the"
+                            + " medical record that belongs to '"
+                            + firstName + " " + lastName
+                            + "'. No matching medical record found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+                    "No medical record that belongs to '"
+                            + firstName + " " + lastName + "' was found");
         } else {
-            LOGGER.info(firstName + " " + lastName + "'s medical record deleted");
-            medicalRecordRepository.deleteByFirstNameAndLastName(firstName, lastName);
+            LOGGER.info(
+                    firstName + " " + lastName + "'s medical record deleted");
+            medicalRecordRepository
+                    .deleteByFirstNameAndLastName(firstName, lastName);
         }
     }
 
+    /**
+     * Find a medical record by the owner's first and last names.
+     * @param firstName the medical record owner's first name
+     * @param lastName the medical record owner's last name
+     * @return
+     */
     @Override
-    public MedicalRecord findByFirstNameAndLastName(String firstName, String lastName) {
-        return medicalRecordRepository.findByFirstNameAndLastName(firstName, lastName);
+    public MedicalRecord findByFirstNameAndLastName(
+            final String firstName, final String lastName) {
+        return medicalRecordRepository
+                .findByFirstNameAndLastName(firstName, lastName);
     }
 }

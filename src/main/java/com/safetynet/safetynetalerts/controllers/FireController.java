@@ -14,28 +14,58 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
+/**
+ * @author Yahia CHERIFI
+ * This controller is responsible for
+ * retrieving people who live at a give address
+ */
+
 @RestController
 @RequestMapping("/fire")
 public class FireController {
 
+    /**
+     * person service.
+     * @see PersonService
+     */
     private PersonService personService;
 
-    private final Logger LOGGER = LogManager.getLogger(FireController.class);
+    /**
+     * FireController logger.
+     */
+    private static final Logger LOGGER = LogManager
+            .getLogger(FireController.class);
 
+    /**
+     * Constructor injection.
+     * injecting personService to the FireController
+     * @param personServiceInstance
+     */
     @Autowired
-    public FireController(PersonService personService) {
-        this.personService = personService;
+    public FireController(final PersonService personServiceInstance) {
+        this.personService = personServiceInstance;
     }
 
+    /**
+     * Get request.
+     * this method retrieves all people who live in a given address
+     * @param address the provided address
+     * @return a list of PersonFireDTO
+     */
     @GetMapping()
-    public List<PersonFireDTO> retrievePeopleByAddress(@RequestParam String address) {
+    public List<PersonFireDTO> retrievePeopleByAddress(
+            @RequestParam final String address) {
         LOGGER.debug("Get request sent from FireController");
-        List<PersonFireDTO> persons = personService.retrievePeopleByAddress(address);
+        List<PersonFireDTO> persons = personService
+                .retrievePeopleByAddress(address);
         if (persons.size() == 0) {
-            LOGGER.error("The address provided '"+ address + "' does not match any address in the database");
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "The address provided does not match any address");
+            LOGGER.error("The address provided '" + address
+                    + "' does not match any address in the database");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+                    "The address provided does not match any address");
         }
-        LOGGER.info("Persons who live in '" + address + "' retrieved from database");
+        LOGGER.info("Persons who live in '" + address
+                + "' retrieved from database");
         return personService.retrievePeopleByAddress(address);
     }
 }
