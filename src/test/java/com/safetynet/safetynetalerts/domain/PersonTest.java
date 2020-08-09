@@ -142,6 +142,8 @@ class PersonTest {
     @DisplayName("To string method")
     @Test
     void testToString() {
+        MedicalRecord medicalRecord = new MedicalRecord();
+        person.setMedicalRecord(medicalRecord);
         String expected = person.toString();
         assertEquals(expected, person.toString());
     }

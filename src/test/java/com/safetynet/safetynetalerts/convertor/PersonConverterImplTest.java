@@ -246,7 +246,7 @@ class PersonConverterImplTest {
     @DisplayName("Convert a list of persons to a list StationNumberPersonDTOs")
     @Test
     void givenAListOfPersons_whenPersonToStationNumberPersonDTOsConverterIsCalled_thenPersonsShouldBeConvertedToStationNumberPersonDTOs() {
-        personConverter.personsToStationNumberPersonDTOsConverter(personList);
+        personConverter.personsToStationNumberPersonDTOs(personList);
         List<StationNumberPersonDTO> stationNumberPersonDTOS = personList.stream().map(p -> personConverter.personToStationNumberPersonDTOConverter(p)).collect(Collectors.toList());
         assertEquals(personList.size(), stationNumberPersonDTOS.size());
     }
