@@ -26,7 +26,7 @@ public class FireStationConverterImpl implements FireStationConverter {
      * modelMapper to be injected.
      * used to map objects to each other
      */
-    private ModelMapper mapper;
+    private final ModelMapper mapper;
 
     /**
      * Constructor injection.

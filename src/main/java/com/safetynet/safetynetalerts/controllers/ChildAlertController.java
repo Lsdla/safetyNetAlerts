@@ -26,7 +26,7 @@ public class ChildAlertController {
      * Person service.
      * @see PersonService
      */
-    private PersonService personService;
+    private final PersonService personService;
 
     /**
      * ChildAlertController logger.

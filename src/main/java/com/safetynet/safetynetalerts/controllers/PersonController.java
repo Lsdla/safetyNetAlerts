@@ -40,7 +40,7 @@ public class PersonController {
      * personService.
      * @see PersonService
      */
-    private PersonService personService;
+    private final PersonService personService;
 
     /**
      * Used in logging messages.

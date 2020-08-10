@@ -28,7 +28,7 @@ public class PersonConverterImpl implements PersonConverter {
      * ModelMapper to be injected.
      * used to map objects to each other
      */
-    private ModelMapper mapper;
+    private final ModelMapper mapper;
 
     /**
      * Constructor injection.

@@ -28,7 +28,7 @@ public class FireController {
      * person service.
      * @see PersonService
      */
-    private PersonService personService;
+    private final PersonService personService;
 
     /**
      * FireController logger.
