@@ -1,4 +1,4 @@
-package com.safetynet.safetynetalerts.dtos.childDTO;
+package com.safetynet.safetynetalerts.dtos.phonealertdto;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -8,27 +8,27 @@ import lombok.Setter;
 /**
  * @author Yahia CHERIFI
  * This class is used to contain data retrieved from person entities
- * it is used mainly for storing data belonging to children
  * for more information about the annotation:
  * @see lombok
  */
+
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Getter(AccessLevel.PUBLIC)
 @Setter(AccessLevel.PUBLIC)
-public class ChildDTO {
+public class PhoneAlertPersonDTO {
 
     /**
-     * The child's first name.
+     * The person's first name.
      */
     private String firstName;
 
     /**
-     * The child's last name.
+     * The person's last name.
      */
     private String lastName;
 
     /**
-     * the child's age.
+     * The person's phone number.
      */
-    private Double age;
+    private String phone;
 }

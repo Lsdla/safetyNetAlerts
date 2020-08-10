@@ -1,6 +1,6 @@
 package com.safetynet.safetynetalerts.controllers;
 
-import com.safetynet.safetynetalerts.dtos.fireDTO.PersonFireDTO;
+import com.safetynet.safetynetalerts.dtos.firedto.PersonFireDTO;
 import com.safetynet.safetynetalerts.service.PersonService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -39,11 +39,11 @@ public class FireController {
     /**
      * Constructor injection.
      * injecting personService to the FireController
-     * @param personServiceInstance
+     * @param service PersonService
      */
     @Autowired
-    public FireController(final PersonService personServiceInstance) {
-        this.personService = personServiceInstance;
+    public FireController(final PersonService service) {
+        this.personService = service;
     }
 
     /**
@@ -58,14 +58,15 @@ public class FireController {
         LOGGER.debug("Get request sent from FireController");
         List<PersonFireDTO> persons = personService
                 .retrievePeopleByAddress(address);
-        if (persons.size() == 0) {
-            LOGGER.error("The address provided '" + address
-                    + "' does not match any address in the database");
+        String secureAddressCharacters = address.replaceAll("[\n\r\t]", "_");
+        if (persons.isEmpty()) {
+            LOGGER.error("No people found or wrong provided address: {}",
+                    secureAddressCharacters);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-                    "The address provided does not match any address");
+                    "No people found or wrong address provided");
         }
-        LOGGER.info("Persons who live in '" + address
-                + "' retrieved from database");
+        LOGGER.info("Persons who live in {} retrieved from database.",
+                secureAddressCharacters);
         return personService.retrievePeopleByAddress(address);
     }
 }

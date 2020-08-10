@@ -1,6 +1,6 @@
 package com.safetynet.safetynetalerts.controllers;
 
-import com.safetynet.safetynetalerts.dtos.childDTO.ChildDTO;
+import com.safetynet.safetynetalerts.dtos.childdto.ChildDTO;
 import com.safetynet.safetynetalerts.service.PersonService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -37,11 +37,11 @@ public class ChildAlertController {
     /**
      * Constructor injection.
      * injecting personService to the ChildAlertController
-     * @param personServiceInstance
+     * @param service PersonService
      */
     @Autowired
-    public ChildAlertController(final PersonService personServiceInstance) {
-        this.personService = personServiceInstance;
+    public ChildAlertController(final PersonService service) {
+        this.personService = service;
     }
 
     /**

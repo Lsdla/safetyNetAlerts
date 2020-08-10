@@ -1,4 +1,4 @@
-package com.safetynet.safetynetalerts.dtos.stationNumberDTO;
+package com.safetynet.safetynetalerts.dtos.stationnumberdto;
 
 import lombok.AccessLevel;
 import lombok.Getter;

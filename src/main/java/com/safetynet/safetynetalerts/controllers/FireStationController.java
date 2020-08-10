@@ -2,7 +2,7 @@ package com.safetynet.safetynetalerts.controllers;
 
 import com.safetynet.safetynetalerts.domain.FireStation;
 import com.safetynet.safetynetalerts.dtos.FireStationDTO;
-import com.safetynet.safetynetalerts.dtos.stationNumberDTO.StationNumberFireStationDTO;
+import com.safetynet.safetynetalerts.dtos.stationnumberdto.StationNumberFireStationDTO;
 import com.safetynet.safetynetalerts.service.FireStationService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -46,12 +46,12 @@ public class FireStationController {
 
     /**
      * Constructor injection.
-     * @param fireStationServiceInstance
+     * @param service FireStationService
      */
     @Autowired
     public FireStationController(
-            final FireStationService fireStationServiceInstance) {
-        this.fireStationService = fireStationServiceInstance;
+            final FireStationService service) {
+        this.fireStationService = service;
     }
 
     /**
@@ -68,7 +68,7 @@ public class FireStationController {
     /**
      * Post request.
      * used to add new fire stations
-     * @param fireStation
+     * @param fireStation fire station to add
      * @return the posted fire station
      */
     @PostMapping("/add")
@@ -85,7 +85,7 @@ public class FireStationController {
     /**
      * Put request.
      * used to update existing fire stations
-     * @param fireStation
+     * @param fireStation fire station to update
      * @return the updated fire station
      */
     //add mapping for PUT /update -update an existing fire station
@@ -111,8 +111,7 @@ public class FireStationController {
         LOGGER.debug(
                 "Delete request sent from FireStationController");
         //check if the fire station exists in db
-        LOGGER.debug(
-                "Searching for the fire station that has " + id + " as an id");
+        LOGGER.debug("Searching for fire station {} id", id);
         Optional<FireStation> fireStation = fireStationService.findById(id);
 
         //delete the fire station if it exists
@@ -122,10 +121,11 @@ public class FireStationController {
             return ("Fire station deleted successfully");
         } else {
             //return a not found status if no fire station is found
-            LOGGER.error("Failed to delete fire station "
-                    + id + ": no matching fire station id in database");
+            LOGGER.error(
+                    "No matching fire station id : {} was found in database",
+                    id);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-                    "No fire station that has " + id + " was found");
+                    "No fire station matching id " + id + " was found");
         }
     }
 
@@ -139,7 +139,8 @@ public class FireStationController {
     public StationNumberFireStationDTO getPersonsCoveredByFireStation(
             @RequestParam final Long id) {
         LOGGER.debug("Get request sent from FireStationController "
-                + "to retrieve all persons covered by the fire station " + id);
+                + "to retrieve all persons covered"
+                + " by the fire station where id =  {} ", id);
         return fireStationService.getOneFireStationById(id);
     }
 

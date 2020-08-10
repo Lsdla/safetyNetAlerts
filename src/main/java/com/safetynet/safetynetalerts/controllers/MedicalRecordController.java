@@ -42,13 +42,26 @@ public class MedicalRecordController {
             .getLogger(MedicalRecordController.class);
 
     /**
+     * Used in logging messages.
+     * Data provided by users will be changed
+     * some characters will omitted for security purposes:
+     * Logging injection
+     */
+    private static final String DANGEROUS_CHARACTERS =  "[\n\r\t]";
+
+    /**
+     * DANGEROUS_CHARACTERS will be replaced by REPLACEMENT_CHARACTER.
+     */
+    private static final String REPLACEMENT_CHARACTER = "_";
+
+    /**
      * Constructor injection.
-     * @param medicalRecordServiceInstance
+     * @param service medicalRecordService
      */
     @Autowired
     public MedicalRecordController(
-            final MedicalRecordService medicalRecordServiceInstance) {
-        this.medicalRecordService = medicalRecordServiceInstance;
+            final MedicalRecordService service) {
+        this.medicalRecordService = service;
     }
 
     /**
@@ -65,7 +78,7 @@ public class MedicalRecordController {
     /**
      * Post request.
      * save a new medical record
-     * @param medicalRecord
+     * @param medicalRecord medical record to save
      * @return the saved medical record
      */
     @PostMapping("/add")
@@ -80,7 +93,7 @@ public class MedicalRecordController {
     /**
      * Put request.
      * updated an existing medical record
-     * @param medicalRecord
+     * @param medicalRecord medical record to update
      * @return the updated medical record
      */
     @PutMapping("/update")
@@ -103,9 +116,13 @@ public class MedicalRecordController {
     public String deleteMedicalRecord(
             @PathVariable final String firstName,
             @PathVariable final String lastName) {
+        String secureFirstNameCharacters = firstName
+                .replaceAll(DANGEROUS_CHARACTERS, REPLACEMENT_CHARACTER);
+        String secureLastNameCharacters = lastName
+                .replaceAll(DANGEROUS_CHARACTERS, REPLACEMENT_CHARACTER);
         LOGGER.debug("Delete request sent from the MedicalRecordController");
         medicalRecordService.deleteByFirstNameAndLastName(firstName, lastName);
-        return ("Medical records for '" + firstName
-                + " " + lastName + "' were deleted successfully");
+        return ("Medical records for '" + secureFirstNameCharacters + " "
+                + secureLastNameCharacters + "' were deleted successfully");
     }
 }

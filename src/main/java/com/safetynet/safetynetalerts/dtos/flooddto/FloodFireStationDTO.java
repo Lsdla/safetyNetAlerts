@@ -1,14 +1,15 @@
-package com.safetynet.safetynetalerts.dtos.fireDTO;
+package com.safetynet.safetynetalerts.dtos.flooddto;
 
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 /**
  * @author Yahia CHERIFI
  * This class is used to contain data retrieved from fire station entities
- * it is used mainly for storing the station number
  * for more information about the annotation:
  * @see lombok
  */
@@ -16,10 +17,20 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Getter(AccessLevel.PUBLIC)
 @Setter(AccessLevel.PUBLIC)
-public class FireStationFireDTO {
+public class FloodFireStationDTO {
 
     /**
-     * The fire station number.
+     * The fire station id.
      */
-    private Integer station;
+    private Long id;
+
+    /**
+     * The fire station address.
+     */
+    private String address;
+
+    /**
+     * The list of persons covered by the fire station.
+     */
+    private List<FloodPersonDTO> persons;
 }

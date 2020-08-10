@@ -1,9 +1,9 @@
 package com.safetynet.safetynetalerts.service;
 
 import com.safetynet.safetynetalerts.dtos.FireStationDTO;
-import com.safetynet.safetynetalerts.dtos.floodDto.FloodFireStationDTO;
-import com.safetynet.safetynetalerts.dtos.stationNumberDTO.StationNumberFireStationDTO;
-import com.safetynet.safetynetalerts.dtos.phoneAlertDTO.PhoneAlertFireStationDTO;
+import com.safetynet.safetynetalerts.dtos.flooddto.FloodFireStationDTO;
+import com.safetynet.safetynetalerts.dtos.stationnumberdto.StationNumberFireStationDTO;
+import com.safetynet.safetynetalerts.dtos.phonealertdto.PhoneAlertFireStationDTO;
 import com.safetynet.safetynetalerts.convertor.FireStationConverter;
 import com.safetynet.safetynetalerts.domain.FireStation;
 import com.safetynet.safetynetalerts.repository.FireStationRepository;
@@ -133,14 +133,14 @@ public class FireStationServiceImpl implements FireStationService {
     public PhoneAlertFireStationDTO findFireStationById(final Long id) {
         FireStation fireStation = fireStationRepository.findFireStationById(id);
         if (fireStation == null) {
-            LOGGER.error("Error occurred while trying find the provided id "
-                    + id + " : no matching id in database");
+            LOGGER.error("Error occurred while trying find the provided id: {}."
+                    + " No matching id in the database", id);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                     "the provided fire station id"
                             + " does not match any id in our database");
         }
-        LOGGER.info("Phone numbers of the persons covered by fire station "
-                + id + " retrieved from database");
+        LOGGER.info("Phone numbers of the persons covered"
+                + " by fire station id {} retrieved from the database.", id);
         return fireStationConverter
                 .phoneAlertStationToDTOConverter(fireStation);
     }

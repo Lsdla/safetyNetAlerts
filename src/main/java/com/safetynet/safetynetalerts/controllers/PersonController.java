@@ -1,7 +1,7 @@
 package com.safetynet.safetynetalerts.controllers;
 
 import com.safetynet.safetynetalerts.dtos.PersonDTO;
-import com.safetynet.safetynetalerts.dtos.personInfoDto.PersonInfoDTO;
+import com.safetynet.safetynetalerts.dtos.personinfodto.PersonInfoDTO;
 import com.safetynet.safetynetalerts.domain.Person;
 import com.safetynet.safetynetalerts.service.PersonService;
 import org.apache.logging.log4j.LogManager;
@@ -43,12 +43,25 @@ public class PersonController {
     private PersonService personService;
 
     /**
+     * Used in logging messages.
+     * Data provided by users will be changed
+     * some characters will omitted for security purposes:
+     * Logging injection
+     */
+    private static final String DANGEROUS_CHARACTERS =  "[\n\r\t]";
+
+    /**
+     * DANGEROUS_CHARACTERS will be replaced by REPLACEMENT_CHARACTER.
+     */
+    private static final String REPLACEMENT_CHARACTER = "_";
+
+    /**
      * Constructor injection.
-     * @param personServiceInstance
+     * @param service personService
      */
     @Autowired
-    public PersonController(final PersonService personServiceInstance) {
-        this.personService = personServiceInstance;
+    public PersonController(final PersonService service) {
+        this.personService = service;
     }
 
     /**
@@ -67,7 +80,7 @@ public class PersonController {
     /**
      * Post request.
      * used to save a new person to database
-     * @param thePerson
+     * @param thePerson person to save
      * @return the saved person
      */
     @PostMapping("/add")
@@ -79,7 +92,7 @@ public class PersonController {
 
     /**
      * Put request.
-     * @param thePerson
+     * @param thePerson person to update
      * @return the updated person
      */
     @PutMapping("/update")
@@ -103,19 +116,27 @@ public class PersonController {
         Person person = personService
                 .findByFirstNameAndLastName(firstName, lastName);
 
+        String secureFirstNameCharacters = firstName
+                .replaceAll(DANGEROUS_CHARACTERS, REPLACEMENT_CHARACTER);
+        String secureLastNameCharacters = lastName
+                .replaceAll(DANGEROUS_CHARACTERS, REPLACEMENT_CHARACTER);
+
         //throw an exception if no person with
         //the same first name and last name was found in db
         if (person == null) {
-            LOGGER.error("Failed to delete person: '" + firstName + " "
-                    + lastName + "' does not exist in our databas");
+            LOGGER.error("Failed to delete person"
+                            + " no matching {} {} found",
+                    secureFirstNameCharacters, secureLastNameCharacters);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                     "No person with these credentials '"
-                            + firstName + " " + lastName + "' was found!");
+                            + secureFirstNameCharacters + " "
+                            + secureLastNameCharacters + "' was found!");
         }
 
         personService.deleteByFirstNameAndLastName(firstName, lastName);
-        LOGGER.info("Person '" + firstName + " "
-                + lastName + "' deleted from database");
+        LOGGER.info("{} {} "
+                        + "deleted from database.",
+                secureFirstNameCharacters, secureLastNameCharacters);
         return ("'" + firstName + " " + lastName + "' deleted successfully");
     }
 
@@ -130,9 +151,13 @@ public class PersonController {
     public List<PersonInfoDTO> getPersonInfo(
             @PathVariable final String firstName,
             @PathVariable final String lastName) {
+        String secureFirstNameCharacters = firstName
+                .replaceAll(DANGEROUS_CHARACTERS, REPLACEMENT_CHARACTER);
+        String secureLastNameCharacters = lastName
+                .replaceAll(DANGEROUS_CHARACTERS, REPLACEMENT_CHARACTER);
         LOGGER.debug("Get request sent from the PersonController to retrieve"
-                + " information belonging to '"
-                + firstName + " " + lastName + "'");
+                + " information belonging to {} {}",
+                secureFirstNameCharacters, secureLastNameCharacters);
         return personService
                 .findPersonsByFirstNameAndLastName(firstName, lastName);
     }

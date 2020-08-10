@@ -85,7 +85,7 @@ class PersonServiceImplTest {
     @DisplayName("findPersonsByFirstNameAndLastName throws exception")
     @Test
     void findPersonsByFirstNameAndLastName_shouldThrowA4xxException_whenNoPersonReturnedFromDataBase() {
-        assertThrows(ResponseStatusException.class, () -> personServiceImpl.findPersonsByFirstNameAndLastName(anyString(), anyString()));
+        assertThrows(ResponseStatusException.class, () -> personServiceImpl.findPersonsByFirstNameAndLastName("string", "string"));
     }
 
     @DisplayName("findEmailsByCity calls personRepository.findEmailsByCity")
