@@ -26,7 +26,7 @@ public class CommunityEmailController {
      * person service.
      * @see PersonService
      */
-    private PersonService personService;
+    private final PersonService personService;
 
     /**
      * CommunityEmailController logger.

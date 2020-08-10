@@ -36,7 +36,7 @@ public class FireStationController {
      * fireStationService.
      * @see FireStationService
      */
-    private FireStationService fireStationService;
+    private final FireStationService fireStationService;
 
     /**
      * FireStationController logger.

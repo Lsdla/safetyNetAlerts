@@ -33,7 +33,7 @@ public class MedicalRecordController {
      * medicalRecordService.
      * @see MedicalRecordService
      */
-    private MedicalRecordService medicalRecordService;
+    private final MedicalRecordService medicalRecordService;
 
     /**
      * MedicalRecordController logger.

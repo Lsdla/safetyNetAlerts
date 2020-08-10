@@ -24,7 +24,7 @@ public class FloodController {
      * fireStationService.
      * @see FireStationService
      */
-    private FireStationService fireStationService;
+    private final FireStationService fireStationService;
 
     /**
      * FloodController logger.
