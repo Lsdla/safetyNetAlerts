@@ -1,4 +1,4 @@
-package com.safetynet.safetynetalerts.dtos.floodDto;
+package com.safetynet.safetynetalerts.dtos.phonealertdto;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -17,20 +17,10 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Getter(AccessLevel.PUBLIC)
 @Setter(AccessLevel.PUBLIC)
-public class FloodFireStationDTO {
+public class PhoneAlertFireStationDTO {
 
     /**
-     * The fire station id.
+     * A list of the person's covered by the fire station.
      */
-    private Long id;
-
-    /**
-     * The fire station address.
-     */
-    private String address;
-
-    /**
-     * The list of persons covered by the fire station.
-     */
-    private List<FloodPersonDTO> persons;
+    private List<PhoneAlertPersonDTO> persons;
 }

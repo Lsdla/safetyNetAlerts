@@ -1,6 +1,6 @@
 package com.safetynet.safetynetalerts.controllers;
 
-import com.safetynet.safetynetalerts.dtos.phoneAlertDTO.PhoneAlertFireStationDTO;
+import com.safetynet.safetynetalerts.dtos.phonealertdto.PhoneAlertFireStationDTO;
 import com.safetynet.safetynetalerts.service.FireStationService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -35,12 +35,12 @@ public class PhoneAlertController {
 
     /**
      * Constructor injection.
-     * @param fireStationServiceInstance
+     * @param service FireStationService
      */
     @Autowired
     public PhoneAlertController(
-            final FireStationService fireStationServiceInstance) {
-        this.fireStationService = fireStationServiceInstance;
+            final FireStationService service) {
+        this.fireStationService = service;
     }
 
     /**

@@ -16,6 +16,10 @@
 
 	<properties>
 		<java.version>11</java.version>
+		<sonar.projectKey>yaya-ch_safetyNetAlerts</sonar.projectKey>
+		<sonar.organization>yaya-ch</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.login>96f9d584e4f3d370f361755343291a63b2b7c240</sonar.login>
 	</properties>
 
 	<dependencies>
@@ -113,6 +117,11 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.5</version>
+				<configuration>
+					<excludes>
+						<exclude>**/domain/**</exclude>
+					</excludes>
+				</configuration>
 				<executions>
 					<execution>
 						<goals>

@@ -1,10 +1,10 @@
 package com.safetynet.safetynetalerts.service;
 
 import com.safetynet.safetynetalerts.dtos.PersonDTO;
-import com.safetynet.safetynetalerts.dtos.childDTO.ChildDTO;
-import com.safetynet.safetynetalerts.dtos.fireDTO.PersonFireDTO;
-import com.safetynet.safetynetalerts.dtos.personInfoDto.PersonInfoDTO;
-import com.safetynet.safetynetalerts.dtos.communityEmailDto.CommunityEmailDTO;
+import com.safetynet.safetynetalerts.dtos.childdto.ChildDTO;
+import com.safetynet.safetynetalerts.dtos.firedto.PersonFireDTO;
+import com.safetynet.safetynetalerts.dtos.personinfodto.PersonInfoDTO;
+import com.safetynet.safetynetalerts.dtos.communityemaildto.CommunityEmailDTO;
 import com.safetynet.safetynetalerts.convertor.PersonConverter;
 import com.safetynet.safetynetalerts.domain.Person;
 import com.safetynet.safetynetalerts.repository.PersonRepository;
@@ -48,6 +48,19 @@ public class PersonServiceImpl implements PersonService {
             .getLogger(PersonServiceImpl.class);
 
     /**
+     * Used in logging messages.
+     * Data provided by users will be changed
+     * some characters will omitted for security purposes:
+     * Logging injection
+     */
+    private static final String DANGEROUS_CHARACTERS =  "[\n\r\t]";
+
+    /**
+     * DANGEROUS_CHARACTERS will be replaced by REPLACEMENT_CHARACTER.
+     */
+    private static final String REPLACEMENT_CHARACTER = "_";
+
+    /**
      * Constructor injection.
      * @param repository PersonRepository
      * @param converter PersonConverter
@@ -80,17 +93,21 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public List<PersonInfoDTO> findPersonsByFirstNameAndLastName(
             final String firstName, final String lastName) {
+        String secureFirstNameCharacters = firstName
+                .replaceAll(DANGEROUS_CHARACTERS, REPLACEMENT_CHARACTER);
+        String secureLastNameCharacters = lastName
+                .replaceAll(DANGEROUS_CHARACTERS, REPLACEMENT_CHARACTER);
         List<Person> personList = personRepository
                 .findPersonsByFirstNameAndLastName(firstName, lastName);
-        if (personList.size() == 0) {
-            LOGGER.error("No matching " + firstName
-                    + " " + lastName + " were found in database");
+        if (personList.isEmpty()) {
+            LOGGER.error("No matching {} {} were found in the database.",
+                    secureFirstNameCharacters, secureLastNameCharacters);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                     "No persons were found");
         }
-        LOGGER.info("Person(s) that have these first names and last names: '"
-                + firstName + " " + lastName
-                + "' were retrieved from database");
+        LOGGER.info("All persons whose first name is {} and last name is {} "
+                        + " were retrieved from database.",
+                secureFirstNameCharacters, secureLastNameCharacters);
         return personConverter.personsToPersonInfoDTOsConverter(personList);
     }
 
@@ -122,6 +139,8 @@ public class PersonServiceImpl implements PersonService {
      */
     @Override
     public List<List<ChildDTO>> findChildrenByAddress(final String address) {
+        String secureAddressCharacters = address
+                .replaceAll(DANGEROUS_CHARACTERS, REPLACEMENT_CHARACTER);
         final int childMaxAge = 18;
         //retrieve all people who live in a given address
         List<Person> peopleByAddress = findByAddress(address);
@@ -140,7 +159,8 @@ public class PersonServiceImpl implements PersonService {
         childrenAndHouseHoldMembers.add(children);
         childrenAndHouseHoldMembers.add(adults);
 
-        LOGGER.debug("Searching for children in this address: " + address);
+        LOGGER.debug("Searching for children in this address: {}",
+                secureAddressCharacters);
         //check if peopleByAddress have any persons whose age is 18 or less
         for (Person p : peopleByAddress) {
             if (p.getAge() <= childMaxAge) {
@@ -151,17 +171,19 @@ public class PersonServiceImpl implements PersonService {
         }
 
         //check if children list contain persons
-        if (children.size() > 0) {
-            LOGGER.info("Children who live at the "
-                    + address + " were retrieved from database");
+        if (children.isEmpty()) {
+            LOGGER.info("There are no children living at the {} ",
+                    secureAddressCharacters);
+            //return empty list if no children were found
+            return Collections.emptyList();
+        } else {
+            LOGGER.info("Children, and their household members,"
+                    + " who live at the {} retrieved from the database.",
+                    secureAddressCharacters);
             //return the converted childrenAndHouseHoldMembers
             // if there is children in the list
             return personConverter
                     .childrenListToListConverter(childrenAndHouseHoldMembers);
-        } else {
-            LOGGER.info("There are no children who live at the " + address);
-            //return empty list if no children were found
-            return Collections.emptyList();
         }
     }
 

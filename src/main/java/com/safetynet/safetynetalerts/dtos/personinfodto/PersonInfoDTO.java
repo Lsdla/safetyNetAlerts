@@ -1,4 +1,4 @@
-package com.safetynet.safetynetalerts.dtos.floodDto;
+package com.safetynet.safetynetalerts.dtos.personinfodto;
 
 import com.safetynet.safetynetalerts.dtos.MedicalRecordDTO;
 import lombok.AccessLevel;
@@ -16,7 +16,7 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Getter(AccessLevel.PUBLIC)
 @Setter(AccessLevel.PUBLIC)
-public class FloodPersonDTO {
+public class PersonInfoDTO {
 
     /**
      * The person's first name.
@@ -29,9 +29,14 @@ public class FloodPersonDTO {
     private String lastName;
 
     /**
-     * The person's phone number.
+     * The person's address.
      */
-    private String phone;
+    private String address;
+
+    /**
+     * The person's email address.
+     */
+    private String email;
 
     /**
      * The person's medical record.

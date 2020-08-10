@@ -84,6 +84,6 @@ class MedicalRecordServiceImplTest {
     @DisplayName("deleteByFirstNameAndLastName should throw an exception")
     @Test
     void deleteByFirstNameAndLastName_shouldThrowExceptionWhenFirstNameAndLastNameAreNull() {
-        assertThrows(ResponseStatusException.class, () -> medicalRecordServiceImpl.deleteByFirstNameAndLastName(null, null));
+        assertThrows(ResponseStatusException.class, () -> medicalRecordServiceImpl.deleteByFirstNameAndLastName("nonExistant", "name"));
     }
 }

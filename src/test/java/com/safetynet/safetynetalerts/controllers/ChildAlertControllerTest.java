@@ -1,6 +1,6 @@
 package com.safetynet.safetynetalerts.controllers;
 
-import com.safetynet.safetynetalerts.dtos.childDTO.ChildDTO;
+import com.safetynet.safetynetalerts.dtos.childdto.ChildDTO;
 import com.safetynet.safetynetalerts.service.PersonService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;

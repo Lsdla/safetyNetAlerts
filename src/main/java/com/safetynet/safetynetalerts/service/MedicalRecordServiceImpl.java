@@ -42,6 +42,19 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
             .getLogger(MedicalRecordServiceImpl.class);
 
     /**
+     * Used in logging messages.
+     * Data provided by users will be changed
+     * some characters will omitted for security purposes:
+     * Logging injection
+     */
+    private static final String DANGEROUS_CHARACTERS =  "[\n\r\t]";
+
+    /**
+     * DANGEROUS_CHARACTERS will be replaced by REPLACEMENT_CHARACTER.
+     */
+    private static final String REPLACEMENT_CHARACTER = "_";
+
+    /**
      * Constructor injection.
      * @param medicalRecordRepositoryInstance medicalRecordRepositoryInstance
      * @param medicalRecordConverterInstance medicalRecordRepositoryInstance
@@ -85,19 +98,26 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
             final String firstName, final String lastName) {
         MedicalRecord medicalRecord = medicalRecordRepository
                 .findByFirstNameAndLastName(firstName, lastName);
-
+        String secureFirstNameCharacters = firstName
+                .replaceAll(DANGEROUS_CHARACTERS, REPLACEMENT_CHARACTER);
+        String secureLastNameCharacters = lastName
+                .replaceAll(DANGEROUS_CHARACTERS, REPLACEMENT_CHARACTER);
         if (medicalRecord == null) {
+
             LOGGER.error(
                     "Error occurred while trying to delete the"
-                            + " medical record that belongs to '"
-                            + firstName + " " + lastName
-                            + "'. No matching medical record found");
+                            + " medical record that belongs to {} {}."
+                            + " No matching medical record found",
+                            secureFirstNameCharacters,
+                            secureLastNameCharacters);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                     "No medical record that belongs to '"
-                            + firstName + " " + lastName + "' was found");
+                            + secureFirstNameCharacters
+                            + " " + secureLastNameCharacters + "' was found");
         } else {
             LOGGER.info(
-                    firstName + " " + lastName + "'s medical record deleted");
+                    "{} {}'s medical record deleted from the database.",
+                    secureFirstNameCharacters, secureLastNameCharacters);
             medicalRecordRepository
                     .deleteByFirstNameAndLastName(firstName, lastName);
         }
@@ -107,7 +127,7 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
      * Find a medical record by the owner's first and last names.
      * @param firstName the medical record owner's first name
      * @param lastName the medical record owner's last name
-     * @return
+     * @return the medical record
      */
     @Override
     public MedicalRecord findByFirstNameAndLastName(

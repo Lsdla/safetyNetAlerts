@@ -1,10 +1,10 @@
 package com.safetynet.safetynetalerts.convertor;
 
 import com.safetynet.safetynetalerts.dtos.FireStationDTO;
-import com.safetynet.safetynetalerts.dtos.fireDTO.FireStationFireDTO;
-import com.safetynet.safetynetalerts.dtos.floodDto.FloodFireStationDTO;
-import com.safetynet.safetynetalerts.dtos.stationNumberDTO.StationNumberFireStationDTO;
-import com.safetynet.safetynetalerts.dtos.phoneAlertDTO.PhoneAlertFireStationDTO;
+import com.safetynet.safetynetalerts.dtos.firedto.FireStationFireDTO;
+import com.safetynet.safetynetalerts.dtos.flooddto.FloodFireStationDTO;
+import com.safetynet.safetynetalerts.dtos.stationnumberdto.StationNumberFireStationDTO;
+import com.safetynet.safetynetalerts.dtos.phonealertdto.PhoneAlertFireStationDTO;
 import com.safetynet.safetynetalerts.domain.FireStation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

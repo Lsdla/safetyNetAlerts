@@ -1,10 +1,10 @@
 package com.safetynet.safetynetalerts.service;
 
-import com.safetynet.safetynetalerts.dtos.childDTO.ChildDTO;
-import com.safetynet.safetynetalerts.dtos.communityEmailDto.CommunityEmailDTO;
+import com.safetynet.safetynetalerts.dtos.childdto.ChildDTO;
+import com.safetynet.safetynetalerts.dtos.communityemaildto.CommunityEmailDTO;
 import com.safetynet.safetynetalerts.dtos.PersonDTO;
-import com.safetynet.safetynetalerts.dtos.fireDTO.PersonFireDTO;
-import com.safetynet.safetynetalerts.dtos.personInfoDto.PersonInfoDTO;
+import com.safetynet.safetynetalerts.dtos.firedto.PersonFireDTO;
+import com.safetynet.safetynetalerts.dtos.personinfodto.PersonInfoDTO;
 import com.safetynet.safetynetalerts.domain.Person;
 
 import java.util.List;

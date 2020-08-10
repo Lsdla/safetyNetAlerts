@@ -24,7 +24,7 @@ public class SafetyNetAlertsApplication {
      * @param args args
      */
     public static void main(final String[] args) {
-        LOGGER.debug("SafetyNet alert started");
+        LOGGER.debug("SafetyNet alerts started");
         SpringApplication.run(SafetyNetAlertsApplication.class, args);
     }
 

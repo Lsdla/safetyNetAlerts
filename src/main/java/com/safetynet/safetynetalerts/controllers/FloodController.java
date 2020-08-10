@@ -1,6 +1,6 @@
 package com.safetynet.safetynetalerts.controllers;
 
-import com.safetynet.safetynetalerts.dtos.floodDto.FloodFireStationDTO;
+import com.safetynet.safetynetalerts.dtos.flooddto.FloodFireStationDTO;
 import com.safetynet.safetynetalerts.service.FireStationService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -34,12 +34,12 @@ public class FloodController {
 
     /**
      * Constructor injection.
-     * @param fireStationServiceInstance
+     * @param service fireStationService
      */
     @Autowired
     public FloodController(
-            final FireStationService fireStationServiceInstance) {
-        this.fireStationService = fireStationServiceInstance;
+            final FireStationService service) {
+        this.fireStationService = service;
     }
 
     /**
@@ -59,8 +59,9 @@ public class FloodController {
             throw new IllegalArgumentException("You must provide at"
                     + " least one id to retrieve the desired data");
         }
-        LOGGER.info("Person covered by "
-                + id.toString() + " were retrieved from database");
+        String idsList = id.toString();
+        LOGGER.info("Person covered by these fire stations "
+                + "{} retrieved from database.", idsList);
         return fireStationService.findFireStationsById(id);
     }
 }

@@ -1,7 +1,7 @@
 package com.safetynet.safetynetalerts.controllers;
 
 import com.safetynet.safetynetalerts.dtos.MedicalRecordDTO;
-import com.safetynet.safetynetalerts.dtos.fireDTO.PersonFireDTO;
+import com.safetynet.safetynetalerts.dtos.firedto.PersonFireDTO;
 import com.safetynet.safetynetalerts.service.PersonService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;

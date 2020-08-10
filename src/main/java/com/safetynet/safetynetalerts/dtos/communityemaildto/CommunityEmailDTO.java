@@ -1,15 +1,14 @@
-package com.safetynet.safetynetalerts.dtos.phoneAlertDTO;
+package com.safetynet.safetynetalerts.dtos.communityemaildto;
 
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 /**
  * @author Yahia CHERIFI
- * This class is used to contain data retrieved from fire station entities
+ * This class is used to contain data retrieved from person entities
+ * it is used mainly for storing email address of persons living in a given city
  * for more information about the annotation:
  * @see lombok
  */
@@ -17,10 +16,10 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Getter(AccessLevel.PUBLIC)
 @Setter(AccessLevel.PUBLIC)
-public class PhoneAlertFireStationDTO {
+public class CommunityEmailDTO {
 
     /**
-     * A list of the person's covered by the fire station.
+     * The person's email address.
      */
-    private List<PhoneAlertPersonDTO> persons;
+    private String email;
 }

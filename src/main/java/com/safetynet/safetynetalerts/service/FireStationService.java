@@ -1,9 +1,9 @@
 package com.safetynet.safetynetalerts.service;
 
 import com.safetynet.safetynetalerts.dtos.FireStationDTO;
-import com.safetynet.safetynetalerts.dtos.floodDto.FloodFireStationDTO;
-import com.safetynet.safetynetalerts.dtos.stationNumberDTO.StationNumberFireStationDTO;
-import com.safetynet.safetynetalerts.dtos.phoneAlertDTO.PhoneAlertFireStationDTO;
+import com.safetynet.safetynetalerts.dtos.flooddto.FloodFireStationDTO;
+import com.safetynet.safetynetalerts.dtos.stationnumberdto.StationNumberFireStationDTO;
+import com.safetynet.safetynetalerts.dtos.phonealertdto.PhoneAlertFireStationDTO;
 import com.safetynet.safetynetalerts.domain.FireStation;
 
 import java.util.List;

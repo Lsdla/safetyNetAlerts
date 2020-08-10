@@ -2,8 +2,8 @@ package com.safetynet.safetynetalerts.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.safetynetalerts.dtos.FireStationDTO;
-import com.safetynet.safetynetalerts.dtos.stationNumberDTO.StationNumberPersonDTO;
-import com.safetynet.safetynetalerts.dtos.stationNumberDTO.StationNumberFireStationDTO;
+import com.safetynet.safetynetalerts.dtos.stationnumberdto.StationNumberPersonDTO;
+import com.safetynet.safetynetalerts.dtos.stationnumberdto.StationNumberFireStationDTO;
 import com.safetynet.safetynetalerts.convertor.FireStationConverter;
 import com.safetynet.safetynetalerts.domain.FireStation;
 import com.safetynet.safetynetalerts.service.FireStationService;

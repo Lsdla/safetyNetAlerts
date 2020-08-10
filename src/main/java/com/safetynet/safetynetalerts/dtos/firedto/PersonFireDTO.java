@@ -1,4 +1,4 @@
-package com.safetynet.safetynetalerts.dtos.personInfoDto;
+package com.safetynet.safetynetalerts.dtos.firedto;
 
 import com.safetynet.safetynetalerts.dtos.MedicalRecordDTO;
 import lombok.AccessLevel;
@@ -6,9 +6,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 /**
  * @author Yahia CHERIFI
  * This class is used to contain data retrieved from person entities
+ * it is used mainly for storing person related data
  * for more information about the annotation:
  * @see lombok
  */
@@ -16,7 +19,7 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Getter(AccessLevel.PUBLIC)
 @Setter(AccessLevel.PUBLIC)
-public class PersonInfoDTO {
+public class PersonFireDTO {
 
     /**
      * The person's first name.
@@ -29,17 +32,17 @@ public class PersonInfoDTO {
     private String lastName;
 
     /**
-     * The person's address.
+     * The person's phone number.
      */
-    private String address;
-
-    /**
-     * The person's email address.
-     */
-    private String email;
+    private String phone;
 
     /**
      * The person's medical record.
      */
     private MedicalRecordDTO medicalRecord;
+
+    /**
+     * A list of the fire stations that cover a person.
+     */
+    private List<FireStationFireDTO> fireStations;
 }

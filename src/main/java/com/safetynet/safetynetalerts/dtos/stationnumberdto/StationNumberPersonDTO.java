@@ -1,4 +1,4 @@
-package com.safetynet.safetynetalerts.dtos.phoneAlertDTO;
+package com.safetynet.safetynetalerts.dtos.stationnumberdto;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -15,7 +15,7 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Getter(AccessLevel.PUBLIC)
 @Setter(AccessLevel.PUBLIC)
-public class PhoneAlertPersonDTO {
+public class StationNumberPersonDTO {
 
     /**
      * The person's first name.
@@ -28,7 +28,17 @@ public class PhoneAlertPersonDTO {
     private String lastName;
 
     /**
+     * The person's address.
+     */
+    private String address;
+
+    /**
      * The person's phone number.
      */
     private String phone;
+
+    /**
+     * The person's age.
+     */
+    private Double age;
 }
