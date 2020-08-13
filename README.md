@@ -403,4 +403,6 @@ _[
 
 Use either `mvn test` if you have maven on your machine or `./mvnw test` if you do not have maven on your machine.
 
+To get all the different reports, you can use either `mvn site` or `./mvnw site`
+
 You can find the generated test reports in the `target` directory.
