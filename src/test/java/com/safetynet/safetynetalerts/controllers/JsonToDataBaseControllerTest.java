@@ -2,7 +2,9 @@ package com.safetynet.safetynetalerts.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.safetynetalerts.domain.FireStation;
+import com.safetynet.safetynetalerts.domain.Person;
 import com.safetynet.safetynetalerts.service.FireStationService;
+import com.safetynet.safetynetalerts.service.PersonService;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -27,19 +29,19 @@ class JsonToDataBaseControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private FireStationService fireStationService;
+    private PersonService personService;
 
-    private FireStation fireStation() {
-        FireStation fireStation = new FireStation();
-        return fireStation;
+    private Person person() {
+        Person person = new Person();
+        return person;
     }
 
     @Test
     void givenAfireStation_whenPostRequestSentFromController_thenResponseShouldBeOk() throws Exception {
-        when(fireStationService.save(any(FireStation.class))).thenReturn(fireStation());
+        when(personService.save(any(Person.class))).thenReturn(person());
 
         mockMvc.perform(MockMvcRequestBuilders.post("/jsonToDatabase/insert")
-                .content(new ObjectMapper().writeValueAsString(fireStation()))
+                .content(new ObjectMapper().writeValueAsString(person()))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());

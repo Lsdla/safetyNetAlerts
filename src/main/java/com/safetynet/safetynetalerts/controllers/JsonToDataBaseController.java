@@ -5,7 +5,7 @@ import com.safetynet.safetynetalerts.ReadDataFromJson;
 import com.safetynet.safetynetalerts.domain.FireStation;
 import com.safetynet.safetynetalerts.domain.MedicalRecord;
 import com.safetynet.safetynetalerts.domain.Person;
-import com.safetynet.safetynetalerts.service.FireStationService;
+import com.safetynet.safetynetalerts.service.PersonService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.simple.parser.ParseException;
@@ -27,9 +27,9 @@ import java.util.List;
 public class JsonToDataBaseController {
 
     /**
-     * fireStationService to inject.
+     * PersonService to be injected.
      */
-    private final FireStationService fireStationService;
+    private final PersonService personService;
 
     /**
      * Class logger.
@@ -39,18 +39,19 @@ public class JsonToDataBaseController {
 
     /**
      * Constructor injection.
-     * @param service fireStationService
+     * @param service person service
      */
     @Autowired
-    public JsonToDataBaseController(final FireStationService service) {
-        this.fireStationService = service;
+    public JsonToDataBaseController(final PersonService service) {
+        this.personService = service;
     }
 
     /**
      * insert data from a json file.
+     * @return a message when data inserted or not
      */
     @PostMapping("/insert")
-    public void jsonToDatabase() {
+    public String jsonToDatabase() {
         LOGGER.debug("Post method sent from JsonToDatabaseController");
         try {
             //new instance of the ReadDataFromJson
@@ -66,26 +67,27 @@ public class JsonToDataBaseController {
                     .getMedicalRecordsFromJsonFile();
             //link the different data and save them to database
             //loop through firestations
-            for (FireStation f:fireStations) {
-                //loop through persons
-                for (Person p:persons) {
-                    if (p.getAddress().equalsIgnoreCase(f.getAddress())) {
-                        //loop through medical records
-                        for (MedicalRecord m: medicalRecords) {
-                            if (m.getFirstName().equalsIgnoreCase(
-                                    p.getFirstName()) && m.getLastName()
-                                    .equalsIgnoreCase(p.getLastName())) {
-                                p.setMedicalRecord(m);
-                                f.addPerson(p);
-                            }
-                        }
-                        fireStationService.save(f);
+            for (Person p: persons) {
+                for (MedicalRecord m: medicalRecords) {
+                    if (p.getFirstName().equalsIgnoreCase(m.getFirstName())
+                            && p.getLastName()
+                            .equalsIgnoreCase(m.getLastName())) {
+                        p.setMedicalRecord(m);
                     }
                 }
+
+                for (FireStation f: fireStations) {
+                    if (f.getAddress().equalsIgnoreCase(p.getAddress())) {
+                        p.addFireStation(f);
+                    }
+                }
+                personService.save(p);
             }
             LOGGER.info("Data inserted successfully to database");
+            return "Data inserted successfully to database";
         } catch (ParseException | IOException e) {
             LOGGER.error("Something happened during data insertion");
         }
+        return "Something wrong happened during data insertion";
     }
 }
