@@ -21,11 +21,6 @@ import java.util.List;
 public class StationNumberFireStationDTO {
 
     /**
-     * A list of the persons covered by the fire station.
-     */
-    private List<StationNumberPersonDTO> persons;
-
-    /**
      * The number of children covered by the fire station.
      */
     private int numberOfChildren;
@@ -34,6 +29,11 @@ public class StationNumberFireStationDTO {
      * The number of adults covered by the fire station.
      */
     private int numberOfAdults;
+
+    /**
+     * A list of the persons covered by the fire station.
+     */
+    private List<StationNumberPersonDTO> persons;
 
     /**
      * Getter of the numberOfChildren.
