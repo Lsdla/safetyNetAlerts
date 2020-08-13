@@ -1,5 +1,9 @@
 package com.safetynet.safetynetalerts.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -68,8 +72,10 @@ public class MedicalRecord {
      * The birthdate of the medical record owner.
      * Column annotation designs the column name in database
      */
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     @Column(name = "birth_date")
-    private LocalDate birthDate;
+    private LocalDate birthdate;
 
     /**
      * The age of the medical record owner.
