@@ -5,6 +5,7 @@ import com.safetynet.safetynetalerts.domain.FireStation;
 import com.safetynet.safetynetalerts.domain.Person;
 import com.safetynet.safetynetalerts.service.FireStationService;
 import com.safetynet.safetynetalerts.service.PersonService;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -36,6 +37,7 @@ class JsonToDataBaseControllerTest {
         return person;
     }
 
+    @DisplayName("Post OK: insert each person to database")
     @Test
     void givenAfireStation_whenPostRequestSentFromController_thenResponseShouldBeOk() throws Exception {
         when(personService.save(any(Person.class))).thenReturn(person());

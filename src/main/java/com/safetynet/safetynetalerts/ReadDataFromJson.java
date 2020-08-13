@@ -68,7 +68,7 @@ public class ReadDataFromJson {
     /**
      * ListIterator.
      */
-    private ListIterator iterator;
+    private ListIterator<JSONObject> iterator;
 
     /**
      * Retrieve persons from json file.

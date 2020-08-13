@@ -80,6 +80,17 @@ SafetyNetAlerts allows CRUD operations on the following endpoints:
 
 Some examples of the expected responses will be shown below the urls.
 
+#### **Json file data insertion**
+
+SafetyNet Alerts application provides a new endpoint (**from version 1.0.1 up**)
+that allows inserting data retrieved from json file to database.
+This operation can be done by via this url:
+
+`http://localhost:8080/jsonToDatabase/insert`
+
+Its main purpose is retrieving each single person from a json file,
+linking it to the appropriate fire station and medical record and insert them to database.
+
 #### **FireStation**
 
 **a.GET**
